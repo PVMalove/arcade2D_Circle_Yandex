@@ -4,7 +4,6 @@ using CodeBase.Core.Infrastructure.Factories;
 using CodeBase.Core.Infrastructure.States;
 using CodeBase.Core.Services.RandomizerService;
 using CodeBase.Core.Services.SaveLoadService;
-using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Core.GameFlow.GameMode

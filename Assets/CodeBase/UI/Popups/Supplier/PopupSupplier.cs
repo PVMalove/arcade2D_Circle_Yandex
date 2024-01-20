@@ -2,20 +2,21 @@ using System;
 using CodeBase.UI.Popups.Base;
 using CodeBase.UI.Services.Factories;
 using CodeBase.UI.Services.Infrastructure;
+using CodeBase.UI.Windows.GameMenu;
 using Cysharp.Threading.Tasks;
 
 namespace CodeBase.UI.Popups.Supplier
 {
-    public sealed class PopupSupplierAsync : FrameSupplierAsync<PopupName, UnityFrame>
+    public sealed class PopupSupplier : FrameSupplier<PopupName, UnityFrame>
     {
         private readonly IUIFactory uiFactory;
 
-        public PopupSupplierAsync(IUIFactory uiFactory)
+        public PopupSupplier(IUIFactory uiFactory)
         {
             this.uiFactory = uiFactory;
         }
 
-        protected override async UniTask<UnityFrame> InstantiateFrame(PopupName key)
+        protected override UnityFrame InstantiateFrame(PopupName key)
         {
             switch (key)
             {

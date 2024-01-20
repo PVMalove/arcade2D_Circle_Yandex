@@ -84,8 +84,6 @@ namespace CodeBase.UI.HUD.SettingBar
         }
 
 
-        public class Factory : PlaceholderFactory<SettingBarViewHUD>
-        {
-        }
+        public class Factory : PlaceholderFactory<SettingBarViewHUD> { }
     }
 }

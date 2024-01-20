@@ -1,4 +1,5 @@
 ﻿using CodeBase.StaticData.Level;
+using CodeBase.StaticData.UI;
 using Cysharp.Threading.Tasks;
 
 namespace CodeBase.Core.Services.StaticDataService
@@ -7,5 +8,6 @@ namespace CodeBase.Core.Services.StaticDataService
     {
         UniTask InitializeAsync();
         CharacterConfig CharacterConfig { get; }
+        WindowsConfig WindowsConfig { get; }
     }
 }

@@ -8,7 +8,9 @@ namespace CodeBase.Core.Infrastructure.Factories
     {
         List<IProgressReader> ProgressReaders { get; }
         List<IProgressSaver> ProgressWriters { get; }
+        GameObject CircleBackground { get; }
         GameObject CreateHUD();
+        GameObject CreateCircleBackground();
         void Cleanup();
     }
 }

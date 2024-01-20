@@ -1,6 +1,7 @@
 using CodeBase.Core.GameFlow.GameMode.GameWorld;
 using CodeBase.Core.Infrastructure.States;
 using CodeBase.Core.Infrastructure.States.Infrastructure;
+using CodeBase.Core.Services.LogService;
 using Cysharp.Threading.Tasks;
 
 namespace CodeBase.Core.GameFlow.GameMode.States
@@ -9,21 +10,27 @@ namespace CodeBase.Core.GameFlow.GameMode.States
     {
         private readonly IInitializeGameWorld gameWorld;
         private readonly SceneStateMachine sceneStateMachine;
-        public StartGameModeState(IInitializeGameWorld gameWorld, SceneStateMachine sceneStateMachine)
+        private readonly ILogService log;
+
+        public StartGameModeState(IInitializeGameWorld gameWorld,
+            SceneStateMachine sceneStateMachine,
+            ILogService log)
         {
             this.gameWorld = gameWorld;
             this.sceneStateMachine = sceneStateMachine;
+            this.log = log;
         }
 
         public async UniTask Enter()
         {
+            log.LogState("Enter", this);
             gameWorld.InitGameWorld();
-            // you can use states like this for showing starting cut scenes, objectives on the level, explaining game rules and so on
             await sceneStateMachine.Enter<PlayGameModeState>();
         }
 
         public UniTask Exit()
         {
+            log.LogState("Exit", this);
             return default;
         }
     }

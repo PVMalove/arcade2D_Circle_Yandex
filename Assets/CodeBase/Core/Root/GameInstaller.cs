@@ -5,7 +5,6 @@ using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Infrastructure.Factories;
 using CodeBase.Core.Infrastructure.SceneManagement;
 using CodeBase.Core.Infrastructure.States;
-using CodeBase.Core.Infrastructure.UI.AwaitingOverlay;
 using CodeBase.Core.Infrastructure.UI.LoadingCurtain;
 using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.PauseService;
@@ -117,17 +116,6 @@ namespace CodeBase.Core.Root
         private void BindInfrastructureUI()
         {
             BindLoadingCurtains();
-
-            BindAwaitingOverlay();
-        }
-
-        private void BindAwaitingOverlay()
-        {
-            Container
-                .BindFactory<string, UniTask<AwaitingOverlay>, AwaitingOverlay.Factory>()
-                .FromFactory<PrefabFactoryAsync<AwaitingOverlay>>();
-
-            Container.BindInterfacesAndSelfTo<AwaitingOverlayProxy>().AsSingle();
         }
 
         private void BindLoadingCurtains()

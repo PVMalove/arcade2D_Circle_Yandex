@@ -21,7 +21,7 @@ namespace CodeBase.Core.GameFlow.GameMode
             this.log = log;
         }
 
-        public async void Initialize()
+        public void Initialize()
         {
             log.LogState("Start game mode scene bootstraping", this);
 

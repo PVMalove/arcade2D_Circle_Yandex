@@ -1,0 +1,37 @@
+using System;
+using CodeBase.UI.Popups.Base;
+using CodeBase.UI.Services.Factories;
+using CodeBase.UI.Services.Infrastructure;
+using CodeBase.UI.Windows.Base;
+using CodeBase.UI.Windows.GameMenu;
+using Cysharp.Threading.Tasks;
+
+namespace CodeBase.UI.Windows.Supplier
+{
+    public class WindowSupplierAsync : FrameSupplierAsync<WindowName, UnityFrame>
+    {
+        private readonly IUIFactory uiFactory;
+
+        public WindowSupplierAsync(IUIFactory uiFactory)
+        {
+            this.uiFactory = uiFactory;
+        }
+
+        protected override async UniTask<UnityFrame> InstantiateFrame(WindowName key)
+        {
+            switch (key)
+            {
+                case WindowName.None:
+                    break;
+                case WindowName.GAME_MENU:
+                    GameMenuViewWindow gameMenuView = await uiFactory.CreateGameMenuView();
+                    gameMenuView.transform.SetParent(uiFactory.UIRoot.ContainerWindow, false);
+                    gameMenuView.name = "GameMenu";
+                    return gameMenuView;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(key), key, null);
+            }
+            throw new InvalidOperationException($"Invalid key: {key}");
+        }
+    }
+}

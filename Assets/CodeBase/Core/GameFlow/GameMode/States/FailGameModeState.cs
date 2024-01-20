@@ -8,7 +8,6 @@ namespace CodeBase.Core.GameFlow.GameMode.States
     {
         public UniTask Enter()
         {
-            Debug.Log("SSSSSSSSSSSSSSSSSSSSSSS");
             // use such states for showing fail screens and offering resurrections and so on
             return default;
         }

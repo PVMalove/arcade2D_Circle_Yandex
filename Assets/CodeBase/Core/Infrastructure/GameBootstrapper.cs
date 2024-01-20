@@ -1,4 +1,5 @@
-﻿using CodeBase.Core.Infrastructure.States;
+﻿using CodeBase.Core.GameFlow.GameLoading.States;
+using CodeBase.Core.Infrastructure.States;
 using CodeBase.Core.Infrastructure.States.GlobalStates;
 using CodeBase.Core.Infrastructure.States.Infrastructure;
 using UnityEngine;
@@ -22,7 +23,6 @@ namespace CodeBase.Core.Infrastructure
         {
             gameStateMachine.RegisterState(statesFactory.Create<GameBootstrapState>());
             gameStateMachine.RegisterState(statesFactory.Create<GameLoadingState>());
-            gameStateMachine.RegisterState(statesFactory.Create<GameHubState>());
             gameStateMachine.RegisterState(statesFactory.Create<GameModeState>());
 
             gameStateMachine?.Enter<GameBootstrapState>();
@@ -30,8 +30,6 @@ namespace CodeBase.Core.Infrastructure
             DontDestroyOnLoad(this);
         }
 
-        public class Factory : PlaceholderFactory<GameBootstrapper>
-        {
-        }
+        public class Factory : PlaceholderFactory<GameBootstrapper> { }
     }
 }

@@ -19,12 +19,14 @@ namespace CodeBase.Core.GameFlow.GameMode.States
 
         public UniTask Enter()
         {
+            log.LogState("Enter", this);
             audioService.MusicSourceAudio.Play("mainMusic");
             return default;
         }
         
         public UniTask Exit()
         {
+            log.LogState("Exit", this);
             return default;
         }
     }

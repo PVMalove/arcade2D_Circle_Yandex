@@ -1,5 +1,5 @@
+using CodeBase.Gameplay.Environment;
 using CodeBase.UI.Root;
-using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Core.Infrastructure.Factories
@@ -12,6 +12,10 @@ namespace CodeBase.Core.Infrastructure.Factories
             Container.BindFactory<HUDRoot, HUDRoot.Factory>().FromComponentInNewPrefabResource(InfrastructureAssetPath.HUDRoot);
             
             Container.BindInterfacesAndSelfTo<GameFactory>().AsSingle();
+            
+            Container.BindFactory<CircleBackground, CircleBackground.Factory>()
+                .FromComponentInNewPrefabResource(InfrastructureAssetPath.CircleBackground)
+                .WithGameObjectName("CircleBackground");
         }
     }
 }

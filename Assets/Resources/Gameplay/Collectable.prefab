@@ -86,6 +86,7 @@ MonoBehaviour:
   - 4.2
   - 9.2
   - 14.2
+  player: {fileID: 0}
 --- !u!212 &3427679531663341781
 SpriteRenderer:
   m_ObjectHideFlags: 0

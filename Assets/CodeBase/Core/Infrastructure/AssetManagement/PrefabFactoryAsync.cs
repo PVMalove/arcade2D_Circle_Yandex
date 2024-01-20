@@ -19,7 +19,6 @@ namespace CodeBase.Core.Infrastructure.AssetManagement
         {
             GameObject prefab = await assetProvider.Load<GameObject>(assetKey);
             GameObject newObject = instantiator.InstantiatePrefab(prefab);
-            // newObject.name = assetKey;
             return newObject.GetComponent<TComponent>();
         }
     }

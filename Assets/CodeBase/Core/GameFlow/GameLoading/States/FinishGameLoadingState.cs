@@ -21,7 +21,7 @@ namespace CodeBase.Core.GameFlow.GameLoading.States
         {
             log.LogState("Enter", this);
             gameStateMachine.OnExitState += HandleExitState;
-            gameStateMachine.Enter<GameHubState>().Forget();
+            gameStateMachine.Enter<GameModeState>().Forget();
         }
 
         public UniTask Exit()
@@ -33,7 +33,7 @@ namespace CodeBase.Core.GameFlow.GameLoading.States
         
         private void HandleExitState()
         {
-            if(gameStateMachine.CurrentState is GameHubState) 
+            if(gameStateMachine.CurrentState is GameModeState) 
                 Exit().Forget();
         }
     }

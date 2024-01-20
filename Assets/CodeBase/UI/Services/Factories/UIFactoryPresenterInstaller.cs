@@ -1,5 +1,7 @@
+using CodeBase.Core.GameFlow;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
+using CodeBase.UI.Windows.GameMenu;
 using Zenject;
 
 namespace CodeBase.UI.Services.Factories
@@ -15,6 +17,10 @@ namespace CodeBase.UI.Services.Factories
             Container
                 .BindFactory<ISettingBarPresenter, SettingBarPresenter.Factory>()
                 .To<SettingBarPresenter>();
+            
+            Container
+                .BindFactory<IGameMenuPresenter, GameMenuPresenter.Factory>()
+                .To<GameMenuPresenter>();
         }
     }
 }

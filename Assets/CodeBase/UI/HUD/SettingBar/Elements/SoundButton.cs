@@ -8,7 +8,8 @@ namespace CodeBase.UI.HUD.SettingBar.Elements
     {
         [SerializeField] private Button button;
 
-        [Space] [SerializeField] private GameObject soundOn;
+        [Space] 
+        [SerializeField] private GameObject soundOn;
         [SerializeField] private GameObject soundOff;
 
         public void ChangeStateSoundButton(bool isOn)

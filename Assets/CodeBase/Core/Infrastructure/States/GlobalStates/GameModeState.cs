@@ -27,13 +27,13 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             log.LogState("Enter", this);
             loadingCurtain.Show();
             await assetProvider.WarmupAssetsByLabel(AssetLabels.GameplayState);
-            await sceneLoader.Load(InfrastructureAssetPath.GameModeScene);
+            await sceneLoader.Load(InfrastructureAssetPath.GameScene);
             loadingCurtain.Hide();
         }
 
         public async UniTask Exit()
         {
-            loadingCurtain.Show();
+            loadingCurtain.Hide();
             await assetProvider.ReleaseAssetsByLabel(AssetLabels.GameplayState);
             log.LogState("Exit", this);
         }

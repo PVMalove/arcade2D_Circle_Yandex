@@ -8,7 +8,6 @@ namespace CodeBase.UI.Popups.Base
 {
     public abstract class PopupBase<TInitializeData, TResult> : UnityFrame
     {
-
         private IPersistentProgressStorage progressStorage;
         protected PlayerProgress Progress => progressStorage.Progress;
 

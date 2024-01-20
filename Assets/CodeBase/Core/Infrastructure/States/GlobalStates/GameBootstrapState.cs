@@ -1,7 +1,6 @@
 ﻿using CodeBase.Audio.Service;
 using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Infrastructure.States.Infrastructure;
-using CodeBase.Core.Infrastructure.UI.AwaitingOverlay;
 using CodeBase.Core.Infrastructure.UI.LoadingCurtain;
 using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.StaticDataService;
@@ -15,7 +14,6 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
         private readonly IStaticDataService staticDataService;
         private readonly ILogService log;
         private readonly LoadingCurtainProxy loadingCurtainProxy;
-        private readonly AwaitingOverlayProxy awaitingOverlayProxy;
         private readonly AudioServiceProxy audioServiceProxy;
 
         private readonly IAssetProvider assetProvider;
@@ -25,7 +23,6 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             IAssetProvider assetProvider,
             ILogService log,
             LoadingCurtainProxy loadingCurtainProxy,
-            AwaitingOverlayProxy awaitingOverlayProxy,
             AudioServiceProxy audioServiceProxy)
         {
             this.staticDataService = staticDataService;
@@ -34,7 +31,6 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             this.assetProvider = assetProvider;
             this.log = log;
             this.loadingCurtainProxy = loadingCurtainProxy;
-            this.awaitingOverlayProxy = awaitingOverlayProxy;
             this.audioServiceProxy = audioServiceProxy;
         }
 
@@ -53,7 +49,6 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             await assetProvider.InitializeAsync();
             await staticDataService.InitializeAsync();
             await loadingCurtainProxy.InitializeAsync();
-            await awaitingOverlayProxy.InitializeAsync();
             audioServiceProxy.Initialize();
         }
 

@@ -35,14 +35,12 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             await audioManagement.Initialize();
             await sceneLoader.Load(InfrastructureAssetPath.GameLoadingScene);
             
-            
             loadingCurtain.Hide();
         }
 
         public async UniTask Exit()
         {
             loadingCurtain.Show();
-            //todo так выгружаются ассеты
             await assetProvider.ReleaseAssetsByLabel(AssetLabels.GameLoadingState);
             log.LogState("Exit", this);
         }

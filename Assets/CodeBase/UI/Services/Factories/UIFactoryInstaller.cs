@@ -2,6 +2,7 @@ using CodeBase.Core.Infrastructure;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
 using CodeBase.UI.Root;
+using CodeBase.UI.Windows.GameMenu;
 using Zenject;
 
 namespace CodeBase.UI.Services.Factories
@@ -17,8 +18,8 @@ namespace CodeBase.UI.Services.Factories
                 .FromComponentInNewPrefabResource(InfrastructureAssetPath.UIRoot)
                 .WithGameObjectName("GameUICanvas");
             
-            //Popup async
-
+            //POPUP
+            
             //HUD 
             Container.BindFactory<BuildInfoViewHUD, BuildInfoViewHUD.Factory>()
                 .FromComponentInNewPrefabResource(InfrastructureAssetPath.BuildInfoPath)
@@ -27,6 +28,9 @@ namespace CodeBase.UI.Services.Factories
             Container.BindFactory<SettingBarViewHUD, SettingBarViewHUD.Factory>()
                 .FromComponentInNewPrefabResource(InfrastructureAssetPath.SettingBar)
                 .WithGameObjectName("SettingBar");
+            
+            //WINDOW
+            Container.Bind<GameMenuViewWindow.Factory>().AsSingle();
         }
     }
 }

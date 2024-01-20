@@ -43,18 +43,13 @@ namespace CodeBase.Core.Infrastructure.AssetManagement
             return handle.Result as TAsset;
         }
 
-        // public async UniTask<TAsset> Load<TAsset>(AssetReference assetReference) where TAsset : class
-        // {
-        //     return await Load<TAsset>(assetReference.AssetGUID);
-        // }
         public async UniTask<TAsset> Load<TAsset>(AssetReference assetReference) where TAsset : class
         {
+            if (completedCache.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle completeHandle))
+                return (TAsset)completeHandle.Result;
 
-                if (completedCache.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle completeHandle))
-                    return (TAsset)completeHandle.Result;
-
-                return await RunWithCacheOnComplete(assetReference.AssetGUID, 
-                    Addressables.LoadAssetAsync<TAsset>(assetReference));
+            return await RunWithCacheOnComplete(assetReference.AssetGUID, 
+                Addressables.LoadAssetAsync<TAsset>(assetReference));
         }
 
         public async UniTask<List<string>> GetAssetsListByLabel<TAsset>(string label) => 
