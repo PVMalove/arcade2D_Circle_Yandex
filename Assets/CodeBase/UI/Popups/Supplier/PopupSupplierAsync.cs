@@ -1,5 +1,6 @@
 using System;
 using CodeBase.UI.Popups.Base;
+using CodeBase.UI.Popups.SkinsShop;
 using CodeBase.UI.Services.Factories;
 using CodeBase.UI.Services.Infrastructure;
 using Cysharp.Threading.Tasks;
@@ -21,6 +22,11 @@ namespace CodeBase.UI.Popups.Supplier
             {
                 case PopupName.None:
                     break;
+                case PopupName.SKINS_SHOP:
+                    SkinsShopViewPopup skinsShopView = await uiFactory.CreateSkinsShopView();
+                    skinsShopView.transform.SetParent(uiFactory.UIRoot.ContainerPopup, false);
+                    skinsShopView.name = "SkinsShop";
+                    return skinsShopView;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(key), key, null);
             }

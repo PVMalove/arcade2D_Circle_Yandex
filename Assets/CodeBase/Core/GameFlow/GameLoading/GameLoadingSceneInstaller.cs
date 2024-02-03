@@ -23,23 +23,6 @@ namespace CodeBase.Core.GameFlow.GameLoading
             Container.Bind<SceneStateMachine>().AsSingle();
             
             UIInstaller.Install(Container);
-            
-            //BindPopupConfigs();
         }
-
-        /*private void BindPopupConfigs()
-        {
-            Container
-                .Bind<PolicyAcceptPopupConfig>()
-                .FromScriptableObjectResource("Configs/UI/PolicyPopups/PrivatePolicy")
-                .AsTransient()
-                .WhenInjectedInto<PrivatePolicyState>();
-
-            Container
-                .Bind<PolicyAcceptPopupConfig>()
-                .FromScriptableObjectResource("Configs/UI/PolicyPopups/GDPRPolicy")
-                .AsTransient()
-                .WhenInjectedInto<GDPRState>();
-        }*/
     }
 }

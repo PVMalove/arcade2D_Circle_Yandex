@@ -15,32 +15,34 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
         private readonly ILogService log;
         private readonly LoadingCurtainProxy loadingCurtainProxy;
         private readonly AudioServiceProxy audioServiceProxy;
-
         private readonly IAssetProvider assetProvider;
 
         public GameBootstrapState(GameStateMachine gameStateMachine,
             IStaticDataService staticDataService,
             IAssetProvider assetProvider,
-            ILogService log,
             LoadingCurtainProxy loadingCurtainProxy,
-            AudioServiceProxy audioServiceProxy)
+            AudioServiceProxy audioServiceProxy,
+            ILogService log)
         {
-            this.staticDataService = staticDataService;
             this.gameStateMachine = gameStateMachine;
             this.staticDataService = staticDataService;
             this.assetProvider = assetProvider;
-            this.log = log;
             this.loadingCurtainProxy = loadingCurtainProxy;
             this.audioServiceProxy = audioServiceProxy;
+            this.log = log;
         }
 
         public async UniTask Enter()
         {
             log.LogState("Enter", this);
-            
             await InitServices();
-            
             gameStateMachine.Enter<GameLoadingState>().Forget();
+        }
+
+        public UniTask Exit()
+        {
+            log.LogState("Exit", this);
+            return default;
         }
 
         private async UniTask InitServices()
@@ -50,12 +52,6 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             await staticDataService.InitializeAsync();
             await loadingCurtainProxy.InitializeAsync();
             audioServiceProxy.Initialize();
-        }
-
-        public UniTask Exit()
-        {
-            log.LogState("Exit", this);
-            return default;
         }
     }
 }

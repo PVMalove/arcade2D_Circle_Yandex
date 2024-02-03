@@ -2,8 +2,6 @@ using System;
 using CodeBase.UI.Popups.Base;
 using CodeBase.UI.Services.Factories;
 using CodeBase.UI.Services.Infrastructure;
-using CodeBase.UI.Windows.GameMenu;
-using Cysharp.Threading.Tasks;
 
 namespace CodeBase.UI.Popups.Supplier
 {

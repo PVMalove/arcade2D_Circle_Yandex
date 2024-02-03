@@ -9,5 +9,6 @@ namespace CodeBase.Core.Services.StaticDataService
         UniTask InitializeAsync();
         CharacterConfig CharacterConfig { get; }
         WindowsConfig WindowsConfig { get; }
+        PopupsConfig PopupsConfig { get; }
     }
 }

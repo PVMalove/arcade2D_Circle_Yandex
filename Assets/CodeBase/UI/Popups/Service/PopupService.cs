@@ -1,34 +1,37 @@
 ﻿using System;
 using System.Threading;
 using CodeBase.UI.Popups.Base;
-using CodeBase.UI.Root;
-using CodeBase.UI.Services.Factories;
+using CodeBase.UI.Popups.SkinsShop;
 using CodeBase.UI.Services.Infrastructure;
-using CodeBase.UI.Windows.GameMenu;
 using Cysharp.Threading.Tasks;
 
 namespace CodeBase.UI.Popups.Service
 {
     public class PopupService : IPopupService, IDisposable
     {
-        private readonly IUIFactory uiFactory;
         private readonly IFrameSupplierAsync<PopupName, UnityFrame> supplierAsync;
         private readonly IFrameSupplier<PopupName, UnityFrame> supplier;
-        private readonly GameMenuPresenter.Factory gameMenuPresenterFactory;
+        private readonly SkinsShopPresenter.Factory skinsShopPresenterFactory;
         private readonly CancellationTokenSource ctn;
 
-        private IUIRoot viewport;
-
-        public PopupService(IUIFactory uiFactory,
-            IFrameSupplierAsync<PopupName, UnityFrame>  supplierAsync,
+        public PopupService(IFrameSupplierAsync<PopupName, UnityFrame>  supplierAsync,
             IFrameSupplier<PopupName, UnityFrame> supplier,
-            GameMenuPresenter.Factory gameMenuPresenterFactory)
+            SkinsShopPresenter.Factory skinsShopPresenterFactory)
         {
-            this.uiFactory = uiFactory;
             this.supplierAsync = supplierAsync;
             this.supplier = supplier;
-            this.gameMenuPresenterFactory = gameMenuPresenterFactory;
+            this.skinsShopPresenterFactory = skinsShopPresenterFactory;
             ctn = new CancellationTokenSource();
+        }
+
+        public async UniTask ShowSkinsShop()
+        {
+            if (await supplierAsync.LoadFrame(PopupName.SKINS_SHOP) is SkinsShopViewPopup skinsShopView)
+            {
+                ISkinsShopPresenter presenter = skinsShopPresenterFactory.Create();
+                await skinsShopView.Show(presenter).AttachExternalCancellation(ctn.Token);
+                skinsShopView.Hide();
+            }
         }
 
         public void Dispose() => 

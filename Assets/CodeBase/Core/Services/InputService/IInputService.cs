@@ -1,8 +1,4 @@
-﻿
-
-using UnityEngine;
-
-namespace CodeBase.Core.Services.InputService
+﻿namespace CodeBase.Core.Services.InputService
 {
     public interface IInputService
     {

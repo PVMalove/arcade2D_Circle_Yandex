@@ -1,6 +1,7 @@
 using CodeBase.Core.Infrastructure;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
+using CodeBase.UI.Popups.SkinsShop;
 using CodeBase.UI.Root;
 using CodeBase.UI.Windows.GameMenu;
 using Zenject;
@@ -19,6 +20,7 @@ namespace CodeBase.UI.Services.Factories
                 .WithGameObjectName("GameUICanvas");
             
             //POPUP
+            Container.Bind<SkinsShopViewPopup.Factory>().AsSingle();
             
             //HUD 
             Container.BindFactory<BuildInfoViewHUD, BuildInfoViewHUD.Factory>()

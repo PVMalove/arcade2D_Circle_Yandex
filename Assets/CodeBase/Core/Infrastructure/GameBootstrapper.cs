@@ -1,5 +1,4 @@
-﻿using CodeBase.Core.GameFlow.GameLoading.States;
-using CodeBase.Core.Infrastructure.States;
+﻿using CodeBase.Core.Infrastructure.States;
 using CodeBase.Core.Infrastructure.States.GlobalStates;
 using CodeBase.Core.Infrastructure.States.Infrastructure;
 using UnityEngine;
@@ -21,9 +20,9 @@ namespace CodeBase.Core.Infrastructure
         
         private void Start()
         {
-            gameStateMachine.RegisterState(statesFactory.Create<GameBootstrapState>());
-            gameStateMachine.RegisterState(statesFactory.Create<GameLoadingState>());
-            gameStateMachine.RegisterState(statesFactory.Create<GameModeState>());
+            gameStateMachine?.RegisterState(statesFactory.Create<GameBootstrapState>());
+            gameStateMachine?.RegisterState(statesFactory.Create<GameLoadingState>());
+            gameStateMachine?.RegisterState(statesFactory.Create<GameModeState>());
 
             gameStateMachine?.Enter<GameBootstrapState>();
 

@@ -1,6 +1,7 @@
 using CodeBase.Core.GameFlow;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
+using CodeBase.UI.Popups.SkinsShop;
 using CodeBase.UI.Windows.GameMenu;
 using Zenject;
 
@@ -10,6 +11,12 @@ namespace CodeBase.UI.Services.Factories
     {
         public override void InstallBindings()
         {
+            //POPUP
+            Container
+                .BindFactory<ISkinsShopPresenter, SkinsShopPresenter.Factory>()
+                .To<SkinsShopPresenter>();
+            
+            //HUD 
             Container
                 .BindFactory<BuildInfoConfig, IBuildInfoPresenter, BuildInfoPresenter.Factory>()
                 .To<BuildInfoPresenter>();
@@ -18,6 +25,7 @@ namespace CodeBase.UI.Services.Factories
                 .BindFactory<ISettingBarPresenter, SettingBarPresenter.Factory>()
                 .To<SettingBarPresenter>();
             
+            //WINDOW
             Container
                 .BindFactory<IGameMenuPresenter, GameMenuPresenter.Factory>()
                 .To<GameMenuPresenter>();

@@ -37,12 +37,15 @@ namespace CodeBase.UI.Popups.Base
         protected void SetPopupResult(TResult result) =>
             taskCompletionSource.TrySetResult(result);
 
-        private void OnDestroy() => 
-            Cleanup();
+        private void OnDisable()
+        {
+            UnsubscribeUpdates();
+        }
 
         protected virtual void OnAwake() => Hide();
         protected virtual void Initialize(TInitializeData with){}
         protected virtual void SubscribeUpdates(){}
+        protected virtual void UnsubscribeUpdates() { }
         protected virtual void Cleanup(){}
     }
 }

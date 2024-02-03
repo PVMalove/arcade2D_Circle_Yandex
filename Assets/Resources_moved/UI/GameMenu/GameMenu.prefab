@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startGameButton: {fileID: 6151199954314923007}
+  openSkinsShopButton: {fileID: 931218597835289911}
 --- !u!1 &5885134344627353482
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.23137255, g: 0.21960784, b: 0.3019608, a: 0.43137255}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -170,34 +171,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9035915314579609787}
     m_Modifications:
-    - target: {fileID: 641090470071147894, guid: 1aadf52091f731f44ac6ae03203772de, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 641090470071147894, guid: 1aadf52091f731f44ac6ae03203772de, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 641090470071147894, guid: 1aadf52091f731f44ac6ae03203772de, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 641090470071147894, guid: 1aadf52091f731f44ac6ae03203772de, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 641090470071147894, guid: 1aadf52091f731f44ac6ae03203772de, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 641090470071147894, guid: 1aadf52091f731f44ac6ae03203772de, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 641090470071147894, guid: 1aadf52091f731f44ac6ae03203772de, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 1300
-      objectReference: {fileID: 0}
     - target: {fileID: 746726452216742664, guid: 1aadf52091f731f44ac6ae03203772de, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -278,14 +251,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3388999494811998216, guid: 1aadf52091f731f44ac6ae03203772de, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6879721741622778317, guid: 1aadf52091f731f44ac6ae03203772de, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8860681795683200848, guid: 1aadf52091f731f44ac6ae03203772de, type: 3}
       propertyPath: m_Name
       value: StartGame
@@ -295,6 +260,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1aadf52091f731f44ac6ae03203772de, type: 3}
+--- !u!114 &931218597835289911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 839439417714383659, guid: 1aadf52091f731f44ac6ae03203772de, type: 3}
+  m_PrefabInstance: {fileID: 525254101008002588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &943209534080576788 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 746726452216742664, guid: 1aadf52091f731f44ac6ae03203772de, type: 3}

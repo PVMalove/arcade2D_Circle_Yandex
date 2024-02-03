@@ -14,6 +14,7 @@ namespace CodeBase.Core.Services.StaticDataService
     {
         public CharacterConfig CharacterConfig { get; private set; }
         public WindowsConfig WindowsConfig { get; private set; }
+        public PopupsConfig PopupsConfig { get; private set; }
         
         private readonly ILogService log;
         private readonly IAssetProvider assetProvider;
@@ -30,6 +31,7 @@ namespace CodeBase.Core.Services.StaticDataService
             List<UniTask> tasks = new List<UniTask>
             {
                 LoadWindowsConfig(),
+                LoadPopupsConfig()
             };
 
             await UniTask.WhenAll(tasks);
@@ -42,7 +44,16 @@ namespace CodeBase.Core.Services.StaticDataService
             if (configs.Length > 0)
                 WindowsConfig = configs.First();
             else
-                log.LogError("There are no character config founded!");
+                log.LogError("There are no windows config founded!");
+        }
+        
+        private async UniTask LoadPopupsConfig()
+        {
+            PopupsConfig[] configs = await GetConfigs<PopupsConfig>();
+            if (configs.Length > 0)
+                PopupsConfig = configs.First();
+            else
+                log.LogError("There are no popups config founded!");
         }
         
         private async UniTask<List<string>> GetConfigKeys<TConfig>() => 

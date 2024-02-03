@@ -15,9 +15,7 @@ namespace CodeBase.UI.Windows.Service
         private readonly IFrameSupplier<WindowName, UnityFrame> supplier;
         private readonly GameMenuPresenter.Factory gameMenuPresenterFactory;
         private readonly CancellationTokenSource ctn;
-
-        private IUIRoot viewport;
-
+        
         public WindowService(IFrameSupplierAsync<WindowName, UnityFrame> supplierAsync,
             IFrameSupplier<WindowName, UnityFrame> supplier,
             GameMenuPresenter.Factory gameMenuPresenterFactory)

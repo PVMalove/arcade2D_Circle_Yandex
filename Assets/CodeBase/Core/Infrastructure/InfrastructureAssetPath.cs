@@ -18,7 +18,6 @@
         //UI
         public const string UIRoot = "Infrastructure/UI/GameUICanvas";
         public const string CurtainPath = "CurtainCanvas";
-        public const string AwaitingOverlayPath = "AwaitingOverlay";
         public const string BuildInfoPath = "UI/HUD/BuildInfo";
         public const string SettingBar = "UI/HUD/Setting/SettingBar";
         public const string CircleBackground = "Gameplay/Enviroment/CircleBackground";

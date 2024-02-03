@@ -4,7 +4,6 @@ using CodeBase.Core.Infrastructure.States.Infrastructure;
 using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.PlayerProgressService;
 using CodeBase.Core.Services.SaveLoadService;
-using CodeBase.Core.Services.StaticDataService;
 using Cysharp.Threading.Tasks;
 using YG;
 
@@ -15,16 +14,16 @@ namespace CodeBase.Core.GameFlow.GameLoading.States
         private readonly SceneStateMachine sceneStateMachine;
         private readonly IPersistentProgressStorage progressStorage;
         private readonly ILoadService loadService;
-        private readonly IStaticDataService staticDataService;
         private readonly ILogService log;
 
-        public LoadPlayerProgressState(SceneStateMachine sceneStateMachine, IPersistentProgressStorage progressStorage, 
-            ILoadService loadService,IStaticDataService staticDataService, ILogService log)
+        public LoadPlayerProgressState(SceneStateMachine sceneStateMachine,
+            IPersistentProgressStorage progressStorage, 
+            ILoadService loadService,
+            ILogService log)
         {
             this.sceneStateMachine = sceneStateMachine;
             this.progressStorage = progressStorage;
             this.loadService = loadService;
-            this.staticDataService = staticDataService;
             this.log = log;
         }
 
