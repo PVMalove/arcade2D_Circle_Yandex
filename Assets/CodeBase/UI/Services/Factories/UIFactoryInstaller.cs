@@ -32,7 +32,7 @@ namespace CodeBase.UI.Services.Factories
                 .WithGameObjectName("SettingBar");
             
             //WINDOW
-            Container.Bind<GameMenuViewWindow.Factory>().AsSingle();
+            Container.Bind<GameMenuViewScreen.Factory>().AsSingle();
         }
     }
 }

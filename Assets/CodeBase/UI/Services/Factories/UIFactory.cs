@@ -1,11 +1,15 @@
-﻿using CodeBase.Core.Services.StaticDataService;
+﻿using System;
+using CodeBase.Core.Services.StaticDataService;
 using CodeBase.StaticData.UI;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
+using CodeBase.UI.Popups.Base;
 using CodeBase.UI.Popups.SkinsShop;
 using CodeBase.UI.Root;
+using CodeBase.UI.Windows.Base;
 using CodeBase.UI.Windows.GameMenu;
 using Cysharp.Threading.Tasks;
+using UnityEngine.AddressableAssets;
 
 namespace CodeBase.UI.Services.Factories
 {
@@ -17,14 +21,14 @@ namespace CodeBase.UI.Services.Factories
         private readonly UIRoot.Factory uiRootFactory;
         private readonly BuildInfoViewHUD.Factory buildInfoFactory;
         private readonly SettingBarViewHUD.Factory settingBarFactory;
-        private readonly GameMenuViewWindow.Factory gameMenuFactory;
+        private readonly GameMenuViewScreen.Factory gameMenuFactory;
         private readonly SkinsShopViewPopup.Factory skinsShopFactory;
 
         public UIFactory(IStaticDataService staticDataService,
             UIRoot.Factory uiRootFactory,
             BuildInfoViewHUD.Factory buildInfoFactory,
             SettingBarViewHUD.Factory settingBarFactory,
-            GameMenuViewWindow.Factory gameMenuFactory,
+            GameMenuViewScreen.Factory gameMenuFactory,
             SkinsShopViewPopup.Factory skinsShopFactory
         )
         {
@@ -45,16 +49,18 @@ namespace CodeBase.UI.Services.Factories
         public SettingBarViewHUD CreateSettingBarView() =>
             settingBarFactory.Create();
 
-        public UniTask<GameMenuViewWindow> CreateGameMenuView()
+        public UniTask<GameMenuViewScreen> CreateGameMenuView()
         {
-            WindowsConfig windowsConfig = staticDataService.WindowsConfig;
-            return gameMenuFactory.Create(windowsConfig.GameMenuPrefabReference);
+            ScreensCatalog screensCatalog = staticDataService.ScreensCatalog;
+            AssetReferenceGameObject prefab = screensCatalog.LoadPrefab(ScreenName.GAME_MENU);
+            return gameMenuFactory.Create(prefab);
         }
 
         public UniTask<SkinsShopViewPopup> CreateSkinsShopView()
         {
-            PopupsConfig popupsConfig = staticDataService.PopupsConfig;
-            return skinsShopFactory.Create(popupsConfig.SkinsShopPrefabReference);
+            PopupsCatalog popupsCatalog = staticDataService.PopupsCatalog;
+            AssetReferenceGameObject prefab = popupsCatalog.LoadPrefab(PopupName.SKINS_SHOP);
+            return skinsShopFactory.Create(prefab);
         }
 
         public void Cleanup()

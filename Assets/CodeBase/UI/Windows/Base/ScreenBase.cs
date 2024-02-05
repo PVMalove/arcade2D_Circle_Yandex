@@ -7,7 +7,7 @@ using Zenject;
 
 namespace CodeBase.UI.Windows.Base
 {
-    public class WindowBase<TInitializeData, TResult> : UnityFrame
+    public class ScreenBase<TInitializeData, TResult> : UnityFrame
     {
         private IPersistentProgressStorage progressStorage;
         protected PlayerProgress Progress => progressStorage.Progress;

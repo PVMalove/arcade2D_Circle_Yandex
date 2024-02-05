@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4120211840739696917}
   - component: {fileID: 2655895051701081078}
   m_Layer: 5
-  m_Name: Window
+  m_Name: Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 233093899856395736}
   m_Layer: 5
-  m_Name: Viewport_window
+  m_Name: Viewport_screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd5c2478faff4250adf9f714e49ac849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ContainerWindow>k__BackingField: {fileID: 233093899856395736}
+  <ContainerScreen>k__BackingField: {fileID: 233093899856395736}
   <ContainerHUD>k__BackingField: {fileID: 7988575484628378680}
   <ContainerPopup>k__BackingField: {fileID: 8722056670419662799}
 --- !u!1 &5880169496969789328

@@ -8,7 +8,7 @@ using Cysharp.Threading.Tasks;
 
 namespace CodeBase.UI.Windows.Supplier
 {
-    public class WindowSupplierAsync : FrameSupplierAsync<WindowName, UnityFrame>
+    public class WindowSupplierAsync : FrameSupplierAsync<ScreenName, UnityFrame>
     {
         private readonly IUIFactory uiFactory;
 
@@ -17,15 +17,15 @@ namespace CodeBase.UI.Windows.Supplier
             this.uiFactory = uiFactory;
         }
 
-        protected override async UniTask<UnityFrame> InstantiateFrame(WindowName key)
+        protected override async UniTask<UnityFrame> InstantiateFrame(ScreenName key)
         {
             switch (key)
             {
-                case WindowName.None:
+                case ScreenName.None:
                     break;
-                case WindowName.GAME_MENU:
-                    GameMenuViewWindow gameMenuView = await uiFactory.CreateGameMenuView();
-                    gameMenuView.transform.SetParent(uiFactory.UIRoot.ContainerWindow, false);
+                case ScreenName.GAME_MENU:
+                    GameMenuViewScreen gameMenuView = await uiFactory.CreateGameMenuView();
+                    gameMenuView.transform.SetParent(uiFactory.UIRoot.ContainerScreen, false);
                     gameMenuView.name = "GameMenu";
                     return gameMenuView;
                 default:

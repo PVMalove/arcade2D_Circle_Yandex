@@ -1,5 +1,6 @@
 ﻿using CodeBase.StaticData.Level;
 using CodeBase.StaticData.UI;
+using CodeBase.UI.Popups.SkinsShop.TEST.SkinsShop;
 using Cysharp.Threading.Tasks;
 
 namespace CodeBase.Core.Services.StaticDataService
@@ -8,7 +9,8 @@ namespace CodeBase.Core.Services.StaticDataService
     {
         UniTask InitializeAsync();
         CharacterConfig CharacterConfig { get; }
-        WindowsConfig WindowsConfig { get; }
-        PopupsConfig PopupsConfig { get; }
+        ScreensCatalog ScreensCatalog { get; }
+        PopupsCatalog PopupsCatalog { get; }
+        SkinsItemCatalog SkinsItemCatalog { get; }
     }
 }
