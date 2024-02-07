@@ -35,7 +35,7 @@ namespace CodeBase.UI.Windows.Base
             gameObject.SetActive(false);
         }
         
-        protected void SetWindowResult(TResult result) =>
+        protected void SetScreenResult(TResult result) =>
             taskCompletionSource.TrySetResult(result);
 
         private void OnDisable()

@@ -1,5 +1,6 @@
 ﻿using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.UI.Popups.Base;
+using CodeBase.UI.Popups.SkinsShop.TEST;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,8 @@ namespace CodeBase.UI.Popups.SkinsShop
     public class SkinsShopViewPopup : PopupBase<ISkinsShopPresenter, bool>   
     {
         [SerializeField] private Button closePopupButton;
+
+        [SerializeField] private ShopItemListPresenter shopItemList;
         
         private ISkinsShopPresenter presenter;
         
@@ -17,7 +20,14 @@ namespace CodeBase.UI.Popups.SkinsShop
             base.Initialize(presenter);
             this.presenter = presenter;
         }
-        
+
+        protected override void OnAwake()
+        {
+            base.OnAwake();
+            presenter.InitializeShop();
+            shopItemList.Initialize(presenter.OpenSkinsChecker, presenter.SelectedSkinChecker);
+        }
+
         protected override void SubscribeUpdates()
         {
             base.SubscribeUpdates();

@@ -35,7 +35,7 @@ namespace CodeBase.UI.Windows.GameMenu
 
         private void OnStartGame()
         {
-            SetWindowResult(true);
+            SetScreenResult(true);
             presenter.StartGame();
         }
 
@@ -46,7 +46,7 @@ namespace CodeBase.UI.Windows.GameMenu
 
         [Button]
         private void OnClick() => 
-            SetWindowResult(true);
+            SetScreenResult(true);
         
         public class Factory : AddressablePrefabFactory<GameMenuViewScreen> { }
     }

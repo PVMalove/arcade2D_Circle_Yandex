@@ -597,6 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closePopupButton: {fileID: 4086706446733143645}
+  shopItemList: {fileID: 7649395827817565902}
 --- !u!1 &2436483146801752611
 GameObject:
   m_ObjectHideFlags: 0

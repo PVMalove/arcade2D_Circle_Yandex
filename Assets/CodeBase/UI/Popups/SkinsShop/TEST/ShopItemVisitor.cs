@@ -16,10 +16,7 @@ namespace CodeBase.UI.Popups.SkinsShop.TEST
 
         public SkinItemView Prefab { get; private set; }
 
-        // public void Visit(ShopItemConfig ShopItemConfig)
-        // {
-        //     Visit((dynamic)ShopItemConfig);
-        // }
+        // public void Visit(ShopItemConfig ShopItemConfig) => Visit((dynamic)ShopItemConfig);
 
         public void Visit(ShopItemConfig ShopItem)
         {
@@ -32,8 +29,8 @@ namespace CodeBase.UI.Popups.SkinsShop.TEST
             }
         }
 
-        public void Visit(BodySkinsItem skinBodyItemView) => Prefab = this.skinBodyItemView;
+        public void Visit(BodySkinsItem skinBodyItem) => Prefab = skinBodyItemView;
 
-        public void Visit(FaceSkinsItem skinFaceItemView) => Prefab = this.skinFaceItemView;
+        public void Visit(FaceSkinsItem skinFaceItem) => Prefab = skinFaceItemView;
     }
 }

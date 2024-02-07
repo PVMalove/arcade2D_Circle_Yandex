@@ -1,4 +1,5 @@
-﻿using CodeBase.Core.Data;
+﻿using System;
+using CodeBase.Core.Data;
 using CodeBase.Core.Services.PlayerProgressService;
 using CodeBase.UI.Services.Infrastructure;
 using Cysharp.Threading.Tasks;
@@ -22,9 +23,8 @@ namespace CodeBase.UI.Popups.Base
 
         public UniTask<TResult> Show(TInitializeData with)
         {
-            taskCompletionSource = new UniTaskCompletionSource<TResult>();
             Initialize(with);
-            SubscribeUpdates();
+            taskCompletionSource = new UniTaskCompletionSource<TResult>();
             gameObject.SetActive(true);
             return taskCompletionSource.Task;
         }
@@ -36,6 +36,11 @@ namespace CodeBase.UI.Popups.Base
         
         protected void SetPopupResult(TResult result) =>
             taskCompletionSource.TrySetResult(result);
+
+        private void OnEnable()
+        {
+            SubscribeUpdates();
+        }
 
         private void OnDisable()
         {
