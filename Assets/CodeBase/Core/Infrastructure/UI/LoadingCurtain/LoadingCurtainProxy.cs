@@ -4,7 +4,7 @@ namespace CodeBase.Core.Infrastructure.UI.LoadingCurtain
 {
     public class LoadingCurtainProxy : ILoadingCurtain
     {
-        private LoadingCurtain.Factory factory;
+        private readonly LoadingCurtain.Factory factory;
         private ILoadingCurtain impl;
 
         public LoadingCurtainProxy(LoadingCurtain.Factory factory) => 

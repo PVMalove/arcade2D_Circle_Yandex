@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 namespace CodeBase.UI.Services.Infrastructure
 {
     public abstract class FrameSupplierAsync<TKey, TValue> : IFrameSupplierAsync<TKey, TValue> where TValue : UnityFrame
-    {
+   {
         private readonly Dictionary<TKey, TValue> cashedFrames = new();
 
         public async UniTask<TValue> LoadFrame(TKey key)

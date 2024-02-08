@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
@@ -14,17 +15,21 @@ namespace CodeBase.Core.Infrastructure.UI.LoadingCurtain
             gameObject.SetActive(true);
             Curtain.alpha = 1;
         }
-    
-        public void Hide() => StartCoroutine(DoFadeIn());
-    
-        private IEnumerator DoFadeIn()
+        
+        public void Hide() => 
+            FadeIn().Forget();
+
+        private async UniTaskVoid FadeIn()
         {
+            float fadeStep = 0.05f;
+            
+            await UniTask.Delay(500);
             while (Curtain.alpha > 0)
             {
-                Curtain.alpha -= 0.03f;
-                yield return new WaitForSeconds(0.03f);
+                Curtain.alpha -= fadeStep;
+                await UniTask.Delay(50);
             }
-      
+            
             gameObject.SetActive(false);
         }
 

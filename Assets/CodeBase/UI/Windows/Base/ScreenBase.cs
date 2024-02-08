@@ -1,4 +1,3 @@
-using System;
 using CodeBase.Core.Data;
 using CodeBase.Core.Services.PlayerProgressService;
 using CodeBase.UI.Services.Infrastructure;
@@ -25,7 +24,6 @@ namespace CodeBase.UI.Windows.Base
         {
             taskCompletionSource = new UniTaskCompletionSource<TResult>();
             Initialize(with);
-            SubscribeUpdates();
             gameObject.SetActive(true);
             return taskCompletionSource.Task;
         }
@@ -38,6 +36,10 @@ namespace CodeBase.UI.Windows.Base
         protected void SetScreenResult(TResult result) =>
             taskCompletionSource.TrySetResult(result);
 
+        private void OnEnable()
+        {
+            SubscribeUpdates();
+        }
         private void OnDisable()
         {
             UnsubscribeUpdates();

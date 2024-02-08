@@ -21,13 +21,6 @@ namespace CodeBase.UI.Popups.SkinsShop
             this.presenter = presenter;
         }
 
-        protected override void OnAwake()
-        {
-            base.OnAwake();
-            presenter.InitializeShop();
-            shopItemList.Initialize(presenter.OpenSkinsChecker, presenter.SelectedSkinChecker);
-        }
-
         protected override void SubscribeUpdates()
         {
             base.SubscribeUpdates();
