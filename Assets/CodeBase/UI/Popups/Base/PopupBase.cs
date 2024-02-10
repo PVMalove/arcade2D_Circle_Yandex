@@ -3,6 +3,7 @@ using CodeBase.Core.Data;
 using CodeBase.Core.Services.PlayerProgressService;
 using CodeBase.UI.Services.Infrastructure;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 using Zenject;
 
 namespace CodeBase.UI.Popups.Base
@@ -29,7 +30,7 @@ namespace CodeBase.UI.Popups.Base
             return taskCompletionSource.Task;
         }
 
-        public void Hide()
+        public virtual void Hide()
         {
             gameObject.SetActive(false);
         }
@@ -45,6 +46,16 @@ namespace CodeBase.UI.Popups.Base
         private void OnDisable()
         {
             UnsubscribeUpdates();
+        }
+        
+        public override void OnShow(object args)
+        {
+            Debug.Log($"OnShow + Args {args}");
+        }
+
+        public override void OnHide()
+        {
+            Debug.Log($"OnHide");
         }
 
         protected virtual void OnAwake() => Hide();

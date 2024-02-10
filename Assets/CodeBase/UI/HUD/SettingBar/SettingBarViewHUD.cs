@@ -85,5 +85,15 @@ namespace CodeBase.UI.HUD.SettingBar
 
 
         public class Factory : PlaceholderFactory<SettingBarViewHUD> { }
+
+        public override void OnShow(object args)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void OnHide()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

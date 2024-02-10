@@ -53,5 +53,16 @@ namespace CodeBase.UI.Windows.Base
         protected virtual void SubscribeUpdates(){}
         protected virtual void UnsubscribeUpdates() { }
         protected virtual void Cleanup(){}
+        
+        
+        public override void OnShow(object args)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void OnHide()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

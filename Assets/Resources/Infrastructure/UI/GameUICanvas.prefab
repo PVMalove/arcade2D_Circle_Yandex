@@ -344,6 +344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7594884816818927985}
   - component: {fileID: 8678124333293648892}
+  - component: {fileID: 2478954344552527445}
   m_Layer: 5
   m_Name: GameUICanvas
   m_TagString: Untagged
@@ -384,6 +385,18 @@ MonoBehaviour:
   <ContainerScreen>k__BackingField: {fileID: 233093899856395736}
   <ContainerHUD>k__BackingField: {fileID: 7988575484628378680}
   <ContainerPopup>k__BackingField: {fileID: 8722056670419662799}
+--- !u!114 &2478954344552527445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4064873911121946390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ef4c3f1a3ef41b29c01427597d682c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5880169496969789328
 GameObject:
   m_ObjectHideFlags: 0
