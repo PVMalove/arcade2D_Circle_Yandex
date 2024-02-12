@@ -1,5 +1,4 @@
-﻿using System;
-using CodeBase.Core.Data;
+﻿using CodeBase.Core.Data;
 using CodeBase.Core.Services.PlayerProgressService;
 using CodeBase.UI.Services.Infrastructure;
 using Cysharp.Threading.Tasks;
@@ -24,6 +23,7 @@ namespace CodeBase.UI.Popups.Base
 
         public UniTask<TResult> Show(TInitializeData with)
         {
+            Debug.Log($"Show + TInitializeData {with}");
             Initialize(with);
             taskCompletionSource = new UniTaskCompletionSource<TResult>();
             gameObject.SetActive(true);
@@ -32,6 +32,7 @@ namespace CodeBase.UI.Popups.Base
 
         public virtual void Hide()
         {
+            Debug.Log($"Hide");
             gameObject.SetActive(false);
         }
         
@@ -48,9 +49,9 @@ namespace CodeBase.UI.Popups.Base
             UnsubscribeUpdates();
         }
         
-        public override void OnShow(object args)
+        public override void OnShow(object with)
         {
-            Debug.Log($"OnShow + Args {args}");
+            Debug.Log($"OnShow + Args {with}");
         }
 
         public override void OnHide()
