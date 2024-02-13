@@ -3,7 +3,6 @@ using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
 using CodeBase.UI.Popups.Base;
 using CodeBase.UI.Popups.SkinsShop;
-using CodeBase.UI.Popups.SkinsShop.TEST.infrastructure;
 using CodeBase.UI.Root;
 using CodeBase.UI.Services.Infrastructure;
 using CodeBase.UI.Windows.GameMenu;
@@ -21,8 +20,6 @@ namespace CodeBase.UI.Services.Factories
             Container.BindFactory<UIRoot, UIRoot.Factory>()
                 .FromComponentInNewPrefabResource(InfrastructureAssetPath.UIRoot)
                 .WithGameObjectName("GameUICanvas");
-            
-            Container.BindInterfacesAndSelfTo<PopupService_<PopupName, UnityFrame>>().AsSingle();
             
             //POPUP
             Container.Bind<SkinsShopViewPopup.Factory>().AsSingle();

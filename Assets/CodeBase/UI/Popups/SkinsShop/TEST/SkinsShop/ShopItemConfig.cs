@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace CodeBase.StaticData.UI.SkinsShop
+namespace CodeBase.UI.Popups.SkinsShop.TEST.SkinsShop
 {
     public class ShopItemConfig : ScriptableObject
     {

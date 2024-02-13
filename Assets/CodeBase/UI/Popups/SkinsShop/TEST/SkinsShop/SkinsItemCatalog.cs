@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using CodeBase.StaticData.UI.SkinsShop;
 using UnityEngine;
 
 namespace CodeBase.UI.Popups.SkinsShop.TEST.SkinsShop

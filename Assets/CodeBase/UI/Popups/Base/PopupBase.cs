@@ -48,16 +48,6 @@ namespace CodeBase.UI.Popups.Base
         {
             UnsubscribeUpdates();
         }
-        
-        public override void OnShow(object with)
-        {
-            Debug.Log($"OnShow + Args {with}");
-        }
-
-        public override void OnHide()
-        {
-            Debug.Log($"OnHide");
-        }
 
         protected virtual void OnAwake() => Hide();
         protected virtual void Initialize(TInitializeData with){}

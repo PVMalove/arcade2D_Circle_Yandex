@@ -1,5 +1,5 @@
 using CodeBase.Core.Services.PlayerProgressService;
-using CodeBase.StaticData.UI.SkinsShop;
+using CodeBase.UI.Popups.SkinsShop.TEST.SkinsShop;
 
 namespace CodeBase.UI.Popups.SkinsShop.TEST.Skins
 {

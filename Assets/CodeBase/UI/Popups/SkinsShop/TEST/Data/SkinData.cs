@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.UI.Popups.SkinsShop.Skins.BodySkin;
-using CodeBase.UI.Popups.SkinsShop.Skins.FaceSkin;
+using CodeBase.UI.Popups.SkinsShop.TEST.Skins.BodySkin;
+using CodeBase.UI.Popups.SkinsShop.TEST.Skins.FaceSkin;
 
 namespace CodeBase.UI.Popups.SkinsShop.TEST.Data
 {

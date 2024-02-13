@@ -1,7 +1,7 @@
-﻿using CodeBase.UI.Popups.SkinsShop.Skins.FaceSkin;
+﻿using CodeBase.UI.Popups.SkinsShop.TEST.Skins.FaceSkin;
 using UnityEngine;
 
-namespace CodeBase.StaticData.UI.SkinsShop
+namespace CodeBase.UI.Popups.SkinsShop.TEST.SkinsShop
 {
     [CreateAssetMenu(fileName = "FaceSkinsItem", menuName = "Configs/UI/SkinsShop/FaceConfig", order = 2)]
     public class FaceSkinsItem : ShopItemConfig

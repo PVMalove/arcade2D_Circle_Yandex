@@ -1,4 +1,4 @@
-﻿using CodeBase.StaticData.UI.SkinsShop;
+﻿using CodeBase.UI.Popups.SkinsShop.TEST.SkinsShop;
 using UnityEngine;
 using UnityEngine.UI;
 

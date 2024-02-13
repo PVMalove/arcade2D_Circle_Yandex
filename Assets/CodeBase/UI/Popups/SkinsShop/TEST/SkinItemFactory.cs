@@ -1,5 +1,5 @@
 ﻿using CodeBase.Core.Services.StaticDataService;
-using CodeBase.StaticData.UI.SkinsShop;
+using CodeBase.UI.Popups.SkinsShop.TEST.SkinsShop;
 using UnityEngine;
 
 namespace CodeBase.UI.Popups.SkinsShop.TEST

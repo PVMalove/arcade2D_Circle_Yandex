@@ -23,15 +23,5 @@ namespace CodeBase.UI.HUD.BuildInfo
         public class Factory : PlaceholderFactory<BuildInfoViewHUD>
         {
         }
-
-        public override void OnShow(object args)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void OnHide()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

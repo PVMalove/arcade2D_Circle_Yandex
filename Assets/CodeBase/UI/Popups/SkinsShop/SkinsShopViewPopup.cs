@@ -1,7 +1,6 @@
 ﻿using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.UI.Popups.Base;
 using CodeBase.UI.Popups.SkinsShop.TEST;
-using CodeBase.UI.Popups.SkinsShop.TEST.infrastructure;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,18 +19,21 @@ namespace CodeBase.UI.Popups.SkinsShop
         {
             base.Initialize(presenter);
             this.presenter = presenter;
+            Debug.Log("Initialize");
         }
         
         protected override void SubscribeUpdates()
         {
             base.SubscribeUpdates();
             closePopupButton.onClick.AddListener(OnClosePopup);
+            Debug.Log("SubscribeUpdates");
         }
 
         protected override void UnsubscribeUpdates()
         {
             base.UnsubscribeUpdates();
             closePopupButton.onClick.RemoveListener(OnClosePopup);
+            Debug.Log("UnsubscribeUpdates");
         }
 
         private void OnClosePopup() => 
