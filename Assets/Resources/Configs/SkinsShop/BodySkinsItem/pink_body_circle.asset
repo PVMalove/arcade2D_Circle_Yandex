@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98fb6a73bd9f4010bc20c62ead9f776f, type: 3}
   m_Name: pink_body_circle
   m_EditorClassIdentifier: 
-  <Image>k__BackingField: {fileID: 21300000, guid: 8181c881ea19a6a4599bda66ca9e2be5, type: 3}
+  image: {fileID: 21300000, guid: 8181c881ea19a6a4599bda66ca9e2be5, type: 3}
   <Price>k__BackingField: 200
   <SkinType>k__BackingField: 2

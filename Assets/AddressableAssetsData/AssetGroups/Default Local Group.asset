@@ -24,7 +24,13 @@ MonoBehaviour:
     - Configs
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 33967a6fa97a9b2419e5289dde9cfb46
-    m_Address: PopupsConfig
+    m_Address: PopupsCatalog
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Configs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d91a1e0302b368e47b6fd861f0bb57c4
+    m_Address: SkinsItemCatalog
     m_ReadOnly: 0
     m_SerializedLabels:
     - Configs

@@ -4,6 +4,7 @@ using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Services.LogService;
 using CodeBase.StaticData.Level;
 using CodeBase.StaticData.UI;
+using CodeBase.UI.Popups.SkinsShop.TEST.SkinsShop;
 using Cysharp.Threading.Tasks;
 
 namespace CodeBase.Core.Services.StaticDataService
@@ -13,8 +14,10 @@ namespace CodeBase.Core.Services.StaticDataService
     public class StaticDataService : IStaticDataService
     {
         public CharacterConfig CharacterConfig { get; private set; }
-        public WindowsConfig WindowsConfig { get; private set; }
-        public PopupsConfig PopupsConfig { get; private set; }
+        public ScreensCatalog ScreensCatalog { get; private set; }
+        public PopupsCatalog PopupsCatalog { get; private set; }
+        public SkinsItemCatalog SkinsItemCatalog { get; private set; }
+        
         
         private readonly ILogService log;
         private readonly IAssetProvider assetProvider;
@@ -30,30 +33,40 @@ namespace CodeBase.Core.Services.StaticDataService
             // load your configs here
             List<UniTask> tasks = new List<UniTask>
             {
-                LoadWindowsConfig(),
-                LoadPopupsConfig()
+                LoadScreensConfig(),
+                LoadPopupsConfig(),
+                LoadSkinsItemConfig(),
             };
 
             await UniTask.WhenAll(tasks);
             log.LogService("Static data loaded", this);
         }
 
-        private async UniTask LoadWindowsConfig()
+        private async UniTask LoadScreensConfig()
         {
-            WindowsConfig[] configs = await GetConfigs<WindowsConfig>();
+            ScreensCatalog[] configs = await GetConfigs<ScreensCatalog>();
             if (configs.Length > 0)
-                WindowsConfig = configs.First();
+                ScreensCatalog = configs.First();
             else
-                log.LogError("There are no windows config founded!");
+                log.LogError("There are no screens config founded!");
         }
         
         private async UniTask LoadPopupsConfig()
         {
-            PopupsConfig[] configs = await GetConfigs<PopupsConfig>();
+            PopupsCatalog[] configs = await GetConfigs<PopupsCatalog>();
             if (configs.Length > 0)
-                PopupsConfig = configs.First();
+                PopupsCatalog = configs.First();
             else
                 log.LogError("There are no popups config founded!");
+        }
+        
+        private async UniTask LoadSkinsItemConfig()
+        {
+            SkinsItemCatalog[] configs = await GetConfigs<SkinsItemCatalog>();
+            if (configs.Length > 0)
+                SkinsItemCatalog = configs.First();
+            else
+                log.LogError("There are no skins config founded!");
         }
         
         private async UniTask<List<string>> GetConfigKeys<TConfig>() => 

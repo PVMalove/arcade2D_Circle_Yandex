@@ -11,13 +11,13 @@ namespace CodeBase.UI.Windows.Service
 {
     public class WindowService : IWindowService, IDisposable
     {
-        private readonly IFrameSupplierAsync<WindowName, UnityFrame> supplierAsync;
-        private readonly IFrameSupplier<WindowName, UnityFrame> supplier;
+        private readonly IFrameSupplierAsync<ScreenName, UnityFrame> supplierAsync;
+        private readonly IFrameSupplier<ScreenName, UnityFrame> supplier;
         private readonly GameMenuPresenter.Factory gameMenuPresenterFactory;
         private readonly CancellationTokenSource ctn;
         
-        public WindowService(IFrameSupplierAsync<WindowName, UnityFrame> supplierAsync,
-            IFrameSupplier<WindowName, UnityFrame> supplier,
+        public WindowService(IFrameSupplierAsync<ScreenName, UnityFrame> supplierAsync,
+            IFrameSupplier<ScreenName, UnityFrame> supplier,
             GameMenuPresenter.Factory gameMenuPresenterFactory)
         {
             this.supplierAsync = supplierAsync;
@@ -28,7 +28,7 @@ namespace CodeBase.UI.Windows.Service
 
         public async UniTask ShowGameMenu()
         {
-            if (await supplierAsync.LoadFrame(WindowName.GAME_MENU) is GameMenuViewWindow gameMenuView)
+            if (await supplierAsync.LoadFrame(ScreenName.GAME_MENU) is GameMenuViewScreen gameMenuView)
             {
                 IGameMenuPresenter presenter = gameMenuPresenterFactory.Create();
                 await gameMenuView.Show(presenter).AttachExternalCancellation(ctn.Token);

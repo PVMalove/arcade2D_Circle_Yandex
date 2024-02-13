@@ -1,4 +1,4 @@
-﻿namespace CodeBase.UI.Popups.SkinsShop.Skins.FaceSkin
+﻿namespace CodeBase.UI.Popups.SkinsShop.TEST.Skins.FaceSkin
 {
     public enum FaceSkins
     {

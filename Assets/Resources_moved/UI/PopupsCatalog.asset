@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8b0915650764d1ba7a91be20ac25aa2, type: 3}
-  m_Name: WindowsConfig
+  m_Script: {fileID: 11500000, guid: 3d0b85f4777a4ffe88d95aca773662f6, type: 3}
+  m_Name: PopupsCatalog
   m_EditorClassIdentifier: 
-  gameMenuPrefabReference:
-    m_AssetGUID: ab40ea707df926144b53dc8892728c37
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
+  popups:
+  - name: 1
+    prefab:
+      m_AssetGUID: cf9e51c342b7ca544b0b0df5b35fe7db
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0

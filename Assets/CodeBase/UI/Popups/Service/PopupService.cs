@@ -1,38 +1,47 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using CodeBase.UI.Popups.Base;
-using CodeBase.UI.Popups.SkinsShop;
 using CodeBase.UI.Services.Infrastructure;
 using Cysharp.Threading.Tasks;
 
 namespace CodeBase.UI.Popups.Service
 {
-    public class PopupService : IPopupService, IDisposable
+    public sealed class PopupService : IPopupService, IDisposable
     {
         private readonly IFrameSupplierAsync<PopupName, UnityFrame> supplierAsync;
-        private readonly IFrameSupplier<PopupName, UnityFrame> supplier;
-        private readonly SkinsShopPresenter.Factory skinsShopPresenterFactory;
-        private readonly CancellationTokenSource ctn;
-
-        public PopupService(IFrameSupplierAsync<PopupName, UnityFrame>  supplierAsync,
-            IFrameSupplier<PopupName, UnityFrame> supplier,
-            SkinsShopPresenter.Factory skinsShopPresenterFactory)
+        private readonly Dictionary<PopupName, UnityFrame> activePopups = new Dictionary<PopupName, UnityFrame>();
+        private readonly CancellationTokenSource ctn = new CancellationTokenSource();
+        
+        public PopupService(IFrameSupplierAsync<PopupName, UnityFrame> supplier)
         {
-            this.supplierAsync = supplierAsync;
-            this.supplier = supplier;
-            this.skinsShopPresenterFactory = skinsShopPresenterFactory;
-            ctn = new CancellationTokenSource();
+            supplierAsync = supplier;
         }
-
-        public async UniTask ShowSkinsShop()
+        public async void ShowPopup<TInitializeData, TResult>(PopupName key, TInitializeData initializeData)
         {
-            if (await supplierAsync.LoadFrame(PopupName.SKINS_SHOP) is SkinsShopViewPopup skinsShopView)
+            if(IsPopupActive(key)) return;
+            await ShowPopupInternal<TInitializeData, TResult>(key, initializeData);
+        }
+        
+        private async UniTask ShowPopupInternal<TInitializeData, TResult>(PopupName name, TInitializeData initializeData)
+        {
+            UnityFrame frame = await supplierAsync.LoadFrame(name);
+            activePopups.Add(name, frame);
+            
+            if (frame is PopupBase<TInitializeData, TResult> popupView)
             {
-                ISkinsShopPresenter presenter = skinsShopPresenterFactory.Create();
-                await skinsShopView.Show(presenter).AttachExternalCancellation(ctn.Token);
-                skinsShopView.Hide();
+                await popupView.Show(initializeData).AttachExternalCancellation(ctn.Token);
+                popupView.Hide();
+                activePopups.Remove(name);
+            }
+            else
+            {
+                throw new InvalidCastException("Received object is not a PopupBase instance");
             }
         }
+        
+        public bool IsPopupActive(PopupName key) => 
+            activePopups.ContainsKey(key);
 
         public void Dispose() => 
             ctn.Cancel();

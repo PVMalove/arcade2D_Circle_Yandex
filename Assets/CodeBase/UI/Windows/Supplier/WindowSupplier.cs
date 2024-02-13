@@ -5,7 +5,7 @@ using CodeBase.UI.Windows.Base;
 
 namespace CodeBase.UI.Windows.Supplier
 {
-    public class WindowSupplier : FrameSupplier<WindowName, UnityFrame>
+    public class WindowSupplier : FrameSupplier<ScreenName, UnityFrame>
     {
         private readonly IUIFactory uiFactory;
 
@@ -14,11 +14,11 @@ namespace CodeBase.UI.Windows.Supplier
             this.uiFactory = uiFactory;
         }
 
-        protected override UnityFrame InstantiateFrame(WindowName key)
+        protected override UnityFrame InstantiateFrame(ScreenName key)
         {
             switch (key)
             {
-                case WindowName.None:
+                case ScreenName.None:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(key), key, null);

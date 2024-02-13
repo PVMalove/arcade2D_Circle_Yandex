@@ -1,8 +1,9 @@
 using System;
+using Newtonsoft.Json;
 
 namespace CodeBase.Core.Data
 {
-    [Serializable]
+   [Serializable]
     public struct AudioControlData
     {
         public float AudioVolume;

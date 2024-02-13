@@ -1,4 +1,3 @@
-using System;
 using CodeBase.Core.Data;
 using CodeBase.Core.Services.PlayerProgressService;
 using CodeBase.UI.Services.Infrastructure;
@@ -7,7 +6,7 @@ using Zenject;
 
 namespace CodeBase.UI.Windows.Base
 {
-    public class WindowBase<TInitializeData, TResult> : UnityFrame
+    public class ScreenBase<TInitializeData, TResult> : UnityFrame
     {
         private IPersistentProgressStorage progressStorage;
         protected PlayerProgress Progress => progressStorage.Progress;
@@ -25,7 +24,6 @@ namespace CodeBase.UI.Windows.Base
         {
             taskCompletionSource = new UniTaskCompletionSource<TResult>();
             Initialize(with);
-            SubscribeUpdates();
             gameObject.SetActive(true);
             return taskCompletionSource.Task;
         }
@@ -35,9 +33,13 @@ namespace CodeBase.UI.Windows.Base
             gameObject.SetActive(false);
         }
         
-        protected void SetWindowResult(TResult result) =>
+        protected void SetScreenResult(TResult result) =>
             taskCompletionSource.TrySetResult(result);
 
+        private void OnEnable()
+        {
+            SubscribeUpdates();
+        }
         private void OnDisable()
         {
             UnsubscribeUpdates();

@@ -12,7 +12,7 @@ namespace CodeBase.UI.Services.Factories
         void CreateUIRoot();
         BuildInfoViewHUD CreateBuildInfoView();
         SettingBarViewHUD CreateSettingBarView();
-        UniTask<GameMenuViewWindow> CreateGameMenuView();
+        UniTask<GameMenuViewScreen> CreateGameMenuView();
         UniTask<SkinsShopViewPopup> CreateSkinsShopView();
         void Cleanup();
         IUIRoot UIRoot { get; }

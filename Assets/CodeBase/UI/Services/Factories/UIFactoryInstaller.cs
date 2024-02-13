@@ -1,8 +1,10 @@
 using CodeBase.Core.Infrastructure;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
+using CodeBase.UI.Popups.Base;
 using CodeBase.UI.Popups.SkinsShop;
 using CodeBase.UI.Root;
+using CodeBase.UI.Services.Infrastructure;
 using CodeBase.UI.Windows.GameMenu;
 using Zenject;
 
@@ -32,7 +34,7 @@ namespace CodeBase.UI.Services.Factories
                 .WithGameObjectName("SettingBar");
             
             //WINDOW
-            Container.Bind<GameMenuViewWindow.Factory>().AsSingle();
+            Container.Bind<GameMenuViewScreen.Factory>().AsSingle();
         }
     }
 }

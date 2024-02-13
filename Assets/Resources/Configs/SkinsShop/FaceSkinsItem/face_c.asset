@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f0cd0ff0f24c4496b7cf5f44c70fa5, type: 3}
   m_Name: face_c
   m_EditorClassIdentifier: 
-  <Image>k__BackingField: {fileID: 21300000, guid: 85c1028695654574e80349cb1b792db6, type: 3}
+  image: {fileID: 21300000, guid: 85c1028695654574e80349cb1b792db6, type: 3}
   <Price>k__BackingField: 299
   <SkinType>k__BackingField: 2

@@ -2,6 +2,7 @@
 using CodeBase.Core.Services.PlayerProgressService;
 using CodeBase.UI.Services.Infrastructure;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 using Zenject;
 
 namespace CodeBase.UI.Popups.Base
@@ -22,20 +23,26 @@ namespace CodeBase.UI.Popups.Base
 
         public UniTask<TResult> Show(TInitializeData with)
         {
-            taskCompletionSource = new UniTaskCompletionSource<TResult>();
+            Debug.Log($"Show + TInitializeData {with}");
             Initialize(with);
-            SubscribeUpdates();
+            taskCompletionSource = new UniTaskCompletionSource<TResult>();
             gameObject.SetActive(true);
             return taskCompletionSource.Task;
         }
 
-        public void Hide()
+        public virtual void Hide()
         {
+            Debug.Log($"Hide");
             gameObject.SetActive(false);
         }
         
         protected void SetPopupResult(TResult result) =>
             taskCompletionSource.TrySetResult(result);
+
+        private void OnEnable()
+        {
+            SubscribeUpdates();
+        }
 
         private void OnDisable()
         {

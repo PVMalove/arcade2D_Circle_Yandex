@@ -6,6 +6,6 @@ namespace CodeBase.UI.Root
     {
         Transform ContainerPopup { get; }
         Transform ContainerHUD { get; }
-        Transform ContainerWindow { get; }
+        Transform ContainerScreen { get; }
     }
 }

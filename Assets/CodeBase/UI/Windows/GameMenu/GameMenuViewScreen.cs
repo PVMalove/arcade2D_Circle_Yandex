@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace CodeBase.UI.Windows.GameMenu
 {
-    public class GameMenuViewWindow : WindowBase<IGameMenuPresenter, bool>
+    public class GameMenuViewScreen : ScreenBase<IGameMenuPresenter, bool>
     {
         [SerializeField] private Button startGameButton;
         [SerializeField] private Button openSkinsShopButton;
@@ -35,7 +35,7 @@ namespace CodeBase.UI.Windows.GameMenu
 
         private void OnStartGame()
         {
-            SetWindowResult(true);
+            SetScreenResult(true);
             presenter.StartGame();
         }
 
@@ -46,8 +46,8 @@ namespace CodeBase.UI.Windows.GameMenu
 
         [Button]
         private void OnClick() => 
-            SetWindowResult(true);
+            SetScreenResult(true);
         
-        public class Factory : AddressablePrefabFactory<GameMenuViewWindow> { }
+        public class Factory : AddressablePrefabFactory<GameMenuViewScreen> { }
     }
 }
