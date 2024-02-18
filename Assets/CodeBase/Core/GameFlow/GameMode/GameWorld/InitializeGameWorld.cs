@@ -11,6 +11,7 @@ using CodeBase.UI.Services.Factories;
 using CodeBase.UI.Windows.Service;
 using UnityEngine;
 
+
 namespace CodeBase.Core.GameFlow.GameMode.GameWorld
 {
     public class InitializeGameWorld : IInitializeGameWorld, IDisposable
@@ -23,9 +24,10 @@ namespace CodeBase.Core.GameFlow.GameMode.GameWorld
         private readonly IHUDService hudService;
         private readonly IPopupService popupService;
         private readonly ILogService log;
+        
 
         private BuildInfoConfig buildInfoConfig;
-        
+
         public InitializeGameWorld(IGameFactory gameFactory, IUIFactory uiFactory,
             AutoSaveData.Factory autoSaveDataFactory,
             IPersistentProgressStorage progressStorage,
@@ -43,7 +45,7 @@ namespace CodeBase.Core.GameFlow.GameMode.GameWorld
             this.popupService = popupService;
             this.log = log;
         }
-        
+
         public void InitGameWorld()
         {
             buildInfoConfig = new BuildInfoConfig();
@@ -52,19 +54,19 @@ namespace CodeBase.Core.GameFlow.GameMode.GameWorld
             //Infrastructure
             autoSaveDataFactory.Create();
             uiFactory.CreateUIRoot();
-            
+
             //Gameplay
             gameFactory.CreateCircleBackground();
             gameFactory.CircleBackground.GetComponent<CircleBackgroundAnimation>().EndGameAnimation();
             //UI
-            gameFactory.CreateHUD();
+            //gameFactory.CreateHUD();
             hudService.ShowSettingBar();
-            hudService.ShowBuildInfo(buildInfoConfig);
-            windowService.ShowGameMenu();
-            
+            //hudService.ShowBuildInfo(buildInfoConfig);
+            //windowService.ShowGameMenu();
+
             LoadProgressReader();
         }
-        
+
         private void LoadProgressReader()
         {
             foreach (IProgressReader progressReader in gameFactory.ProgressReaders)

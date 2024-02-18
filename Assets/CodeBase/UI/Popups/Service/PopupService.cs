@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Threading;
 using CodeBase.UI.Popups.Base;
 using CodeBase.UI.Services.Infrastructure;
@@ -10,29 +10,26 @@ namespace CodeBase.UI.Popups.Service
     public sealed class PopupService : IPopupService, IDisposable
     {
         private readonly IFrameSupplierAsync<PopupName, UnityFrame> supplierAsync;
-        private readonly Dictionary<PopupName, UnityFrame> activePopups = new Dictionary<PopupName, UnityFrame>();
+        private readonly ConcurrentDictionary<PopupName, UnityFrame> activePopups = new ConcurrentDictionary<PopupName, UnityFrame>();
         private readonly CancellationTokenSource ctn = new CancellationTokenSource();
         
         public PopupService(IFrameSupplierAsync<PopupName, UnityFrame> supplier)
         {
             supplierAsync = supplier;
         }
-        public async void ShowPopup<TInitializeData, TResult>(PopupName key, TInitializeData initializeData)
-        {
-            if(IsPopupActive(key)) return;
-            await ShowPopupInternal<TInitializeData, TResult>(key, initializeData);
-        }
         
-        private async UniTask ShowPopupInternal<TInitializeData, TResult>(PopupName name, TInitializeData initializeData)
+        public async UniTask ShowPopup<TInitializeData>(PopupName name, TInitializeData initializeData)
         {
+            if(IsPopupActive(name)) return;
+                
             UnityFrame frame = await supplierAsync.LoadFrame(name);
-            activePopups.Add(name, frame);
+            activePopups.TryAdd(name, frame);
             
-            if (frame is PopupBase<TInitializeData, TResult> popupView)
+            if (frame is PopupBase<TInitializeData> popupView)
             {
                 await popupView.Show(initializeData).AttachExternalCancellation(ctn.Token);
                 popupView.Hide();
-                activePopups.Remove(name);
+                activePopups.TryRemove(name, out _);
             }
             else
             {
@@ -43,7 +40,9 @@ namespace CodeBase.UI.Popups.Service
         public bool IsPopupActive(PopupName key) => 
             activePopups.ContainsKey(key);
 
-        public void Dispose() => 
+        public void Dispose()
+        {
             ctn.Cancel();
+        }
     }
 }

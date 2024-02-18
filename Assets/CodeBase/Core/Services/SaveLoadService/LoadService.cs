@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using CodeBase.Core.Data;
 using CodeBase.Core.Services.LogService;
+using Newtonsoft.Json;
 using UnityEngine;
 using YG;
 
@@ -51,8 +52,8 @@ namespace CodeBase.Core.Services.SaveLoadService
                 listeners?.Invoke(null);
                 return;
             }
-
-            PlayerProgress userData = JsonUtility.FromJson<PlayerProgress>(json);
+            
+            PlayerProgress userData = JsonConvert.DeserializeObject<PlayerProgress>(json);
             listeners?.Invoke(userData);
         }
         

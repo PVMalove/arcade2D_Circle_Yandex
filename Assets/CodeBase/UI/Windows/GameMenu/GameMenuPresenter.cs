@@ -39,7 +39,7 @@ namespace CodeBase.UI.Windows.GameMenu
         public void OpenSkinsShop()
         {
             ISkinsShopPresenter presenter = skinsShopPresenterFactory.Create();
-            popupService.ShowPopup<ISkinsShopPresenter, bool>(PopupName.SKINS_SHOP, presenter);
+            popupService.ShowPopup(PopupName.SKINS_SHOP, presenter);
         }
 
         public sealed class Factory : PlaceholderFactory<IGameMenuPresenter>

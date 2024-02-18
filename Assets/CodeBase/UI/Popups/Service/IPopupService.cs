@@ -5,7 +5,7 @@ namespace CodeBase.UI.Popups.Service
 {
     public interface IPopupService
     {
-        void ShowPopup<TInitializeData, TResult>(PopupName key, TInitializeData initializeData);
+        UniTask ShowPopup<TInitializeData>(PopupName key, TInitializeData initializeData);
         bool IsPopupActive(PopupName key);
     }
 }

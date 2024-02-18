@@ -1,4 +1,5 @@
-﻿using CodeBase.Core.Services.StaticDataService;
+﻿using System.Collections.Generic;
+using CodeBase.Core.Services.StaticDataService;
 using CodeBase.UI.Popups.SkinsShop.TEST.Skins;
 using CodeBase.UI.Popups.SkinsShop.TEST.SkinsShop;
 using UnityEngine;
@@ -13,12 +14,14 @@ namespace CodeBase.UI.Popups.SkinsShop.TEST
         [SerializeField] private Transform container;
         [SerializeField] private SkinsItemCatalog catalog;
         
+        private readonly List<SkinItemView> activeViews = new();
+       
         private IStaticDataService staticDataService;
         private OpenSkinsChecker openSkinsChecker;
         private SelectedSkinChecker selectedSkinChecker;
 
         [Inject]
-        private void Construct (IStaticDataService staticDataService)
+        private void Construct(IStaticDataService staticDataService)
         {
             this.staticDataService = staticDataService;
         }
@@ -30,20 +33,25 @@ namespace CodeBase.UI.Popups.SkinsShop.TEST
             CreateView();
         }
 
+        public void CleanUp()
+        {
+            foreach (var view in activeViews)
+            {
+                Destroy(view.gameObject); 
+            }
+
+            activeViews.Clear();
+        }
+
         private void CreateView()
         {
-            // foreach (BodySkinsItem skinItem in staticDataService.SkinsItemCatalog.BodySkinItems)
-            // {
-            //     SkinItemView skinItemView = Instantiate(skinBodyItemView, container);
-            // }
-
             ShopItemVisitor visitor = new ShopItemVisitor (skinBodyItemView, skinFaceItemView);
             SkinItemFactory skinItemFactory = new SkinItemFactory(visitor);
 
             foreach (BodySkinsItem skinItem in staticDataService.SkinsItemCatalog.BodySkinItems)
             {
                 SkinItemView skinItemView = skinItemFactory.Get(skinItem, container);
-                
+                activeViews.Add(skinItemView);
                 openSkinsChecker.Visit(skinItemView.Item);
                 if (openSkinsChecker.IsOpened)
                     skinItemView.Unlock();
@@ -55,7 +63,7 @@ namespace CodeBase.UI.Popups.SkinsShop.TEST
             foreach (FaceSkinsItem skinItem in staticDataService.SkinsItemCatalog.FaceSkinItems)
             {
                 SkinItemView skinItemView = skinItemFactory.Get(skinItem, container);
-                
+                activeViews.Add(skinItemView);
                 openSkinsChecker.Visit(skinItemView.Item);
                 if (openSkinsChecker.IsOpened)
                     skinItemView.Unlock();

@@ -33,6 +33,7 @@ namespace CodeBase.Core.GameFlow.GameLoading.States
             YandexGame.GameReadyAPI();
             loadService.Subscribe(OnCompleteLoadData);
             loadService.LoadProgress();
+            //await UniTask.Delay(3000);
             sceneStateMachine.Enter<FinishGameLoadingState>().Forget();
         }
         

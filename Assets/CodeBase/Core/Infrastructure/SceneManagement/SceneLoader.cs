@@ -1,5 +1,5 @@
-﻿using CodeBase.Core.Services.LogService;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
@@ -9,13 +9,9 @@ namespace CodeBase.Core.Infrastructure.SceneManagement
 {
     public class SceneLoader : ISceneLoader
     {
-        private ILogService log;
-
-        public SceneLoader(ILogService log) => 
-            this.log = log;
-
         public async UniTask Load(string nextScene)
         {
+            Application.backgroundLoadingPriority = ThreadPriority.High;
             AsyncOperationHandle<SceneInstance> handler = Addressables.LoadSceneAsync(nextScene, LoadSceneMode.Single, false);
 
             await handler.ToUniTask();

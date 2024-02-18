@@ -8,25 +8,29 @@ namespace CodeBase.Core.Infrastructure.UI.LoadingCurtain
 {
     public class LoadingCurtain : MonoBehaviour, ILoadingCurtain
     {
-        public CanvasGroup Curtain;
+        [SerializeField] private CanvasGroup сurtain;
 
         public void Show()
         {
+            Debug.Log("LoadingCurtain -> Show");
             gameObject.SetActive(true);
-            Curtain.alpha = 1;
+            сurtain.alpha = 1;
         }
         
-        public void Hide() => 
+        public void Hide()
+        {
             FadeIn().Forget();
+            Debug.Log("LoadingCurtain -> Hide");
+        }
 
         private async UniTaskVoid FadeIn()
         {
             float fadeStep = 0.05f;
             
             await UniTask.Delay(500);
-            while (Curtain.alpha > 0)
+            while (сurtain.alpha > 0)
             {
-                Curtain.alpha -= fadeStep;
+                сurtain.alpha -= fadeStep;
                 await UniTask.Delay(50);
             }
             

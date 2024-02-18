@@ -1,13 +1,14 @@
 ﻿using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.UI.Popups.Base;
 using CodeBase.UI.Popups.SkinsShop.TEST;
+using CodeBase.UI.Popups.SkinsShop.TEST.Skins.BodySkin;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace CodeBase.UI.Popups.SkinsShop
 {
-    public class SkinsShopViewPopup : PopupBase<ISkinsShopPresenter,bool>
+    public class SkinsShopViewPopup : PopupBase<ISkinsShopPresenter>
     {
         [SerializeField] private Button closePopupButton;
 
@@ -19,6 +20,8 @@ namespace CodeBase.UI.Popups.SkinsShop
         {
             base.Initialize(presenter);
             this.presenter = presenter;
+            this.presenter.InitializeShop();
+            shopItemList.Initialize(this.presenter.OpenSkinsChecker, this.presenter.SelectedSkinChecker);
             Debug.Log("Initialize");
         }
         
@@ -33,15 +36,20 @@ namespace CodeBase.UI.Popups.SkinsShop
         {
             base.UnsubscribeUpdates();
             closePopupButton.onClick.RemoveListener(OnClosePopup);
+            shopItemList.CleanUp();
             Debug.Log("UnsubscribeUpdates");
         }
 
         private void OnClosePopup() => 
-            SetPopupResult(true);
+            SetPopupResult();
 
         [Button]
+        private void open()=>
+            addSkin(BodySkins.green_body_circle);
+        
+        [Button]
         private void OnClosePopupClick() => 
-            SetPopupResult(true);
+            SetPopupResult();
         
         public sealed class Factory : AddressablePrefabFactory<SkinsShopViewPopup> { }
     }

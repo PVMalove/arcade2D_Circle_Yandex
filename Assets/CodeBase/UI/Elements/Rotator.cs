@@ -7,7 +7,7 @@ namespace CodeBase.UI.Elements
         [SerializeField] private Vector3 rotationAxis;
         [SerializeField] private float rotationSpeed;
 
-        private void Update() => 
+        private void FixedUpdate() => 
             transform.Rotate(rotationAxis, rotationSpeed * Time.deltaTime);
     }
 }
