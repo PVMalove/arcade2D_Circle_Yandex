@@ -36,7 +36,7 @@ namespace CodeBase.Core.GameFlow.GameMode.States
         public async UniTask Enter()
         {
             log.LogState("Enter", this);
-            //await SPAWN();
+            await SPAWN();
             gameWorld.InitGameWorld();
             loadingCurtain.Hide();
             awaitingOverlay.Hide();
@@ -55,7 +55,7 @@ namespace CodeBase.Core.GameFlow.GameMode.States
 
         private async UniTask SpawnBurgers()
         {
-            int numberOfCubes = 5000;
+            int numberOfCubes = 500;
             float spawnRadius = 40f;
             List<GameObject> cache = new List<GameObject>();
             
@@ -63,19 +63,19 @@ namespace CodeBase.Core.GameFlow.GameMode.States
             {
                 GameObject burger = spawnerFactory.Create().gameObject;
 
-                Vector3 randomPosition = burger.transform.position + Random.insideUnitSphere * spawnRadius;
+                Vector3 randomPosition = burger.transform.position + (Vector3)Random.insideUnitCircle * spawnRadius;
                 burger.transform.position = randomPosition;
                 burger.name = "Burger_" + i;
 
                 cache.Add(burger);
-                
+                await UniTask.Delay(1);
             }
             foreach (var burger in cache)
             {
                 burger.transform.rotation = Random.rotation;
             }
             cache.Clear();
-            await UniTask.Delay(5000);
+            await UniTask.Delay(2000);
         }
 
         public UniTask Exit()

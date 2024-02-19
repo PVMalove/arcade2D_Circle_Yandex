@@ -61,7 +61,7 @@ namespace CodeBase.Core.GameFlow.GameMode.GameWorld
             //UI
             //gameFactory.CreateHUD();
             hudService.ShowSettingBar();
-            //hudService.ShowBuildInfo(buildInfoConfig);
+            hudService.ShowBuildInfo(buildInfoConfig);
             //windowService.ShowGameMenu();
 
             LoadProgressReader();

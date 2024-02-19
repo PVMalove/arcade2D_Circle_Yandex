@@ -23,7 +23,7 @@ namespace CodeBase.Gameplay.Environment
                     .Group(Tween.Scale(circles[2].transform, endValue: startSize[2], duration: duration[2], ease_circle))
                     .Group(Tween.Scale(circles[3].transform, endValue: startSize[3], duration: duration[3], ease_circle));
             }
-
+        
             if (Input.GetKey(KeyCode.W))
             {
                 Sequence.Create()
@@ -33,7 +33,7 @@ namespace CodeBase.Gameplay.Environment
                     .Group(Tween.Scale(circles[3].transform, endValue: endSize[3], duration: duration[3], ease_circle));
             }
         }
-
+        
         public void StartGameAnimation()
         {
             Sequence.Create()
@@ -42,7 +42,7 @@ namespace CodeBase.Gameplay.Environment
                 .Group(Tween.Scale(circles[2].transform, endValue: endSize[2], duration: duration[2], ease_circle))
                 .Group(Tween.Scale(circles[3].transform, endValue: endSize[3], duration: duration[3], ease_circle));
         }
-
+        
         public void EndGameAnimation()
         {
             Sequence.Create()
