@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d23676f0bd4f8b9d1199223acd5523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yandexGame: {fileID: 2211564899198745196, guid: 4eddbd9d6340c2947b2b77c90fc75cfb, type: 3}
+  yandexGame: {fileID: 2211564899198745196, guid: 68400554003b59a47b6ab7fadbf1b64f, type: 3}

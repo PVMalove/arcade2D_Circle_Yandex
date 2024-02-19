@@ -4,36 +4,48 @@ namespace CodeBase.Core.Services.LogService
 {
     public class LogService : ILogService
     {
-        private const bool StateLog = true;
-        private const bool ServiceLog = true;
-        private const bool yandexLog = true;
-        private const bool audioLog = true;
+        private const bool StateLog = false;
+        private const bool ServiceLog = false;
+        private const bool yandexLog = false;
+        private const bool audioLog = false;
         
         public void Log(string msg) => 
             Debug.Log(msg);
         
         public void LogState(string msg, object obj)
         {
-            string className = obj.GetType().Name;
-            if (StateLog) Debug.Log($"[State] -> [{className}] -> {msg}");
+            if (StateLog)
+            {
+                string className = obj.GetType().Name;
+                Debug.Log($"[State] -> [{className}] -> {msg}");
+            }
         }
 
         void ILogService.LogService(string msg, object obj)
         {
-            string className = obj.GetType().Name;
-            if (ServiceLog) Debug.Log($"[Service] -> [{className}] -> {msg}");
+            if (ServiceLog)
+            {
+                string className = obj.GetType().Name;
+                Debug.Log($"[Service] -> [{className}] -> {msg}");
+            }
         }
 
         public void LogYandex(string msg, object obj)
         {
-            string className = obj.GetType().Name;
-            if (yandexLog) Debug.Log($"[YandexGame] -> [{className}] -> {msg}");
+            if (yandexLog)
+            {
+                string className = obj.GetType().Name;
+                Debug.Log($"[YandexGame] -> [{className}] -> {msg}");
+            }
         }
 
         public void LogAudio(string msg, object obj)
         {
-            string className = obj.GetType().Name;
-            if (audioLog) Debug.Log($"[Audio] --> [{className}] -> {msg}");
+            if (audioLog)
+            {
+                string className = obj.GetType().Name;
+                Debug.Log($"[Audio] --> [{className}] -> {msg}");
+            }
         }
         
         public void LogError(string msg) => 

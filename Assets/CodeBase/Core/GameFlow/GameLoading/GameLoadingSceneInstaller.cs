@@ -17,12 +17,8 @@ namespace CodeBase.Core.GameFlow.GameLoading
             Debug.Log($"[Installer] -> [GameLoadingScene] -> Start loading scene installer");
             
             Container.BindInterfacesAndSelfTo<GameLoadingSceneBootstraper>().AsSingle().NonLazy(); // non lazy due to it's not injected anywhere but we still need to instanciate it
-
             Container.BindInterfacesAndSelfTo<StatesFactory>().AsSingle();
-
             Container.Bind<SceneStateMachine>().AsSingle();
-            
-            UIInstaller.Install(Container);
         }
     }
 }

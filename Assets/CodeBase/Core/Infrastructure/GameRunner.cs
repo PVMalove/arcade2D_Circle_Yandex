@@ -12,7 +12,7 @@ namespace CodeBase.Core.Infrastructure
         private ILogService log;
 
         [Inject]
-        void Construct(GameBootstrapper.Factory bootstrapperFactory, ILogService log)
+        private void Construct(GameBootstrapper.Factory bootstrapperFactory, ILogService log)
         {
             this.bootstrapperFactory = bootstrapperFactory;
             this.log = log;

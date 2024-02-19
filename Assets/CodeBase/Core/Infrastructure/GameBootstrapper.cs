@@ -12,7 +12,7 @@ namespace CodeBase.Core.Infrastructure
         private StatesFactory statesFactory;
 
         [Inject]
-        void Construct(GameStateMachine gameStateMachine, StatesFactory statesFactory)
+        private void Construct(GameStateMachine gameStateMachine, StatesFactory statesFactory)
         {
             this.gameStateMachine = gameStateMachine;
             this.statesFactory = statesFactory;
@@ -20,9 +20,9 @@ namespace CodeBase.Core.Infrastructure
         
         private void Start()
         {
-            gameStateMachine?.RegisterState(statesFactory.Create<GameBootstrapState>());
-            gameStateMachine?.RegisterState(statesFactory.Create<GameLoadingState>());
-            gameStateMachine?.RegisterState(statesFactory.Create<GameModeState>());
+            gameStateMachine.RegisterState(statesFactory.Create<GameBootstrapState>());
+            gameStateMachine.RegisterState(statesFactory.Create<GameLoadingState>());
+            gameStateMachine.RegisterState(statesFactory.Create<GameModeState>());
 
             gameStateMachine?.Enter<GameBootstrapState>();
 
