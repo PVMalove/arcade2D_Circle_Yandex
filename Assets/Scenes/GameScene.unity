@@ -324,6 +324,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7404959214002372124, guid: 9a2c8ea6f39314648b79471fbca8a50c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8121840970282592835, guid: 9a2c8ea6f39314648b79471fbca8a50c, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -513,11 +517,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2038545693419349059, guid: 7c6502a709bfbf344b0b6bf64ccd7d31, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.49
       objectReference: {fileID: 0}
     - target: {fileID: 2038545693419349059, guid: 7c6502a709bfbf344b0b6bf64ccd7d31, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -9.5
       objectReference: {fileID: 0}
     - target: {fileID: 2038545693419349059, guid: 7c6502a709bfbf344b0b6bf64ccd7d31, type: 3}
       propertyPath: m_LocalRotation.w

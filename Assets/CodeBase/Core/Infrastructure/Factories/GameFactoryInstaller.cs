@@ -16,10 +16,6 @@ namespace CodeBase.Core.Infrastructure.Factories
             Container.BindFactory<CircleBackground, CircleBackground.Factory>()
                 .FromComponentInNewPrefabResource(InfrastructureAssetPath.CircleBackground)
                 .WithGameObjectName("CircleBackground");
-            
-            Container.BindFactory<Burger, Burger.Factory>()
-                .FromComponentInNewPrefabResource(InfrastructureAssetPath.Burger)
-                .WithGameObjectName("BURGER"); //TODO DELETE FOR TEST
         }
     }
 }

@@ -22,6 +22,5 @@
         public const string BuildInfoPath = "UI/HUD/BuildInfo";
         public const string SettingBar = "UI/HUD/Setting/SettingBar";
         public const string CircleBackground = "Gameplay/Enviroment/CircleBackground";
-        public const string Burger = "Gameplay/TEST/SPAWNER"; //TODO DELETE FOR TEST
     }
 }
