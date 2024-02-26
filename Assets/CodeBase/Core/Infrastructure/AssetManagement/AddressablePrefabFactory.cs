@@ -26,7 +26,7 @@ namespace CodeBase.Core.Infrastructure.AssetManagement
         public async UniTask<TComponent> Create(string assetKey, Vector3 position, Quaternion rotation, Transform parent = null)
         {
             GameObject prefab = await GetPrefab(assetKey);
-            return InstantiatePrefabAs(position, rotation, parent, prefab);
+            return InstantiatePrefabAs(prefab, position, rotation, parent);
         }
  
         public async UniTask<TComponent> Create(AssetReferenceGameObject assetRef)
@@ -38,7 +38,7 @@ namespace CodeBase.Core.Infrastructure.AssetManagement
         public async UniTask<TComponent> Create(AssetReferenceGameObject assetRef, Vector3 position, Quaternion rotation, Transform parent = null)
         {
             GameObject prefab = await GetPrefab(assetRef);
-            return InstantiatePrefabAs(position, rotation, parent, prefab);
+            return InstantiatePrefabAs(prefab, position, rotation, parent);
         }
  
         private TComponent InstantiatePrefab(GameObject prefab)
@@ -47,17 +47,17 @@ namespace CodeBase.Core.Infrastructure.AssetManagement
             TComponent component = newObject.GetComponent<TComponent>();
             return component;
         }
- 
-        private TComponent InstantiatePrefabAs(Vector3 position, Quaternion rotation, Transform parent, GameObject prefab)
+
+        private TComponent InstantiatePrefabAs(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent)
         {
             GameObject newObject = instantiator.InstantiatePrefab(prefab, position, rotation, parent);
             TComponent component = newObject.GetComponent<TComponent>();
             return component;
         }
- 
+
         private async UniTask<GameObject> GetPrefab(string assetKey) => 
             await assetProvider.Load<GameObject>(assetKey);
- 
+
         private async UniTask<GameObject> GetPrefab(AssetReferenceGameObject assetRef) => 
             await assetProvider.Load<GameObject>(assetRef);
     }

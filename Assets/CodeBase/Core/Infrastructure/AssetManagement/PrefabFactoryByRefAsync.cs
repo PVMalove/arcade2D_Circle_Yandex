@@ -14,13 +14,10 @@ namespace CodeBase.Core.Infrastructure.AssetManagement
             AsyncOperationHandle<GameObject> handle = Addressables.InstantiateAsync(assetReference);
             await handle;
 
-            if (handle.IsDone)
-            {
-                GameObject newObject = handle.Result;
-                return newObject.GetComponent<TComponent>();
-            }
-
-            throw new Exception("Asset not loaded");
+            if (!handle.IsDone) throw new Exception("Asset not loaded");
+            
+            GameObject newObject = handle.Result;
+            return newObject.GetComponent<TComponent>();
         }
     }
 }

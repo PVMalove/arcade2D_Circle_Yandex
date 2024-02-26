@@ -59,10 +59,10 @@ namespace CodeBase.Core.GameFlow.GameMode.GameWorld
             gameFactory.CreateCircleBackground();
             gameFactory.CircleBackground.GetComponent<CircleBackgroundAnimation>().EndGameAnimation();
             //UI
-            //gameFactory.CreateHUD();
+            gameFactory.CreateHUD();
             hudService.ShowSettingBar();
             hudService.ShowBuildInfo(buildInfoConfig);
-            //windowService.ShowGameMenu();
+            windowService.ShowGameMenu();
 
             LoadProgressReader();
         }

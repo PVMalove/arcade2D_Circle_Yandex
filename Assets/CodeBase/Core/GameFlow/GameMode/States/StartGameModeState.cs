@@ -16,17 +16,16 @@ namespace CodeBase.Core.GameFlow.GameMode.States
         private readonly IInitializeGameWorld gameWorld;
         private readonly SceneStateMachine sceneStateMachine;
         private readonly ILogService log;
-        private readonly Burger.Factory spawnerFactory;
+
 
         public StartGameModeState(ILoadingCurtain loadingCurtain,
             IAwaitingOverlay awaitingOverlay,
             IInitializeGameWorld gameWorld, 
-            SceneStateMachine sceneStateMachine, ILogService log, Burger.Factory spawnerFactory)
+            SceneStateMachine sceneStateMachine, ILogService log)
         {
             this.gameWorld = gameWorld;
             this.sceneStateMachine = sceneStateMachine;
             this.log = log;
-            this.spawnerFactory = spawnerFactory;
             this.loadingCurtain = loadingCurtain;
             this.awaitingOverlay = awaitingOverlay;
         }

@@ -48,28 +48,28 @@ namespace CodeBase.UI.Popups.SkinsShop.TEST
             ShopItemVisitor visitor = new ShopItemVisitor (skinBodyItemView, skinFaceItemView);
             SkinItemFactory skinItemFactory = new SkinItemFactory(visitor);
 
-            foreach (BodySkinsItem skinItem in staticDataService.SkinsItemCatalog.BodySkinItems)
-            {
-                SkinItemView skinItemView = skinItemFactory.Get(skinItem, container);
-                activeViews.Add(skinItemView);
-                openSkinsChecker.Visit(skinItemView.Item);
-                if (openSkinsChecker.IsOpened)
-                    skinItemView.Unlock();
-                else
-                    skinItemView.Lock();
-                
-            }
-            
-            foreach (FaceSkinsItem skinItem in staticDataService.SkinsItemCatalog.FaceSkinItems)
-            {
-                SkinItemView skinItemView = skinItemFactory.Get(skinItem, container);
-                activeViews.Add(skinItemView);
-                openSkinsChecker.Visit(skinItemView.Item);
-                if (openSkinsChecker.IsOpened)
-                    skinItemView.Unlock();
-                else
-                    skinItemView.Lock();
-            }
+            // foreach (BodySkinsItem skinItem in staticDataService.SkinsItemCatalog.BodySkinItems)
+            // {
+            //     SkinItemView skinItemView = skinItemFactory.Get(skinItem, container);
+            //     activeViews.Add(skinItemView);
+            //     openSkinsChecker.Visit(skinItemView.Item);
+            //     if (openSkinsChecker.IsOpened)
+            //         skinItemView.Unlock();
+            //     else
+            //         skinItemView.Lock();
+            //     
+            // }
+            //
+            // foreach (FaceSkinsItem skinItem in staticDataService.SkinsItemCatalog.FaceSkinItems)
+            // {
+            //     SkinItemView skinItemView = skinItemFactory.Get(skinItem, container);
+            //     activeViews.Add(skinItemView);
+            //     openSkinsChecker.Visit(skinItemView.Item);
+            //     if (openSkinsChecker.IsOpened)
+            //         skinItemView.Unlock();
+            //     else
+            //         skinItemView.Lock();
+            // }
         }
     }
 }

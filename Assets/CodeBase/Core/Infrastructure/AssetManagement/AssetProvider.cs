@@ -15,7 +15,7 @@ namespace CodeBase.Core.Infrastructure.AssetManagement
     public class AssetProvider : IAssetProvider
     {
         private readonly ILogService log;
-        private readonly Dictionary<string, AsyncOperationHandle> assetRequests = new ();
+        private readonly Dictionary<string, AsyncOperationHandle> assetRequests = new();
         private readonly Dictionary<string, List<AsyncOperationHandle>> handles = new();
         private readonly Dictionary<string, AsyncOperationHandle> completedCache = new();
         

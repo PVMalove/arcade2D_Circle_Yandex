@@ -13,6 +13,7 @@ using CodeBase.Core.Services.PlayerProgressService;
 using CodeBase.Core.Services.RandomizerService;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.StaticDataService;
+using CodeBase.UI.Popups.SkinsShop.TEST_V2;
 using Cysharp.Threading.Tasks;
 using Zenject;
 
@@ -53,6 +54,8 @@ namespace CodeBase.Core.Root
             BindLoadingAudioService();
 
             BindPauseService();
+            
+            Container.Bind<PrefabFactory>().AsSingle(); //TODO REFACTOR
         }
 
         private void BindAudioManagement()
