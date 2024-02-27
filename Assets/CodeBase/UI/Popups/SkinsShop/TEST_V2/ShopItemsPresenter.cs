@@ -10,7 +10,7 @@ namespace CodeBase.UI.Popups.SkinsShop.TEST_V2
 {
     public class ShopItemsPresenter : MonoBehaviour
     {
-        [SerializeField] private Transform container;
+        [SerializeField] private Transform itemContainer;
         [SerializeField] private Transform poolContainer;
         
         private List<ShopItemView> activeViews;
@@ -22,14 +22,13 @@ namespace CodeBase.UI.Popups.SkinsShop.TEST_V2
         private void Construct(PrefabFactory prefabFactory, IStaticDataService staticDataService)
         {
             objectPool = new ObjectPool<ShopItemView>(prefabFactory);
+            activeViews = new List<ShopItemView>();
             this.staticDataService = staticDataService;
         }
         
         public async UniTask InitializeAsync()
         {
-            activeViews = new List<ShopItemView>();
             PoolObjectConfig poolConfig = staticDataService.GetPoolConfigByType(PoolObjectType.ShopViewItem);
-            Debug.Log($"poolConfig - {poolConfig}" );
             await objectPool.InitializeAsync(poolConfig.AssetReference, poolConfig.StartCapacity,
                 poolConfig.Type, poolContainer);
         }
@@ -40,7 +39,7 @@ namespace CodeBase.UI.Popups.SkinsShop.TEST_V2
             
             foreach (SkinShopItem shopItem in items)
             {
-                ShopItemView viewItem = await objectPool.Get(container.position, container);
+                ShopItemView viewItem = await objectPool.Get(itemContainer.position, itemContainer);
                 SetItem(viewItem, shopItem.Name, shopItem.Icon, shopItem.RequiredCoins);
             }
         }
@@ -56,8 +55,8 @@ namespace CodeBase.UI.Popups.SkinsShop.TEST_V2
             viewItem.gameObject.SetActive(true);
             activeViews.Add(viewItem);
         }
-        
-        public void Cleanup()
+
+        private void Cleanup()
         {
             foreach (ShopItemView item in activeViews)
             {

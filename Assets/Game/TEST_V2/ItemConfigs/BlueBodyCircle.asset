@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13974c16955c47cebb6e92a9ea63ba93, type: 3}
   m_Name: BlueBodyCircle
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Blue_body_circle
+  <Name>k__BackingField: Blue_body_circle_0
   icon: {fileID: 21300000, guid: e709ffb13dbce7b4795fd043413423fb, type: 3}
   <RequiredCoins>k__BackingField: 200
   <CircleHeroReference>k__BackingField:

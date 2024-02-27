@@ -14,25 +14,23 @@ namespace CodeBase.UI.Popups.SkinsShop
     public class SkinsShopViewPopup : PopupBase<ISkinsShopPresenter>
     {
         [SerializeField] private Button closePopupButton;
-
-        //[SerializeField] private ShopItemListPresenter shopItemList;
         [SerializeField] private ShopItemsPresenter shopItemList;
         
         private ISkinsShopPresenter presenter;
 
-        private async void Start()
+        protected override void OnAwake()
         {
-            await shopItemList.InitializeAsync();
-            Debug.Log("1");
+            base.OnAwake();
+            shopItemList.InitializeAsync().GetAwaiter();
         }
 
-        protected async override void Initialize(ISkinsShopPresenter presenter)
+        protected override async void Initialize(ISkinsShopPresenter presenter)
         {
             base.Initialize(presenter);
             this.presenter = presenter;
             this.presenter.InitializeShop();
             Debug.Log("2");
-            //await shopItemList.SetItems(presenter.ShopItemsCatalog.SkinItems);
+            await shopItemList.SetItems(presenter.SkinItems);
             Debug.Log("Initialize");
         }
         
@@ -53,10 +51,6 @@ namespace CodeBase.UI.Popups.SkinsShop
 
         private void OnClosePopup() => 
             SetPopupResult();
-
-        // [Button]
-        // private void open()=>
-        //     addSkin(BodySkins.green_body_circle);
         
         [Button]
         private void OnClosePopupClick() => 

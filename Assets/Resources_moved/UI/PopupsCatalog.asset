@@ -15,7 +15,7 @@ MonoBehaviour:
   popups:
   - name: 1
     prefab:
-      m_AssetGUID: 6ec6e6a314a037247b909d50b1e396d2
+      m_AssetGUID: 7e81189165169624b8878406b449a6c2
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0

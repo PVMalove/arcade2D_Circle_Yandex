@@ -27,8 +27,7 @@ namespace CodeBase.UI.Popups.SkinsShop.TEST_V2
         public async UniTask<TComponent> CreateAsync<TComponent>(AssetReference reference, Vector3 position, 
             Transform parent = null) where TComponent : MonoBehaviour
         {
-            position = Vector3.zero;
-            var prefab = await assetProvider.Load<GameObject>(reference);
+            GameObject prefab = await assetProvider.Load<GameObject>(reference);
             return instantiator.InstantiatePrefabForComponent<TComponent>(prefab, position, Quaternion.identity, parent);
         }
     }

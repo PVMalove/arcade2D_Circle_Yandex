@@ -176,8 +176,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 150
+  near clip plane: 40
+  far clip plane: 55
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -590,10 +590,10 @@ Canvas:
   m_GameObject: {fileID: 7303310334397546368}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 6773069919775399711}
   m_PlaneDistance: 50
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -602,7 +602,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &7053911454536950143
 MonoBehaviour:

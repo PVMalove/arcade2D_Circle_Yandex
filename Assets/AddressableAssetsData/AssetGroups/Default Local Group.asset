@@ -50,21 +50,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6ec6e6a314a037247b909d50b1e396d2
-    m_Address: SkinsShop_V2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1bc8451efc2dc6744941173aa017be08
     m_Address: ShopItem_PoolObjectData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Configs
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f7208989df94cd046bc1bbfc67fdb407
-    m_Address: ShopItem
-    m_ReadOnly: 0
-    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a4ba1f1adb9390c4e99e38c500cb16f4
     m_Address: ShopItemCatalog

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShopItem_PoolObjectData
   m_EditorClassIdentifier: 
   type: 1
-  startCapacity: 1
+  startCapacity: 5
   assetReference:
     m_AssetGUID: f7208989df94cd046bc1bbfc67fdb407
     m_SubObjectName: 

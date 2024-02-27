@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9b1c28da0cb4134b571931e7d573e3f, type: 3}
-  m_Name: ShopItemCatalog
+  m_Name: ShopItem_Catalog
   m_EditorClassIdentifier: 
   skinItems:
   - {fileID: 11400000, guid: 068f1b58a13ab474faac2ba7f84e2694, type: 2}

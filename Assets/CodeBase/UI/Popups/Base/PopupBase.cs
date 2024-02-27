@@ -55,7 +55,7 @@ namespace CodeBase.UI.Popups.Base
             UnsubscribeUpdates();
         }
 
-        protected virtual void OnAwake() => Hide();
+        protected virtual void OnAwake() { }
         protected virtual void Initialize(TInitializeData with){}
         protected virtual void SubscribeUpdates(){}
         protected virtual void UnsubscribeUpdates() { }
