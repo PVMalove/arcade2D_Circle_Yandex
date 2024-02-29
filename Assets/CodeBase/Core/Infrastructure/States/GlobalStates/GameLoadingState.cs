@@ -38,7 +38,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             awaitingOverlay.Show();
             await assetProvider.WarmupAssetsByLabel(AssetLabels.GameLoadingState);
             await audioManagement.Initialize();
-            await sceneLoader.Load(InfrastructureAssetPath.GameLoadingScene);
+            await sceneLoader.Load(InfrastructureAssetPath.GameLoadingSceneAddress);
         }
 
         public async UniTask Exit()

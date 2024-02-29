@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CodeBase.Core.Services.PlayerProgressService;
+using CodeBase.Core.Services.ProgressService;
 using CodeBase.UI.HUD.Base;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;

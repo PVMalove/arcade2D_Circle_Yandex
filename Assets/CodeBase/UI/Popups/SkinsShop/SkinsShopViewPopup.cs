@@ -1,10 +1,6 @@
-﻿using System;
-using CodeBase.Core.Infrastructure.AssetManagement;
+﻿using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.UI.Popups.Base;
-using CodeBase.UI.Popups.SkinsShop.TEST;
 using CodeBase.UI.Popups.SkinsShop.TEST_V2;
-using CodeBase.UI.Popups.SkinsShop.TEST.Skins.BodySkin;
-using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,10 +14,10 @@ namespace CodeBase.UI.Popups.SkinsShop
         
         private ISkinsShopPresenter presenter;
 
-        protected override void OnAwake()
+        protected override async void OnAwake()
         {
             base.OnAwake();
-            shopItemList.InitializeAsync().GetAwaiter();
+            await shopItemList.InitializeAsync();
         }
 
         protected override async void Initialize(ISkinsShopPresenter presenter)
@@ -45,6 +41,7 @@ namespace CodeBase.UI.Popups.SkinsShop
         protected override void UnsubscribeUpdates()
         {
             base.UnsubscribeUpdates();
+            shopItemList.Cleanup();
             closePopupButton.onClick.RemoveListener(OnClosePopup);
             Debug.Log("UnsubscribeUpdates");
         }

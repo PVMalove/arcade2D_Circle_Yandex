@@ -1,5 +1,5 @@
 using System;
-using CodeBase.Core.Services.PlayerProgressService;
+using CodeBase.Core.Services.ProgressService;
 
 namespace CodeBase.UI.HUD.SettingBar
 {

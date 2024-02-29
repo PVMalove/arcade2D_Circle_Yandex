@@ -1,5 +1,5 @@
 using CodeBase.Core.Data;
-using CodeBase.Core.Services.PlayerProgressService;
+using CodeBase.Core.Services.ProgressService;
 using CodeBase.UI.Services.Infrastructure;
 using Cysharp.Threading.Tasks;
 using Zenject;

@@ -1,12 +1,13 @@
 using System;
 using CodeBase.Core.Data;
+using Cysharp.Threading.Tasks;
 
 namespace CodeBase.Core.Services.SaveLoadService
 {
     public interface ILoadService
     {
         void LoadProgress();
-        void Subscribe(Action<PlayerProgress> onComplete);
-        void Unsubscribe(Action<PlayerProgress> onComplete);
+        UniTask Subscribe(Action<PlayerProgress> onComplete);
+        UniTask Unsubscribe(Action<PlayerProgress> onComplete);
     }
 }

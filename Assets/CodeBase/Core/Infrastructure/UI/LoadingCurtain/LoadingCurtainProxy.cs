@@ -11,7 +11,7 @@ namespace CodeBase.Core.Infrastructure.UI.LoadingCurtain
             this.factory = factory;
 
         public async UniTask InitializeAsync() => 
-            impl = await factory.Create(InfrastructureAssetPath.CurtainPath);
+            impl = await factory.Create(InfrastructureAssetPath.CurtainAddress);
 
         public void Show() => impl.Show();
 

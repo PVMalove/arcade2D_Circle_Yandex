@@ -1,7 +1,7 @@
 using System.IO;
 using CodeBase.Core.Data;
 using CodeBase.Core.Infrastructure.Factories;
-using CodeBase.Core.Services.PlayerProgressService;
+using CodeBase.Core.Services.ProgressService;
 using CodeBase.UI.HUD.Service;
 using UnityEngine;
 using YG;

@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using CodeBase.Core.Services.PlayerProgressService;
+using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.StaticDataService;
 using CodeBase.UI.Popups.SkinsShop.TEST_V2;
-using CodeBase.UI.Popups.SkinsShop.TEST.Skins;
 using Zenject;
 
 namespace CodeBase.UI.Popups.SkinsShop
@@ -25,8 +24,6 @@ namespace CodeBase.UI.Popups.SkinsShop
             SkinItems = staticDataService.ShopItemsCatalog.SkinItems;
         }
         
-        public sealed class Factory : PlaceholderFactory<ISkinsShopPresenter>
-        {
-        }
+        public sealed class Factory : PlaceholderFactory<ISkinsShopPresenter> { }
     }
 }

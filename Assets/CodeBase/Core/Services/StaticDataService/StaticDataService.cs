@@ -7,7 +7,6 @@ using CodeBase.StaticData.Level;
 using CodeBase.StaticData.UI;
 using CodeBase.UI.Popups.SkinsShop.TEST_V2;
 using CodeBase.UI.Popups.SkinsShop.TEST_V2.Pool;
-using CodeBase.UI.Popups.SkinsShop.TEST.SkinsShop;
 using Cysharp.Threading.Tasks;
 
 namespace CodeBase.Core.Services.StaticDataService
@@ -19,7 +18,6 @@ namespace CodeBase.Core.Services.StaticDataService
         public CharacterConfig CharacterConfig { get; private set; }
         public ScreensCatalog ScreensCatalog { get; private set; }
         public PopupsCatalog PopupsCatalog { get; private set; }
-        //public SkinsItemCatalog SkinsItemCatalog { get; private set; }
         
         public ShopItemsCatalog ShopItemsCatalog { get; private set; }
         public PoolObjectConfig GetPoolConfigByType(PoolObjectType type) => poolObjectConfigsCache[type];
@@ -67,16 +65,7 @@ namespace CodeBase.Core.Services.StaticDataService
             else
                 log.LogError("There are no popups config founded!");
         }
-        
-        // private async UniTask LoadSkinsItemConfig()
-        // {
-        //     SkinsItemCatalog[] configs = await GetConfigs<SkinsItemCatalog>();
-        //     if (configs.Length > 0)
-        //         SkinsItemCatalog = configs.First();
-        //     else
-        //         log.LogError("There are no skins config founded!");
-        // }
-        
+
         private async UniTask LoadPoolConfigs()
         {
             PoolObjectConfig[] configsList = await GetConfigs<PoolObjectConfig>();

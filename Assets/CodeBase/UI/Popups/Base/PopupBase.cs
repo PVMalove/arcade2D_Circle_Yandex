@@ -1,6 +1,5 @@
 ﻿using CodeBase.Core.Data;
-using CodeBase.Core.Services.PlayerProgressService;
-using CodeBase.UI.Popups.SkinsShop.TEST.Skins.BodySkin;
+using CodeBase.Core.Services.ProgressService;
 using CodeBase.UI.Services.Infrastructure;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -35,11 +34,6 @@ namespace CodeBase.UI.Popups.Base
         {
             Debug.Log($"Hide");
             gameObject.SetActive(false);
-        }
-
-        protected void addSkin(BodySkins skin)
-        {
-            Progress.SkinData.OpenBodySkin(skin);
         }
         
         protected void SetPopupResult() =>

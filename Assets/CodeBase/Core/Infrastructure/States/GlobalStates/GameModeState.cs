@@ -32,7 +32,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             loadingCurtain.Show();
             awaitingOverlay.Show();
             await assetProvider.WarmupAssetsByLabel(AssetLabels.GameplayState);
-            await sceneLoader.Load(InfrastructureAssetPath.GameScene);
+            await sceneLoader.Load(InfrastructureAssetPath.GameSceneAddress);
         }
 
         public async UniTask Exit()

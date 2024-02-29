@@ -1,9 +1,14 @@
-﻿using CodeBase.Core.Data;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using CodeBase.Core.Data;
+using CodeBase.Core.Infrastructure;
+using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Infrastructure.States;
 using CodeBase.Core.Infrastructure.States.Infrastructure;
 using CodeBase.Core.Services.LogService;
-using CodeBase.Core.Services.PlayerProgressService;
+using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;
+using CodeBase.UI.Popups.SkinsShop.TEST_V2.StaticData;
 using Cysharp.Threading.Tasks;
 using YG;
 
@@ -12,16 +17,19 @@ namespace CodeBase.Core.GameFlow.GameLoading.States
     public class LoadPlayerProgressState : IState
     {
         private readonly SceneStateMachine sceneStateMachine;
+        private readonly IAssetProvider assetProvider;
         private readonly IPersistentProgressStorage progressStorage;
         private readonly ILoadService loadService;
         private readonly ILogService log;
 
         public LoadPlayerProgressState(SceneStateMachine sceneStateMachine,
+            IAssetProvider assetProvider,
             IPersistentProgressStorage progressStorage, 
             ILoadService loadService,
             ILogService log)
         {
             this.sceneStateMachine = sceneStateMachine;
+            this.assetProvider = assetProvider;
             this.progressStorage = progressStorage;
             this.loadService = loadService;
             this.log = log;
@@ -31,15 +39,15 @@ namespace CodeBase.Core.GameFlow.GameLoading.States
         {
             log.LogState("Enter", this);
             YandexGame.GameReadyAPI();
-            loadService.Subscribe(OnCompleteLoadData);
+            await loadService.Subscribe(OnCompleteLoadData);
             loadService.LoadProgress();
-            //await UniTask.Delay(3000);
-            sceneStateMachine.Enter<FinishGameLoadingState>().Forget();
+            await sceneStateMachine.Enter<FinishGameLoadingState>();
         }
         
-        private void OnCompleteLoadData(PlayerProgress dataProgress)
+        private async void OnCompleteLoadData(PlayerProgress dataProgress)
         {
-            progressStorage.Progress = dataProgress ?? NewProgress();
+            log.LogState("OnCompleteLoadData player progress", this);
+            progressStorage.Progress = dataProgress ?? await NewProgress();
             loadService.Unsubscribe(OnCompleteLoadData);
         }
 
@@ -49,15 +57,23 @@ namespace CodeBase.Core.GameFlow.GameLoading.States
             return default;
         }
 
-        private PlayerProgress NewProgress()
+        private async UniTask<PlayerProgress> NewProgress()
         {
-            PlayerProgress progress = new PlayerProgress();
-
-            progress.AudioControlData.AudioVolume = 0.5f;
-            progress.AudioControlData.EffectsOn = true;
-            progress.AudioControlData.MusicOn = true;
-            log.LogState("Init new player progress", this);
+            log.LogState("Start init new player progress", this);
             
+            FirstSaveData newSaveData = await assetProvider.Load<FirstSaveData>(InfrastructureAssetPath.NewSaveDataAddress);
+            
+            AudioControlData audioControl = new AudioControlData(
+                newSaveData.AudioVolume, 
+                newSaveData.MusicOn,
+                newSaveData.EffectsOn
+            );
+            
+            PlayerOwnedItems ownedItems = new PlayerOwnedItems(
+                new List<string> { newSaveData.circleHeroGUID });
+
+            PlayerProgress progress = new PlayerProgress(ownedItems, audioControl);
+            log.LogState("Init new player progress", this);
             return progress;
         }
     }

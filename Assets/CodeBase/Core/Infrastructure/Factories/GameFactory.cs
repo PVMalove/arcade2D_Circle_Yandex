@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Core.Services.PauseService;
-using CodeBase.Core.Services.PlayerProgressService;
+using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.StaticDataService;
 using CodeBase.Gameplay.Environment;
 using CodeBase.UI.Root;

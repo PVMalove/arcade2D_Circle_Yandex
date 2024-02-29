@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CodeBase.Core.Services.PlayerProgressService;
+using CodeBase.Core.Services.ProgressService;
 using UnityEngine;
 
 namespace CodeBase.Core.Infrastructure.Factories

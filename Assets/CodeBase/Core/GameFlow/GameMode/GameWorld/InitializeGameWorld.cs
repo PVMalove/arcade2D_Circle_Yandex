@@ -1,7 +1,7 @@
 using System;
 using CodeBase.Core.Infrastructure.Factories;
 using CodeBase.Core.Services.LogService;
-using CodeBase.Core.Services.PlayerProgressService;
+using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Gameplay.Environment;
 using CodeBase.UI.HUD.BuildInfo;

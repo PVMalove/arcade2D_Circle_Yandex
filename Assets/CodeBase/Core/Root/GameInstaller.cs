@@ -9,7 +9,7 @@ using CodeBase.Core.Infrastructure.UI.AwaitingOverlay;
 using CodeBase.Core.Infrastructure.UI.LoadingCurtain;
 using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.PauseService;
-using CodeBase.Core.Services.PlayerProgressService;
+using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.RandomizerService;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.StaticDataService;

@@ -11,7 +11,7 @@ namespace CodeBase.Core.Infrastructure.UI.AwaitingOverlay
             this.factory = factory;
 
         public async UniTask InitializeAsync() => 
-            impl = await factory.Create(InfrastructureAssetPath.AwaitingOverlay);
+            impl = await factory.Create(InfrastructureAssetPath.AwaitingOverlayAddress);
 
         public void Show() => 
             impl.Show();

@@ -1,5 +1,4 @@
 ﻿using System;
-using CodeBase.UI.Popups.SkinsShop.TEST.Data;
 
 namespace CodeBase.Core.Data
 {
@@ -7,12 +6,12 @@ namespace CodeBase.Core.Data
     public class PlayerProgress
     {
         public AudioControlData AudioControlData;
-        public SkinData SkinData;
+        public PlayerOwnedItems PlayerItems;
         
-        public PlayerProgress()
+        public PlayerProgress(PlayerOwnedItems playerItems, AudioControlData audioControlData)
         {
-            AudioControlData = new AudioControlData();
-            SkinData = new SkinData();
+            PlayerItems = playerItems;
+            AudioControlData = audioControlData;
         }
     }
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: e709ffb13dbce7b4795fd043413423fb, type: 3}
   <RequiredCoins>k__BackingField: 200
   <CircleHeroReference>k__BackingField:
-    m_AssetGUID: 6a61f1d25ebdffe47981c898f5dd2ffa
+    m_AssetGUID: ef8c87c0dd20d684685d3042cba8dac7
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

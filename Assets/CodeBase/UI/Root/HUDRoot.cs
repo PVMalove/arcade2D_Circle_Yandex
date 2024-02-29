@@ -1,8 +1,7 @@
 ﻿using CodeBase.Audio.Service;
-using CodeBase.Core.Data;
 using CodeBase.Core.Infrastructure.Factories;
 using CodeBase.Core.Services.PauseService;
-using CodeBase.Core.Services.PlayerProgressService;
+using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.StaticDataService;
 using CodeBase.UI.Popups.Service;
@@ -14,6 +13,7 @@ namespace CodeBase.UI.Root
 {
     public class HUDRoot : MonoBehaviour, IHUDRoot
     {
+        //TODO DELETE CLASS
         [SerializeField] private Button pauseButton;
         [SerializeField] private Button clearProgressButton;
         [SerializeField] private Button openProductButton;
@@ -58,9 +58,7 @@ namespace CodeBase.UI.Root
         private void Start()
         {
             layoutGroup = settingsObject.GetComponent<VerticalLayoutGroup>();
-            clearProgressButton.onClick.AddListener(NewProgress);
         }
-
         
         private void PauseGameClick()
         {
@@ -79,23 +77,7 @@ namespace CodeBase.UI.Root
             sfxOn.SetActive(isOn);
             sfxOff.SetActive(!isOn);
         }
-        
-        private void NewProgress()
-        {
-            Debug.Log("Reset player progress");
-            PlayerProgress progress = new();
-            progress.AudioControlData.EffectsOn = true;
-            progress.AudioControlData.MusicOn = true;
-            progress.AudioControlData.AudioVolume = 0.5f;
-            progressStorage.Progress = progress;
-            
-            foreach (IProgressReader progressReader in gameFactory.ProgressReaders)
-                progressReader.LoadProgress(progressStorage.Progress);
-        }
 
-        public class Factory : PlaceholderFactory<HUDRoot>
-        {
-            
-        }
+        public class Factory : PlaceholderFactory<HUDRoot> { }
     }
 }

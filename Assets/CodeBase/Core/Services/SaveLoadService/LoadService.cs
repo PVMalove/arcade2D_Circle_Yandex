@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using CodeBase.Core.Data;
 using CodeBase.Core.Services.LogService;
+using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine;
 using YG;
@@ -11,8 +12,8 @@ namespace CodeBase.Core.Services.SaveLoadService
     public class LoadService : ILoadService
     {
         private readonly ILogService log;
-        private Action<PlayerProgress> listeners;
         private readonly string filePath;
+        private event Action<PlayerProgress> listeners;
 
         public LoadService(ILogService log)
         {
@@ -21,8 +22,19 @@ namespace CodeBase.Core.Services.SaveLoadService
             YandexGame.YandexDataCloudListeners += UpdateDataFromCloud;
         }
         
-        public void Subscribe(Action<PlayerProgress> onComplete) => listeners += onComplete;
-        public void Unsubscribe(Action<PlayerProgress> onComplete) => listeners -= onComplete;
+        // public void Subscribe(Action<PlayerProgress> onComplete) => listeners += onComplete;
+        // public void Unsubscribe(Action<PlayerProgress> onComplete) => listeners -= onComplete;
+        public UniTask Subscribe(Action<PlayerProgress> onComplete)
+        {
+            listeners += onComplete;
+            return UniTask.CompletedTask;
+        }
+
+        public UniTask Unsubscribe(Action<PlayerProgress> onComplete)
+        {
+            listeners -= onComplete;
+            return UniTask.CompletedTask;
+        }
         
         public void LoadProgress()
         {
