@@ -51,11 +51,6 @@ namespace CodeBase.UI.Popups.SkinsShop.TEST_V2
                 }
 
                 viewItem.Unlock();
-                // if (progressService.Progress.PlayerItems.SelectedCircleHeroDataReference.AssetGUID ==
-                //     shopItem.CircleHeroReference.AssetGUID)
-                // {
-                //     viewItem.Select();
-                // }
             }
         }
 

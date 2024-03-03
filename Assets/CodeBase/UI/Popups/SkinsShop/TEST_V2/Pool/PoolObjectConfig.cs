@@ -4,7 +4,7 @@ using UnityEngine.AddressableAssets;
 
 namespace CodeBase.UI.Popups.SkinsShop.TEST_V2.Pool
 {
-    [CreateAssetMenu(fileName = "NewPoolObjectData", menuName = "StaticData/PoolObjectData")]
+    [CreateAssetMenu(fileName = "NewName_PoolObjectData", menuName = "Configs/Infrastructure/Pool/PoolObjectData")]
     public class PoolObjectConfig : ScriptableObject
     {
         [SerializeField] private PoolObjectType type;

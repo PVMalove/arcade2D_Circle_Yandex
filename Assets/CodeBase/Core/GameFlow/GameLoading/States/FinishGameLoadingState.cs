@@ -17,18 +17,19 @@ namespace CodeBase.Core.GameFlow.GameLoading.States
             this.log = log;
         }
 
-        public async UniTask Enter()
+        public UniTask Enter()
         {
             log.LogState("Enter", this);
             gameStateMachine.OnExitState += HandleExitState;
             gameStateMachine.Enter<GameModeState>().Forget();
+            return UniTask.CompletedTask;
         }
 
         public UniTask Exit()
         {
             gameStateMachine.OnExitState -= HandleExitState;
             log.LogState("Exit", this);
-            return default;
+            return UniTask.CompletedTask;
         }
         
         private void HandleExitState()

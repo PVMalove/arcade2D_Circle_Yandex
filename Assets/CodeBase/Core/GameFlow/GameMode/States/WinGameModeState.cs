@@ -8,12 +8,12 @@ namespace CodeBase.Core.GameFlow.GameMode.States
         public UniTask Exit()
         {
             // use such states for showing congratulation screens and offering bonuses for ads :)
-            return default;
+            return UniTask.CompletedTask;
         }
 
         public UniTask Enter()
         {
-            return default;
+            return UniTask.CompletedTask;
         }
     }
 }

@@ -16,11 +16,12 @@ namespace CodeBase.Core.GameFlow.GameMode.States
 
         public UniTask Enter()
         {
-            return default;
+            return UniTask.CompletedTask;
         }
 
-        public async UniTask Exit()
+        public  UniTask Exit()
         {
+            return UniTask.CompletedTask;
             // use such states for finishing gameplay and cleanup resources, posting session statistics and leaving Game State
         }
     }

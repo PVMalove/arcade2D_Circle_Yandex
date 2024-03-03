@@ -29,12 +29,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Configs
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d91a1e0302b368e47b6fd861f0bb57c4
-    m_Address: SkinsItemCatalog
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Configs
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f9c3429a33f562a499b9c522e24befd2
     m_Address: GameScene
     m_ReadOnly: 0
@@ -68,12 +62,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ef8c87c0dd20d684685d3042cba8dac7
-    m_Address: Assets/Game/TEST_V2/BlueBodyCircleData 1.asset
+    m_Address: BlueBodyCircleData 1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f7e8be1584f639c409a729ed42b27b9c
-    m_Address: Assets/Game/TEST_V2/BlueBodyCircleData 2.asset
+    m_Address: BlueBodyCircleData 2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

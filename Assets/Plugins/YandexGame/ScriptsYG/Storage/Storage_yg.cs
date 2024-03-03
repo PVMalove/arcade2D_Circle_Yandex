@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 using UnityEngine;
 #if YG_NEWTONSOFT_FOR_SAVES
 using Newtonsoft.Json;
@@ -15,9 +18,9 @@ namespace YG
         private static readonly string PATH_SAVES_EDITOR = "//Plugins/YandexGame/WorkingData/Editor/SavesEditorYG.json";
         
         public static SavesYG savesData = new SavesYG();
-        public static Action<string> YandexDataCloudListeners;
-       
+
         private static Action onResetProgress;
+        private static UniTaskCompletionSource<string> CompletionSource { get; set; }
         private enum DataState { Exist, NotExist, Broken };
 
 #region Internal methods
@@ -31,6 +34,7 @@ namespace YG
         private static extern void LoadYG(bool sendback);
         [DllImport("__Internal")]
         private static extern void LoadYGPlayerData(bool sendback);
+        
 #endregion Internal methods         
 
         [InitYG]
@@ -119,9 +123,12 @@ namespace YG
             SaveEditor();
 #endif
         }
-        public static void SaveLocal()
-        {
-            Message("Save Local technical data");
+
+        #endregion Save technical data
+
+public static void SaveLocal()
+{
+    Message("Save Local technical data");
 #if !UNITY_EDITOR
 #if YG_NEWTONSOFT_FOR_SAVES
             SaveToLocalStorage("savesData", JsonConvert.SerializeObject(savesData));
@@ -129,9 +136,9 @@ namespace YG
             SaveToLocalStorage("savesData", JsonUtility.ToJson(savesData));
 #endif
 #endif
-        }
-#endregion Save technical data
- #region Load technical data
+}
+
+#region Load technical data
         public static void LoadProgress() => Instance._LoadProgress();
 
         private void _LoadProgress()
@@ -207,23 +214,28 @@ namespace YG
         }
 #endregion Save progress
  #region Load progress
-        public static void LoadProgressPlayerData() => Instance._LoadProgressPlayerData();
-        private void _LoadProgressPlayerData()
+
+        public static async UniTask<string> LoadProgressPlayerDataAsync(CancellationToken token) =>
+            await Instance._LoadProgressPlayerDataAsync(token);
+
+        private async UniTask<string> _LoadProgressPlayerDataAsync(CancellationToken token)
         {
             if (!infoYG.saveCloud)
             {
                 Message("Start load local player saves");
-                LoadLocalPlayerData();
+                return LoadLocalPlayerData();
             }
             else
             { 
                 Message("Start load cloud player saves");
-                LoadCloudPlayerData();
+                return await LoadCloudPlayerDataAsync(token);
             }
         }
+        
 #endregion Load progress
 #endregion Player Data
 #region Save end Load Cloud
+
         private static void SaveCloud(string savedPlayerData = "")
         {
 #if YG_NEWTONSOFT_FOR_SAVES
@@ -251,11 +263,15 @@ namespace YG
             GetDataEvent?.Invoke();
 #endif
         }
-        
-        private static void LoadCloudPlayerData()
+
+        private static async UniTask<string>LoadCloudPlayerDataAsync(CancellationToken token)
         {
+            CompletionSource = new UniTaskCompletionSource<string>();
+            token.Register(() => CompletionSource.TrySetCanceled());
             LoadYGPlayerData(true);
+            return await CompletionSource.Task;
         }
+
 #endregion Save end Load Cloud
 #region Loading progress
         
@@ -264,17 +280,15 @@ namespace YG
 
         public void SetLoadSaves(string data)
         {
-            Message($">>>>>>>>>>>SetLoadSaves - {data}");
             DataState cloudDataState = DataState.Exist;
             DataState localDataState = DataState.Exist;
 
             if (data != "noData")
             {
                 string parsingData = ParsingData(data);
-                Message($"Technical data server: {parsingData}");
                 try
                 {
-#if JSON_NET_ENABLED
+#if YG_NEWTONSOFT_FOR_SAVES
                     cloudData = JsonConvert.DeserializeObject<SavesYG>(parsingData);
 #else
                     cloudData = JsonUtility.FromJson<SavesYG>(parsingData);
@@ -311,7 +325,7 @@ namespace YG
             {
                 try
                 {
-#if JSON_NET_ENABLED
+#if YG_NEWTONSOFT_FOR_SAVES
                     localData = JsonConvert.DeserializeObject<SavesYG>(LoadFromLocalStorage("savesData"));
 #else
                     localData = JsonUtility.FromJson<SavesYG>(LoadFromLocalStorage("savesData"));
@@ -364,8 +378,8 @@ namespace YG
                         Message("Local saves technical data- " + localDataState);
                         Message("Cloud saves technical data - Broken! Data Recovering...");
                         ResetSaveProgress();
-#if JSON_NET_ENABLED
-                savesData = JsonConvert.DeserializeObject<SavesYG>(data);
+#if YG_NEWTONSOFT_FOR_SAVES
+                        savesData = JsonConvert.DeserializeObject<SavesYG>(data);
 #else
                         savesData = JsonUtility.FromJson<SavesYG>(data);
 #endif
@@ -377,8 +391,8 @@ namespace YG
                         Message("Cloud saves technical data - " + cloudDataState);
                         Message("Local saves technical data - Broken! Data Recovering...");
                         ResetSaveProgress();
-#if JSON_NET_ENABLED
-                savesData = JsonConvert.DeserializeObject<SavesYG>(LoadFromLocalStorage("savesData"));
+#if YG_NEWTONSOFT_FOR_SAVES
+                        savesData = JsonConvert.DeserializeObject<SavesYG>(LoadFromLocalStorage("savesData"));
 #else
                         savesData = JsonUtility.FromJson<SavesYG>(LoadFromLocalStorage("savesData"));
 #endif
@@ -395,15 +409,15 @@ namespace YG
             }
         }
 
-        public void SetLoadSavesPlayerData(string data)
+        [UsedImplicitly]
+        public void SetLoadSavesPlayerDataAsync(string data)
         {
-            Message($">>>>>>>>>>>SetLoadSavesPlayerData - {data}");
             DataState cloudPlayerDataState = DataState.Exist;
             DataState localPlayerDataState = DataState.Exist;
-
+            
             string cloudPlayerData = null;
             string localPlayerData = null;
-
+            
             if (data != "noData")
             {
                 string parsingData = ParsingData(data);
@@ -433,7 +447,7 @@ namespace YG
                         ? "Load Cloud player data Broken! But we tried to restore and load cloud saves. Local saves are disabled."
                         : "Load Cloud player data Complete! Local saves are disabled.");
 
-                    YandexDataCloudListeners?.Invoke(string.Empty);
+                    CompletionSource.TrySetResult(String.Empty);
                 }
                 return;
             }
@@ -462,24 +476,24 @@ namespace YG
                     if (cloudData.idSave >= localData.idSave)
                     {
                         Message($"Load player data cloud Complete! ID Cloud Save: {cloudData.idSave}, ID Local Save: {localData.idSave}");
-                        YandexDataCloudListeners?.Invoke(cloudPlayerData);
+                        CompletionSource.TrySetResult(cloudPlayerData);
                     }
                     else
                     {
                         Message($"Load player data local Complete! ID Cloud Save: {cloudData.idSave}, ID Local Save: {localData.idSave}");
-                        YandexDataCloudListeners?.Invoke(localPlayerData);
+                        CompletionSource.TrySetResult(localPlayerData);
                     }
                     break;
                 }
                 case DataState.Exist:
-                    YandexDataCloudListeners?.Invoke(cloudPlayerData);
+                    CompletionSource.TrySetResult(cloudPlayerData);
                     Message("Load cloud player data Complete! Cloud Data  - " + cloudPlayerDataState);
                     break;
                 default:
                 {
                     if (localPlayerDataState == DataState.Exist)
                     {
-                        YandexDataCloudListeners?.Invoke(localPlayerData);
+                        CompletionSource.TrySetResult(localPlayerData);
                         Message($"Load local player data Complete Data: {localPlayerData} ! Local Data - " + localPlayerDataState);
                     }
                     else if (cloudPlayerDataState == DataState.Broken ||
@@ -489,7 +503,7 @@ namespace YG
                         Message("Cloud Saves - Broken! Data Recovering...");
 
                         string parsingData = ParsingData(data);
-                        YandexDataCloudListeners?.Invoke(parsingData);
+                        CompletionSource.TrySetResult(parsingData);
                         Message("Cloud Saves Partially Restored!");
                     }
                     else if (localPlayerDataState == DataState.Broken)
@@ -498,18 +512,19 @@ namespace YG
                         Message("Local Saves - Broken! Data Recovering...");
 
                         string storage = LoadFromLocalStorage(PLAYER_DATA_PATH);
-                        YandexDataCloudListeners?.Invoke(storage);
+                        CompletionSource.TrySetResult(storage);
                         Message("Local Saves Partially Restored!");
                     }
                     else
                     {
                         Message("Player data No Saves");
-                        YandexDataCloudListeners?.Invoke(string.Empty);
+                        CompletionSource.TrySetResult(String.Empty);
                     }
                     break;
                 }
             }
         }
+        
 #endregion Loading progress
 #region Helper methods
         private static void AfterLoading()
@@ -521,11 +536,10 @@ namespace YG
         
         private string ParsingData(string data)
         {
-            data = data.Remove(0, 2);
-            data = data.Remove(data.Length - 2, 2);
-            data = data.Replace(@"\\\", '\u0002'.ToString());
-            data = data.Replace(@"\", "");
-            data = data.Replace('\u0002'.ToString(), @"\");
+            data = data.Trim('[', ']', '"', ' ');
+            data = data.Replace(@"\n", ""); //todo delete
+            data = data.Replace(@"\", ""); //todo delete
+            Message($"ParsingData data server: {data}");
             return data;
         }
 #endregion Helper methods

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Runtime.InteropServices;
 using System;
+using Cysharp.Threading.Tasks;
 
 namespace YG
 {
@@ -25,12 +26,12 @@ namespace YG
         }
 #endregion Save progress
  #region Load progress
-private static void LoadLocalPlayerData()
-{
-    string storage = LoadFromLocalStorage(PLAYER_DATA_PATH);
-    Message($"Load local player data: {storage}");
-    YandexDataCloudListeners?.Invoke(storage);
-} 
+        private static string LoadLocalPlayerData()
+        {
+            string storage = LoadFromLocalStorage(PLAYER_DATA_PATH);
+            Message($"Load local player data: {storage}");
+            return storage;
+        } 
 #endregion Load progress
 #endregion Player Data
 #region Helper methods

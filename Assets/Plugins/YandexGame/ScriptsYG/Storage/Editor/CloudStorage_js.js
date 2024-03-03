@@ -45,19 +45,19 @@
             const data = await player.getData(["playerData"]);
             if (data.playerData[0].trim() !== "") {
                 if (sendback) {
-                    myGameInstance.SendMessage('YandexGame', 'SetLoadSavesPlayerData', JSON.stringify(data.playerData));
+                    myGameInstance.SendMessage('YandexGame', 'SetLoadSavesPlayerDataAsync', JSON.stringify(data.playerData));
                 }
                 return JSON.stringify(data.playerData);                
             } else {
                 if (sendback) {
-                    myGameInstance.SendMessage('YandexGame', 'SetLoadSavesPlayerData', 'noData');
+                    myGameInstance.SendMessage('YandexGame', 'SetLoadSavesPlayerDataAsync', 'noData');
                 }
                 return 'noData';
             }
         } catch (e) {
             console.error('[INDEX] -> CRASH Load saves Cloud: ', e.message);
             if (sendback) {
-                myGameInstance.SendMessage('YandexGame', 'SetLoadSavesPlayerData', 'noData');
+                myGameInstance.SendMessage('YandexGame', 'SetLoadSavesPlayerDataAsync', 'noData');
             }
             return 'noData';
         }

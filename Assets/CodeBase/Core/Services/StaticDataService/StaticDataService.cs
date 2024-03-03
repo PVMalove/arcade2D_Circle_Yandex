@@ -3,7 +3,6 @@ using System.Linq;
 using Code.Infrastructure.Services.Pool;
 using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Services.LogService;
-using CodeBase.StaticData.Level;
 using CodeBase.StaticData.UI;
 using CodeBase.UI.Popups.SkinsShop.TEST_V2;
 using CodeBase.UI.Popups.SkinsShop.TEST_V2.Pool;
@@ -15,7 +14,6 @@ namespace CodeBase.Core.Services.StaticDataService
     // for all consumers to receive necessary configs
     public class StaticDataService : IStaticDataService
     {
-        public CharacterConfig CharacterConfig { get; private set; }
         public ScreensCatalog ScreensCatalog { get; private set; }
         public PopupsCatalog PopupsCatalog { get; private set; }
         

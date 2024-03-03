@@ -4,10 +4,10 @@ namespace CodeBase.Core.Services.LogService
 {
     public class LogService : ILogService
     {
-        private const bool StateLog = false;
-        private const bool ServiceLog = false;
-        private const bool yandexLog = false;
-        private const bool audioLog = false;
+        private const bool StateLog = true;
+        private const bool ServiceLog = true;
+        private const bool yandexLog = true;
+        private const bool audioLog = true;
         
         public void Log(string msg) => 
             Debug.Log(msg);

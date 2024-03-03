@@ -21,13 +21,13 @@ namespace CodeBase.Core.GameFlow.GameMode.States
         {
             log.LogState("Enter", this);
             audioService.MusicSourceAudio.Play("mainMusic");
-            return default;
+            return UniTask.CompletedTask;
         }
         
         public UniTask Exit()
         {
             log.LogState("Exit", this);
-            return default;
+            return UniTask.CompletedTask;
         }
     }
 }

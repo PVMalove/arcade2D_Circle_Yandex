@@ -32,11 +32,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cf9e51c342b7ca544b0b0df5b35fe7db
-    m_Address: SkinsShop
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 31bcb317e19ad7d489a20b6ca0bc42ce
     m_Address: AwaitingCanvas
     m_ReadOnly: 0

@@ -9,12 +9,12 @@ namespace CodeBase.Core.GameFlow.GameMode.States
         public UniTask Enter()
         {
             // use such states for showing fail screens and offering resurrections and so on
-            return default;
+            return UniTask.CompletedTask;
         }
 
         public UniTask Exit()
         {
-            return default;
+            return UniTask.CompletedTask;
         }
     }
 }

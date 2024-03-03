@@ -9,6 +9,7 @@ using CodeBase.Core.Services.ProgressService;
 using CodeBase.UI.HUD.Service;
 using CodeBase.UI.Popups.SkinsShop.TEST_V2.StaticData;
 using UnityEngine;
+using YG;
 using Zenject;
 
 namespace CodeBase.UI.HUD.SettingBar
@@ -98,7 +99,7 @@ namespace CodeBase.UI.HUD.SettingBar
         private async void NewProgress()
         {
             Debug.Log("Reset player progress");
-            
+            YandexGame.ResetSaveProgress();
             FirstSaveData newSaveData = await assetProvider.Load<FirstSaveData>(InfrastructureAssetPath.NewSaveDataAddress);
             
             PlayerOwnedItems ownedItems = new PlayerOwnedItems(

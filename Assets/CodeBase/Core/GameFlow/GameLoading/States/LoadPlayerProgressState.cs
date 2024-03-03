@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using CodeBase.Core.Data;
 using CodeBase.Core.Infrastructure;
 using CodeBase.Core.Infrastructure.AssetManagement;
@@ -39,28 +38,25 @@ namespace CodeBase.Core.GameFlow.GameLoading.States
         {
             log.LogState("Enter", this);
             YandexGame.GameReadyAPI();
-            await loadService.Subscribe(OnCompleteLoadData);
-            loadService.LoadProgress();
+            await CompleteLoadData();
             await sceneStateMachine.Enter<FinishGameLoadingState>();
         }
         
-        private async void OnCompleteLoadData(PlayerProgress dataProgress)
+        private async UniTask CompleteLoadData()
         {
-            log.LogState("OnCompleteLoadData player progress", this);
-            progressStorage.Progress = dataProgress ?? await NewProgress();
-            loadService.Unsubscribe(OnCompleteLoadData);
+            PlayerProgress progress = await loadService.LoadProgress();
+            progressStorage.Progress = progress ?? await NewProgress();
+            log.LogState($"CompleteLoadData player progress: {progress}", this);
         }
 
         public UniTask Exit()
         {
             log.LogState("Exit", this);
-            return default;
+            return UniTask.CompletedTask;
         }
 
         private async UniTask<PlayerProgress> NewProgress()
         {
-            log.LogState("Start init new player progress", this);
-            
             FirstSaveData newSaveData = await assetProvider.Load<FirstSaveData>(InfrastructureAssetPath.NewSaveDataAddress);
             
             AudioControlData audioControl = new AudioControlData(

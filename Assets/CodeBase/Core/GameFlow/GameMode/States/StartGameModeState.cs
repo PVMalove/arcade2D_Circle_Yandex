@@ -4,7 +4,6 @@ using CodeBase.Core.Infrastructure.States.Infrastructure;
 using CodeBase.Core.Infrastructure.UI.AwaitingOverlay;
 using CodeBase.Core.Infrastructure.UI.LoadingCurtain;
 using CodeBase.Core.Services.LogService;
-using CodeBase.Gameplay.Environment;
 using Cysharp.Threading.Tasks;
 
 namespace CodeBase.Core.GameFlow.GameMode.States
@@ -30,19 +29,20 @@ namespace CodeBase.Core.GameFlow.GameMode.States
             this.awaitingOverlay = awaitingOverlay;
         }
 
-        public async UniTask Enter()
+        public UniTask Enter()
         {
             log.LogState("Enter", this);
             gameWorld.InitGameWorld();
             loadingCurtain.Hide();
             awaitingOverlay.Hide();
-            await sceneStateMachine.Enter<PlayGameModeState>();
+            sceneStateMachine.Enter<PlayGameModeState>().Forget();
+            return UniTask.CompletedTask;
         }
 
         public UniTask Exit()
         {
             log.LogState("Exit", this);
-            return default;
+            return UniTask.CompletedTask;
         }
     }
 }

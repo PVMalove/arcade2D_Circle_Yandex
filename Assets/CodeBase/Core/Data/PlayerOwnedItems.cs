@@ -11,12 +11,11 @@ namespace CodeBase.Core.Data
     {
         public string SelectedCircleHeroGuid;
         public List<string> SkinGuids;
-        
-        private List<AssetReferenceT<CircleHeroData>> ownedCircleHeroesReferences = new List<AssetReferenceT<CircleHeroData>>();
-        
         public AssetReferenceT<CircleHeroData> SelectedCircleHeroDataReference { get; private set; }
         public IReadOnlyCollection<AssetReferenceT<CircleHeroData>> OwnedCircleHeroesReferences => ownedCircleHeroesReferences;
         
+        private List<AssetReferenceT<CircleHeroData>> ownedCircleHeroesReferences = new List<AssetReferenceT<CircleHeroData>>();
+
         public PlayerOwnedItems(List<string> SkinGuids)
         {
             this.SkinGuids = SkinGuids;
