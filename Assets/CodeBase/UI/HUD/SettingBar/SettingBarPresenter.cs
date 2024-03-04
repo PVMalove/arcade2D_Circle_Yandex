@@ -19,7 +19,7 @@ namespace CodeBase.UI.HUD.SettingBar
         public event Action<bool> OnChangedMusicState;
         public event Action<bool> OnChangedFXState;
         
-        private readonly IPersistentProgressStorage progressStorage;
+        private readonly IPersistentProgressService progressService;
         private readonly IAssetProvider assetProvider;
         private readonly IAudioService audioService;
         private readonly IGameFactory gameFactory;
@@ -29,10 +29,10 @@ namespace CodeBase.UI.HUD.SettingBar
         public bool MusicOn { get; private set; }
         public bool EffectsOn { get; private set; }
 
-        public SettingBarPresenter(IPersistentProgressStorage progressStorage, IAssetProvider assetProvider,
+        public SettingBarPresenter(IPersistentProgressService progressService, IAssetProvider assetProvider,
             IAudioService audioService, IGameFactory gameFactory, IHUDService hudService)
         {
-            this.progressStorage = progressStorage;
+            this.progressService = progressService;
             this.assetProvider = assetProvider;
             this.audioService = audioService;
             this.gameFactory = gameFactory;
@@ -53,17 +53,17 @@ namespace CodeBase.UI.HUD.SettingBar
 
         public void LoadProgress(PlayerProgress progress)
         {
-            AudioVolume = progressStorage.Progress.AudioControlData.AudioVolume;
-            MusicOn = progressStorage.Progress.AudioControlData.MusicOn;
-            EffectsOn = progressStorage.Progress.AudioControlData.EffectsOn;
+            AudioVolume = progressService.GetProgress().AudioControlData.AudioVolume;
+            MusicOn = progressService.GetProgress().AudioControlData.MusicOn;
+            EffectsOn = progressService.GetProgress().AudioControlData.EffectsOn;
             UpdateSettingState();
         }
 
         public void UpdateProgress(PlayerProgress progress)
         {
-            progressStorage.Progress.AudioControlData.AudioVolume = AudioVolume;
-            progressStorage.Progress.AudioControlData.MusicOn = MusicOn;
-            progressStorage.Progress.AudioControlData.EffectsOn = EffectsOn;
+            progressService.GetProgress().AudioControlData.AudioVolume = AudioVolume;
+            progressService.GetProgress().AudioControlData.MusicOn = MusicOn;
+            progressService.GetProgress().AudioControlData.EffectsOn = EffectsOn;
         }
 
         public void ToggleMusic()
@@ -111,20 +111,21 @@ namespace CodeBase.UI.HUD.SettingBar
                 newSaveData.EffectsOn
             );
             
-            PlayerProgress progress = new PlayerProgress(ownedItems, audioControl);
-            
-            progressStorage.Progress = progress;
+            PlayerProgress progress = new PlayerProgress(
+                audioControl,
+                newSaveData.circleHeroGUID,
+                ownedItems);
+
+            progressService.Initialize(progress);
             
             foreach (IProgressReader progressReader in gameFactory.ProgressReaders)
-                progressReader.LoadProgress(progressStorage.Progress);
+                progressReader.LoadProgress(progressService.GetProgress());
             foreach (IProgressReader progressReader in hudService.ProgressReaders)
-                progressReader.LoadProgress(progressStorage.Progress);
+                progressReader.LoadProgress(progressService.GetProgress());
             
             Debug.Log("Init new player progress");
         }
 
-        public sealed class Factory : PlaceholderFactory<ISettingBarPresenter>
-        {
-        }
+        public sealed class Factory : PlaceholderFactory<ISettingBarPresenter> { }
     }
 }

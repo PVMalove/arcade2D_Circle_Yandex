@@ -28,7 +28,7 @@ namespace CodeBase.UI.Root
         [SerializeField] private GameObject sfxOff;
         
         private IPauseService pauseService;
-        private IPersistentProgressStorage progressStorage;
+        private IPersistentProgressService progressService;
         private IAudioService audioService;
         private VerticalLayoutGroup layoutGroup;
         private IPopupService popupService;
@@ -37,12 +37,12 @@ namespace CodeBase.UI.Root
         private IGameFactory gameFactory;
         
         [Inject]
-        private void Construct(IPauseService pauseService, IPersistentProgressStorage progressStorage,
+        private void Construct(IPauseService pauseService, IPersistentProgressService progressService,
             IAudioService audioService, IPopupService popupService,
             IStaticDataService staticData, ILoadService loadService, IGameFactory gameFactory)
         {
             this.pauseService = pauseService;
-            this.progressStorage = progressStorage;
+            this.progressService = progressService;
             this.audioService = audioService;
             this.popupService = popupService;
             this.staticData = staticData;

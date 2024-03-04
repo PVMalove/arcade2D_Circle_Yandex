@@ -98,7 +98,7 @@ namespace CodeBase.Core.Root
         private void BindPlayerProgressService()
         {
             Container
-                .BindInterfacesAndSelfTo<PersistentProgressStorage>()
+                .BindInterfacesAndSelfTo<PersistentProgressService>()
                 .AsSingle();
         }
 

@@ -8,14 +8,14 @@ namespace CodeBase.UI.Windows.Base
 {
     public class ScreenBase<TInitializeData, TResult> : UnityFrame
     {
-        private IPersistentProgressStorage progressStorage;
-        protected PlayerProgress Progress => progressStorage.Progress;
+        private IPersistentProgressService progressService;
+        protected PlayerProgress Progress => progressService.GetProgress();
 
         private UniTaskCompletionSource<TResult> taskCompletionSource;
 
         [Inject]
-        public void Construct(IPersistentProgressStorage progressStorage) => 
-            this.progressStorage = progressStorage;
+        public void Construct(IPersistentProgressService progressService) => 
+            this.progressService = progressService;
 
         private void Awake() => 
             OnAwake();

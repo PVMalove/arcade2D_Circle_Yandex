@@ -2,6 +2,7 @@ using CodeBase.Core.Infrastructure.States;
 using CodeBase.Core.Infrastructure.States.Infrastructure;
 using CodeBase.Core.Services.InputService;
 using CodeBase.UI;
+using CodeBase.UI.Popups.SkinsShop.TEST_V2.Gameplay;
 using UnityEngine;
 using Zenject;
 
@@ -24,9 +25,11 @@ namespace CodeBase.Core.GameFlow.GameMode
             UIInstaller.Install(Container);
             GameWorldInstaller.Install(Container);
             
+            Container.Bind<CircleHero.Factory>().AsSingle();
+            
             BindInputService();
         }
-
+        
         private void BindInputService()
         {
             Container

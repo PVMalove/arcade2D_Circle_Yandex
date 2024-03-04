@@ -17,19 +17,19 @@ namespace CodeBase.Core.GameFlow.GameLoading.States
     {
         private readonly SceneStateMachine sceneStateMachine;
         private readonly IAssetProvider assetProvider;
-        private readonly IPersistentProgressStorage progressStorage;
+        private readonly IPersistentProgressService progressService;
         private readonly ILoadService loadService;
         private readonly ILogService log;
 
         public LoadPlayerProgressState(SceneStateMachine sceneStateMachine,
             IAssetProvider assetProvider,
-            IPersistentProgressStorage progressStorage, 
+            IPersistentProgressService progressService, 
             ILoadService loadService,
             ILogService log)
         {
             this.sceneStateMachine = sceneStateMachine;
             this.assetProvider = assetProvider;
-            this.progressStorage = progressStorage;
+            this.progressService = progressService;
             this.loadService = loadService;
             this.log = log;
         }
@@ -45,7 +45,7 @@ namespace CodeBase.Core.GameFlow.GameLoading.States
         private async UniTask CompleteLoadData()
         {
             PlayerProgress progress = await loadService.LoadProgress();
-            progressStorage.Progress = progress ?? await NewProgress();
+            progressService.Initialize(progress ?? await NewProgress());
             log.LogState($"CompleteLoadData player progress: {progress}", this);
         }
 
@@ -68,7 +68,11 @@ namespace CodeBase.Core.GameFlow.GameLoading.States
             PlayerOwnedItems ownedItems = new PlayerOwnedItems(
                 new List<string> { newSaveData.circleHeroGUID });
 
-            PlayerProgress progress = new PlayerProgress(ownedItems, audioControl);
+            PlayerProgress progress = new PlayerProgress(
+                audioControl,
+                newSaveData.circleHeroGUID,
+                ownedItems);
+            
             log.LogState("Init new player progress", this);
             return progress;
         }

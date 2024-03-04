@@ -6,7 +6,6 @@ using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Gameplay.Environment;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.Service;
-using CodeBase.UI.Popups.Service;
 using CodeBase.UI.Services.Factories;
 using CodeBase.UI.Windows.Service;
 using UnityEngine;
@@ -18,32 +17,28 @@ namespace CodeBase.Core.GameFlow.GameMode.GameWorld
     {
         private readonly IGameFactory gameFactory;
         private readonly IUIFactory uiFactory;
-        private readonly AutoSaveData.Factory autoSaveDataFactory;
-        private readonly IPersistentProgressStorage progressStorage;
+        private readonly IPersistentProgressService progressService;
         private readonly IWindowService windowService;
         private readonly IHUDService hudService;
-        private readonly IPopupService popupService;
         private readonly ILogService log;
-        
+        private readonly AutoSaveData.Factory autoSaveDataFactory;
 
         private BuildInfoConfig buildInfoConfig;
 
         public InitializeGameWorld(IGameFactory gameFactory, IUIFactory uiFactory,
-            AutoSaveData.Factory autoSaveDataFactory,
-            IPersistentProgressStorage progressStorage,
+            IPersistentProgressService progressService,
             IWindowService windowService,
             IHUDService hudService,
-            IPopupService popupService,
-            ILogService log)
+            ILogService log,
+            AutoSaveData.Factory autoSaveDataFactory)
         {
             this.gameFactory = gameFactory;
             this.uiFactory = uiFactory;
-            this.autoSaveDataFactory = autoSaveDataFactory;
-            this.progressStorage = progressStorage;
+            this.progressService = progressService;
             this.windowService = windowService;
             this.hudService = hudService;
-            this.popupService = popupService;
             this.log = log;
+            this.autoSaveDataFactory = autoSaveDataFactory;
         }
 
         public void InitGameWorld()
@@ -70,9 +65,9 @@ namespace CodeBase.Core.GameFlow.GameMode.GameWorld
         private void LoadProgressReader()
         {
             foreach (IProgressReader progressReader in gameFactory.ProgressReaders)
-                progressReader.LoadProgress(progressStorage.Progress);
+                progressReader.LoadProgress(progressService.GetProgress());
             foreach (IProgressReader progressReader in hudService.ProgressReaders)
-                progressReader.LoadProgress(progressStorage.Progress);
+                progressReader.LoadProgress(progressService.GetProgress());
             log.LogState("Notify progress reader complete load data for object", this);
         }
 

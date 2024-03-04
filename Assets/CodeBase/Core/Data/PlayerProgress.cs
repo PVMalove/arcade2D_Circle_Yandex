@@ -6,12 +6,15 @@ namespace CodeBase.Core.Data
     public class PlayerProgress
     {
         public AudioControlData AudioControlData;
+        public string SelectedCircleHeroGuid;
         public PlayerOwnedItems PlayerItems;
-        
-        public PlayerProgress(PlayerOwnedItems playerItems, AudioControlData audioControlData)
+
+        public PlayerProgress(AudioControlData audioControlData, string selectedCircleHeroGuid,
+            PlayerOwnedItems playerItems)
         {
-            PlayerItems = playerItems;
             AudioControlData = audioControlData;
+            SelectedCircleHeroGuid = selectedCircleHeroGuid;
+            PlayerItems = playerItems;
         }
     }
 }

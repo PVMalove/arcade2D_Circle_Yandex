@@ -25,8 +25,7 @@ namespace CodeBase.UI.Popups.SkinsShop
             base.Initialize(presenter);
             this.presenter = presenter;
             this.presenter.InitializeShop();
-            Debug.Log("2");
-            await shopItemList.SetItems(presenter.SkinItems);
+            await shopItemList.SetSkinItems(presenter.SkinItems);
             Debug.Log("Initialize");
         }
         

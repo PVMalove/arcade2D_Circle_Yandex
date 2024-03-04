@@ -9,14 +9,14 @@ namespace CodeBase.UI.Popups.Base
 {
     public abstract class PopupBase<TInitializeData> : UnityFrame
     {
-        private IPersistentProgressStorage progressStorage;
-        protected PlayerProgress Progress => progressStorage.Progress;
+        private IPersistentProgressService progressService;
+        protected PlayerProgress Progress => progressService.GetProgress();
 
         private UniTaskCompletionSource taskCompletionSource;
 
         [Inject]
-        public void Construct(IPersistentProgressStorage progressStorage) => 
-            this.progressStorage = progressStorage;
+        public void Construct(IPersistentProgressService progressService) => 
+            this.progressService = progressService;
 
         private void Awake() => 
             OnAwake();

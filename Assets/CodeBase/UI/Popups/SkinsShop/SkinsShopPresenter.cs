@@ -10,12 +10,12 @@ namespace CodeBase.UI.Popups.SkinsShop
     {
         public IReadOnlyCollection<SkinShopItem> SkinItems{ get; set; }
         
-        private readonly IPersistentProgressStorage progressStorage;
+        private readonly IPersistentProgressService progressService;
         private readonly IStaticDataService staticDataService;
 
-        public SkinsShopPresenter(IPersistentProgressStorage progressStorage, IStaticDataService staticDataService)
+        public SkinsShopPresenter(IPersistentProgressService progressService, IStaticDataService staticDataService)
         {
-            this.progressStorage = progressStorage;
+            this.progressService = progressService;
             this.staticDataService = staticDataService;
         }
 

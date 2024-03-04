@@ -3,9 +3,12 @@ using CodeBase.Core.Services.PauseService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.StaticDataService;
 using CodeBase.Gameplay.Environment;
+using CodeBase.UI.Popups.SkinsShop.TEST_V2.Gameplay;
+using CodeBase.UI.Popups.SkinsShop.TEST_V2.StaticData;
 using CodeBase.UI.Root;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace CodeBase.Core.Infrastructure.Factories
 {
@@ -18,19 +21,32 @@ namespace CodeBase.Core.Infrastructure.Factories
         
         private readonly IStaticDataService staticDataService;
         private readonly IPauseService pauseService;
+        private readonly IPersistentProgressService progressService;
         private readonly HUDRoot.Factory hudFactory;
         private readonly CircleBackground.Factory circleBackgroundFactory;
+        private readonly CircleHero.Factory circleHeroFactory;
 
         public GameFactory(IStaticDataService staticDataService,
             IPauseService pauseService,
+            IPersistentProgressService progressService,
             HUDRoot.Factory hudFactory,
-            CircleBackground.Factory circleBackgroundFactory)
+            CircleBackground.Factory circleBackgroundFactory,
+            CircleHero.Factory circleHeroFactory)
         {
             this.staticDataService = staticDataService;
             this.pauseService = pauseService;
+            this.progressService = progressService;
             this.hudFactory = hudFactory;
             this.circleBackgroundFactory = circleBackgroundFactory;
+            this.circleHeroFactory = circleHeroFactory;
         }
+
+        // public GameObject CreateCircleHero()
+        // {
+        //     AssetReferenceT<CircleHeroData> player = progressStorage.Progress.PlayerItems.SelectedCircleHeroDataReference;
+        //     GameObject circleHero = circleHeroFactory.Create(player).GameObject();
+        //     return circleHero;
+        // }
         
         public GameObject CreateHUD()
         {

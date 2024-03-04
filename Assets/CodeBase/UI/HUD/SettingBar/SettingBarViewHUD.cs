@@ -22,7 +22,7 @@ namespace CodeBase.UI.HUD.SettingBar
         protected override void Initialize(ISettingBarPresenter presenter)
         {
             base.Initialize(presenter);
-            this.setting = presenter;
+            setting = presenter;
             presenter.Enable();
             presenter.OnChangedMusicState += MusicButtonUpdateState;
             presenter.OnChangedFXState += FXButtonUpdateState;
@@ -82,7 +82,6 @@ namespace CodeBase.UI.HUD.SettingBar
             setting.OnChangedMusicState -= MusicButtonUpdateState;
             setting.OnChangedFXState -= FXButtonUpdateState;
         }
-
 
         public class Factory : PlaceholderFactory<SettingBarViewHUD> { }
     }

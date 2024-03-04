@@ -11,15 +11,15 @@ namespace CodeBase.Core.Services.SaveLoadService
     public class SaveService : ISaveService
     {
         private readonly IGameFactory gameFactory;
-        private readonly IPersistentProgressStorage progressStorage;
+        private readonly IPersistentProgressService progressService;
         private readonly IHUDService hudService;
         private readonly string filePath;
 
-        public SaveService(IGameFactory gameFactory, IPersistentProgressStorage progressStorage,
+        public SaveService(IGameFactory gameFactory, IPersistentProgressService progressService,
             IHUDService hudService)
         {
             this.gameFactory = gameFactory;
-            this.progressStorage = progressStorage;
+            this.progressService = progressService;
             this.hudService = hudService;
             filePath = $"{Application.persistentDataPath}/Save.json";
         }
@@ -27,11 +27,11 @@ namespace CodeBase.Core.Services.SaveLoadService
         public void SaveProgress()
         {
             foreach (IProgressSaver progressWriter in gameFactory.ProgressWriters) 
-                progressWriter.UpdateProgress(progressStorage.Progress);
+                progressWriter.UpdateProgress(progressService.GetProgress());
             foreach (IProgressSaver progressWriter in hudService.ProgressWriters) 
-                progressWriter.UpdateProgress(progressStorage.Progress);
+                progressWriter.UpdateProgress(progressService.GetProgress());
 
-            string json = progressStorage.Progress.ToJson();
+            string json = progressService.GetProgress().ToJson();
 
 #if UNITY_WEBGL && !UNITY_EDITOR
             YandexGame.SaveProgressPlayerData(json);
