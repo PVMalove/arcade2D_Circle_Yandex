@@ -1,8 +1,8 @@
 using CodeBase.Core.Infrastructure.States;
 using CodeBase.Core.Infrastructure.States.Infrastructure;
 using CodeBase.Core.Services.InputService;
+using CodeBase.Gameplay.Player;
 using CodeBase.UI;
-using CodeBase.UI.Popups.SkinsShop.TEST_V2.Gameplay;
 using UnityEngine;
 using Zenject;
 

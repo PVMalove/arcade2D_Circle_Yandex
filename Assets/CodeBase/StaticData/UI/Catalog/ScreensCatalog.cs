@@ -1,10 +1,9 @@
 using System;
-using CodeBase.UI.Popups.Base;
 using CodeBase.UI.Windows.Base;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace CodeBase.StaticData.UI
+namespace CodeBase.StaticData.UI.Catalog
 {
     [CreateAssetMenu(fileName = "ScreenCatalog", menuName = "Configs/UI/ScreenCatalog")]
     public class ScreensCatalog : ScriptableObject

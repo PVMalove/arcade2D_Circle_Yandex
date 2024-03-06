@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e594232bbcc441c866ff6be9e74b856, type: 3}
   m_Name: BlueBodyCircleData 1
   m_EditorClassIdentifier: 
-  prefab: {fileID: -7053765272696904575, guid: 4545318d3e38691489774ac629dcdd7a, type: 3}
+  prefab:
+    m_AssetGUID: 4545318d3e38691489774ac629dcdd7a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

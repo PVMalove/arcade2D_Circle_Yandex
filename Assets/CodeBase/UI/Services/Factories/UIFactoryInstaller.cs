@@ -2,7 +2,7 @@ using CodeBase.Core.Infrastructure;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
 using CodeBase.UI.Popups.Base;
-using CodeBase.UI.Popups.SkinsShop;
+using CodeBase.UI.Popups.Shop;
 using CodeBase.UI.Root;
 using CodeBase.UI.Services.Infrastructure;
 using CodeBase.UI.Windows.GameMenu;

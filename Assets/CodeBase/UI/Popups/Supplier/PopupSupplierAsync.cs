@@ -1,6 +1,6 @@
 using System;
 using CodeBase.UI.Popups.Base;
-using CodeBase.UI.Popups.SkinsShop;
+using CodeBase.UI.Popups.Shop;
 using CodeBase.UI.Services.Factories;
 using CodeBase.UI.Services.Infrastructure;
 using Cysharp.Threading.Tasks;

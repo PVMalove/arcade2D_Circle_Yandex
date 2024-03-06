@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
+using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Services.PauseService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.StaticDataService;
 using CodeBase.Gameplay.Environment;
-using CodeBase.UI.Popups.SkinsShop.TEST_V2.Gameplay;
-using CodeBase.UI.Popups.SkinsShop.TEST_V2.StaticData;
+using CodeBase.Gameplay.Player;
+using CodeBase.StaticData.Level;
 using CodeBase.UI.Root;
+using Cysharp.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -22,16 +24,19 @@ namespace CodeBase.Core.Infrastructure.Factories
         private readonly IStaticDataService staticDataService;
         private readonly IPauseService pauseService;
         private readonly IPersistentProgressService progressService;
+        private readonly IAssetProvider assetProvider;
         private readonly HUDRoot.Factory hudFactory;
+
         private readonly CircleBackground.Factory circleBackgroundFactory;
+
         private readonly CircleHero.Factory circleHeroFactory;
 
         public GameFactory(IStaticDataService staticDataService,
             IPauseService pauseService,
             IPersistentProgressService progressService,
+            IAssetProvider assetProvider,
             HUDRoot.Factory hudFactory,
-            CircleBackground.Factory circleBackgroundFactory,
-            CircleHero.Factory circleHeroFactory)
+            CircleBackground.Factory circleBackgroundFactory, CircleHero.Factory circleHeroFactory)
         {
             this.staticDataService = staticDataService;
             this.pauseService = pauseService;
@@ -39,14 +44,15 @@ namespace CodeBase.Core.Infrastructure.Factories
             this.hudFactory = hudFactory;
             this.circleBackgroundFactory = circleBackgroundFactory;
             this.circleHeroFactory = circleHeroFactory;
+            this.assetProvider = assetProvider;
         }
 
-        // public GameObject CreateCircleHero()
-        // {
-        //     AssetReferenceT<CircleHeroData> player = progressStorage.Progress.PlayerItems.SelectedCircleHeroDataReference;
-        //     GameObject circleHero = circleHeroFactory.Create(player).GameObject();
-        //     return circleHero;
-        // }
+        public async UniTask<CircleHero> CreateCircleHero()
+        {
+            CircleHeroData heroData = await assetProvider.Load<CircleHeroData>(progressService.SelectedCircleDataReference);
+            CircleHero circleHero = await circleHeroFactory.Create(heroData.Prefab);
+            return circleHero;
+        }
         
         public GameObject CreateHUD()
         {

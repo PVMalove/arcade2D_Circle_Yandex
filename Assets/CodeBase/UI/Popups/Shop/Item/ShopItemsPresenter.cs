@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using Code.Infrastructure.Services.Pool;
+using CodeBase.Core.Services.PoolService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.StaticDataService;
-using CodeBase.UI.Popups.SkinsShop.TEST_V2.Pool;
-using CodeBase.UI.Popups.SkinsShop.TEST_V2.StaticData;
+using CodeBase.StaticData.Level;
+using CodeBase.StaticData.UI.Shop;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
 
-namespace CodeBase.UI.Popups.SkinsShop.TEST_V2
+namespace CodeBase.UI.Popups.Shop.Item
 {
     public class ShopItemsPresenter : MonoBehaviour
     {
@@ -22,20 +22,20 @@ namespace CodeBase.UI.Popups.SkinsShop.TEST_V2
 
         private IStaticDataService staticDataService;
         private IPersistentProgressService progressService;
-        private PrefabFactory prefabFactory;
+        private PoolFactory poolFactory;
 
         [Inject]
         private void Construct(IStaticDataService staticDataService, IPersistentProgressService progressService,
-            PrefabFactory prefabFactory)
+            PoolFactory poolFactory)
         {
             this.staticDataService = staticDataService;
             this.progressService = progressService;
-            this.prefabFactory = prefabFactory;
+            this.poolFactory = poolFactory;
         }
 
         public async UniTask InitializeAsync()
         {
-            objectPool = new ObjectPool<ShopItemView>(prefabFactory);
+            objectPool = new ObjectPool<ShopItemView>(poolFactory);
             PoolObjectConfig poolConfig = staticDataService.GetPoolConfigByType(PoolObjectType.ShopViewItem);
             await objectPool.InitializeAsync(poolConfig.AssetReference, poolConfig.StartCapacity,
                 poolConfig.Type, poolContainer);

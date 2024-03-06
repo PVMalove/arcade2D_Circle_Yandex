@@ -1,8 +1,7 @@
-﻿using Code.Infrastructure.Services.Pool;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace CodeBase.UI.Popups.SkinsShop.TEST_V2.Pool
+namespace CodeBase.Core.Services.PoolService
 {
     [CreateAssetMenu(fileName = "NewName_PoolObjectData", menuName = "Configs/Infrastructure/Pool/PoolObjectData")]
     public class PoolObjectConfig : ScriptableObject

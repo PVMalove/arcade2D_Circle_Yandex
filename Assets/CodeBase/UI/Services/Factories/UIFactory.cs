@@ -1,10 +1,11 @@
 ﻿using System;
 using CodeBase.Core.Services.StaticDataService;
 using CodeBase.StaticData.UI;
+using CodeBase.StaticData.UI.Catalog;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
 using CodeBase.UI.Popups.Base;
-using CodeBase.UI.Popups.SkinsShop;
+using CodeBase.UI.Popups.Shop;
 using CodeBase.UI.Root;
 using CodeBase.UI.Windows.Base;
 using CodeBase.UI.Windows.GameMenu;

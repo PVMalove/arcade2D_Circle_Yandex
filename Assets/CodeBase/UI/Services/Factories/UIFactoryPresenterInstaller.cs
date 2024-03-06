@@ -1,7 +1,7 @@
 using CodeBase.Core.GameFlow;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
-using CodeBase.UI.Popups.SkinsShop;
+using CodeBase.UI.Popups.Shop;
 using CodeBase.UI.Windows.GameMenu;
 using Zenject;
 

@@ -4,7 +4,7 @@ using CodeBase.Core.Infrastructure.States;
 using CodeBase.Gameplay.Environment;
 using CodeBase.UI.Popups.Base;
 using CodeBase.UI.Popups.Service;
-using CodeBase.UI.Popups.SkinsShop;
+using CodeBase.UI.Popups.Shop;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;

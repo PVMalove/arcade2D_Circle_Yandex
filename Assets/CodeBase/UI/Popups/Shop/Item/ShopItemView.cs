@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CodeBase.UI.Popups.SkinsShop.TEST_V2
+namespace CodeBase.UI.Popups.Shop.Item
 {
     public class ShopItemView : MonoBehaviour
     {

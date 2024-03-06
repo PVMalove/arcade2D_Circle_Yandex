@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using CodeBase.StaticData.Level;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace CodeBase.UI.Popups.SkinsShop.TEST_V2.StaticData
+namespace CodeBase.StaticData.Infrastructure
 {
     [CreateAssetMenu(fileName = "FirstSaveData", menuName = "Configs/Infrastructure/FirstSaveData")]
     public class FirstSaveData : ScriptableObject

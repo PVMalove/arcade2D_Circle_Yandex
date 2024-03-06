@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.StaticDataService;
-using CodeBase.UI.Popups.SkinsShop.TEST_V2;
+using CodeBase.StaticData.UI.Shop;
 using Zenject;
 
-namespace CodeBase.UI.Popups.SkinsShop
+namespace CodeBase.UI.Popups.Shop
 {
     public sealed class SkinsShopPresenter : ISkinsShopPresenter
     {

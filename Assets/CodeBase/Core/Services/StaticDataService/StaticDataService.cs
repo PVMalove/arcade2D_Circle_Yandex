@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Code.Infrastructure.Services.Pool;
 using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Services.LogService;
+using CodeBase.Core.Services.PoolService;
 using CodeBase.StaticData.UI;
-using CodeBase.UI.Popups.SkinsShop.TEST_V2;
-using CodeBase.UI.Popups.SkinsShop.TEST_V2.Pool;
+using CodeBase.StaticData.UI.Catalog;
+using CodeBase.StaticData.UI.Shop;
 using Cysharp.Threading.Tasks;
 
 namespace CodeBase.Core.Services.StaticDataService

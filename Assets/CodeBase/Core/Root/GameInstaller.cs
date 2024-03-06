@@ -9,11 +9,11 @@ using CodeBase.Core.Infrastructure.UI.AwaitingOverlay;
 using CodeBase.Core.Infrastructure.UI.LoadingCurtain;
 using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.PauseService;
+using CodeBase.Core.Services.PoolService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.RandomizerService;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.StaticDataService;
-using CodeBase.UI.Popups.SkinsShop.TEST_V2;
 using Cysharp.Threading.Tasks;
 using Zenject;
 
@@ -55,7 +55,7 @@ namespace CodeBase.Core.Root
 
             BindPauseService();
             
-            Container.Bind<PrefabFactory>().AsSingle(); //TODO REFACTOR
+            Container.Bind<PoolFactory>().AsSingle(); //TODO REFACTOR
         }
 
         private void BindAudioManagement()

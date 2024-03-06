@@ -1,4 +1,4 @@
-﻿namespace Code.Infrastructure.Services.Pool
+﻿namespace CodeBase.Core.Services.PoolService
 {
     public enum PoolObjectType
     {

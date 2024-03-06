@@ -1,11 +1,11 @@
 ﻿using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.UI.Popups.Base;
-using CodeBase.UI.Popups.SkinsShop.TEST_V2;
+using CodeBase.UI.Popups.Shop.Item;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CodeBase.UI.Popups.SkinsShop
+namespace CodeBase.UI.Popups.Shop
 {
     public class SkinsShopViewPopup : PopupBase<ISkinsShopPresenter>
     {

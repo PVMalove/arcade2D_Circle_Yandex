@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Core.Services.ProgressService;
+using CodeBase.Gameplay.Player;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace CodeBase.Core.Infrastructure.Factories
@@ -11,6 +13,7 @@ namespace CodeBase.Core.Infrastructure.Factories
         GameObject CircleBackground { get; }
         GameObject CreateHUD();
         GameObject CreateCircleBackground();
+        UniTask<CircleHero> CreateCircleHero();
         void Cleanup();
     }
 }

@@ -41,7 +41,7 @@ namespace CodeBase.Core.GameFlow.GameMode.GameWorld
             this.autoSaveDataFactory = autoSaveDataFactory;
         }
 
-        public void InitGameWorld()
+        public async void InitGameWorld()
         {
             buildInfoConfig = new BuildInfoConfig();
             buildInfoConfig.BuildNumber = Application.version;
@@ -58,6 +58,8 @@ namespace CodeBase.Core.GameFlow.GameMode.GameWorld
             hudService.ShowSettingBar();
             hudService.ShowBuildInfo(buildInfoConfig);
             windowService.ShowGameMenu();
+
+            await gameFactory.CreateCircleHero();
 
             LoadProgressReader();
         }

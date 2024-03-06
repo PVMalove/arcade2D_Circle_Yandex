@@ -1,8 +1,7 @@
 ﻿using CodeBase.Core.Infrastructure.AssetManagement;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
-namespace CodeBase.UI.Popups.SkinsShop.TEST_V2.Gameplay
+namespace CodeBase.Gameplay.Player
 {
     public class CircleHero : MonoBehaviour
     {

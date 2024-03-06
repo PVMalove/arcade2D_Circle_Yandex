@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace CodeBase.UI.Popups.SkinsShop.TEST_V2
+namespace CodeBase.Core.Services.PoolService
 {
-    public interface IPrefabFactory
+    public interface IPoolFactory
     { 
         UniTask<TComponent> CreateAsync<TComponent>(string key, Vector3 position, Transform parent = null) 
             where TComponent : MonoBehaviour;

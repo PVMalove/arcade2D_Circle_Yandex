@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
-using Code.Infrastructure.Services.Pool;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace CodeBase.UI.Popups.SkinsShop.TEST_V2.Pool
+namespace CodeBase.Core.Services.PoolService
 {
     public class ObjectPool<TComponent> where TComponent : MonoBehaviour
     {
-        private readonly IPrefabFactory factory;
+        private readonly IPoolFactory factory;
         
         public PoolObjectType Type { get; private set; }
 
@@ -16,7 +15,7 @@ namespace CodeBase.UI.Popups.SkinsShop.TEST_V2.Pool
         private Transform parent;
         private Stack<TComponent> entries;
         
-        public ObjectPool(IPrefabFactory factory)
+        public ObjectPool(IPoolFactory factory)
         {
             this.factory = factory;
         }

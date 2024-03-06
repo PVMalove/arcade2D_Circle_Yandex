@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
 
-namespace CodeBase.UI.Popups.SkinsShop.TEST_V2
+namespace CodeBase.Core.Services.PoolService
 {
-    public class PrefabFactory : IPrefabFactory
+    public class PoolFactory : IPoolFactory
     {
         private readonly IInstantiator instantiator;
         private readonly IAssetProvider assetProvider;
 
-        public PrefabFactory(IInstantiator instantiator, IAssetProvider assetProvider)
+        public PoolFactory(IInstantiator instantiator, IAssetProvider assetProvider)
         {
             this.instantiator = instantiator;
             this.assetProvider = assetProvider;

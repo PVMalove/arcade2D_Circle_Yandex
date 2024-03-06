@@ -5,7 +5,7 @@ using Zenject;
 
 namespace CodeBase.Core.Infrastructure.AssetManagement
 {
-    public class AddressablePrefabFactory<TComponent>
+    public class AddressablePrefabFactory<TComponent> where TComponent : MonoBehaviour
     {
         private  IInstantiator instantiator;
         private  IAssetProvider assetProvider;
@@ -40,7 +40,7 @@ namespace CodeBase.Core.Infrastructure.AssetManagement
             GameObject prefab = await GetPrefab(assetRef);
             return InstantiatePrefabAs(prefab, position, rotation, parent);
         }
- 
+       
         private TComponent InstantiatePrefab(GameObject prefab)
         {
             GameObject newObject = instantiator.InstantiatePrefab(prefab);

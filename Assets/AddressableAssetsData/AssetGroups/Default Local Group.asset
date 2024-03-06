@@ -71,6 +71,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 85cf4c98dff75ae4d8a6223cf96b075a
+    m_Address: CircleHero_prefab_00
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4545318d3e38691489774ac629dcdd7a
+    m_Address: CircleHero_prefab_01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1f179e9efec61f4c8e8804c9686040b
+    m_Address: CircleHero_prefab_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 58f1d24dc6e3bb6498c7dbdc20d2a86e, type: 2}
   m_SchemaSet:

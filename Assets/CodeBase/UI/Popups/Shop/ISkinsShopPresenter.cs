@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using CodeBase.UI.Popups.SkinsShop.TEST_V2;
+using CodeBase.StaticData.UI.Shop;
 
-namespace CodeBase.UI.Popups.SkinsShop
+namespace CodeBase.UI.Popups.Shop
 {
     public interface ISkinsShopPresenter
     {

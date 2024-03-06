@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CodeBase.Core.Data;
-using CodeBase.UI.Popups.SkinsShop.TEST_V2.StaticData;
+using CodeBase.StaticData.Level;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 

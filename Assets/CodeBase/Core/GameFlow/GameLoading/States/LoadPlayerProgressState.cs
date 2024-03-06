@@ -7,7 +7,7 @@ using CodeBase.Core.Infrastructure.States.Infrastructure;
 using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;
-using CodeBase.UI.Popups.SkinsShop.TEST_V2.StaticData;
+using CodeBase.StaticData.Infrastructure;
 using Cysharp.Threading.Tasks;
 using YG;
 

@@ -3,7 +3,7 @@ using CodeBase.UI.Popups.Base;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace CodeBase.StaticData.UI
+namespace CodeBase.StaticData.UI.Catalog
 {
     [CreateAssetMenu(fileName = "PopupsCatalog", menuName = "Configs/UI/PopupsCatalog")]
     public class PopupsCatalog : ScriptableObject

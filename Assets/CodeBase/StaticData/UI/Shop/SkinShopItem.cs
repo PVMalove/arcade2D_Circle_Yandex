@@ -1,9 +1,9 @@
-﻿using CodeBase.UI.Popups.SkinsShop.TEST_V2.StaticData;
+﻿using CodeBase.StaticData.Level;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace CodeBase.UI.Popups.SkinsShop.TEST_V2
+namespace CodeBase.StaticData.UI.Shop
 {
     [CreateAssetMenu(fileName = "SkinShopItem", menuName = "Configs/UI/SkinsShop/SkinShopItem", order = 1)]
     public class SkinShopItem : ScriptableObject
