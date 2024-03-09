@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine.Serialization;
 
 namespace CodeBase.Core.Data
 {
@@ -7,14 +8,16 @@ namespace CodeBase.Core.Data
     {
         public AudioControlData AudioControlData;
         public string SelectedCircleHeroGuid;
-        public PlayerOwnedItems PlayerItems;
-
+        public PlayerOwnedItemsData PlayerItemsData;
+        public CoinData CoinData;
+        
         public PlayerProgress(AudioControlData audioControlData, string selectedCircleHeroGuid,
-            PlayerOwnedItems playerItems)
+            PlayerOwnedItemsData playerItemsData, CoinData coinData)
         {
             AudioControlData = audioControlData;
             SelectedCircleHeroGuid = selectedCircleHeroGuid;
-            PlayerItems = playerItems;
+            PlayerItemsData = playerItemsData;
+            CoinData = coinData;
         }
     }
 }

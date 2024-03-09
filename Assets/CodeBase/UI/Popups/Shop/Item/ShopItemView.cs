@@ -1,7 +1,9 @@
 ﻿using System;
+using CodeBase.Core.Services.ProgressService;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace CodeBase.UI.Popups.Shop.Item
 {
@@ -17,6 +19,25 @@ namespace CodeBase.UI.Popups.Shop.Item
         [SerializeField] private Button buyButton;
         
         public bool IsSelected => selectLabel.gameObject.activeSelf;
+
+        private IPersistentProgressService progressService;
+        private int requiredCoinsAmount;
+        
+        [Inject]
+        private void Construct(IPersistentProgressService progressService) => 
+            this.progressService = progressService;
+
+        private void OnEnable()
+        {
+            progressService.CoinsAmountChanged += OnPlayerProgressChanged;
+        }
+
+        private void OnDisable()
+        {
+            buyButton.onClick.RemoveAllListeners();
+            selectButton.onClick.RemoveAllListeners();
+            progressService.CoinsAmountChanged -= OnPlayerProgressChanged;
+        }
 
         public void SetItem(string name, Sprite image, int requiredCoins,
             Action onBuyButtonClicked, Action onSelectButtonClicked)
@@ -36,12 +57,9 @@ namespace CodeBase.UI.Popups.Shop.Item
                 onSelectButtonClicked?.Invoke();
                 Select();
             });
-        }
 
-        private void OnDisable()
-        {
-            buyButton.onClick.RemoveAllListeners();
-            selectButton.onClick.RemoveAllListeners();
+            requiredCoinsAmount = requiredCoins;
+            OnPlayerProgressChanged();
         }
 
         public void Lock()
@@ -68,6 +86,12 @@ namespace CodeBase.UI.Popups.Shop.Item
         {
             selectButton.gameObject.SetActive(true);
             selectLabel.gameObject.SetActive(false);
+        }
+        
+        private void OnPlayerProgressChanged()
+        {
+            bool isCoinsEnough = progressService.IsCoinsEnoughFor(requiredCoinsAmount);
+            buyButton.interactable = isCoinsEnough;
         }
     }
 }

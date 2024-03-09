@@ -102,8 +102,12 @@ namespace CodeBase.UI.HUD.SettingBar
             YandexGame.ResetSaveProgress();
             FirstSaveData newSaveData = await assetProvider.Load<FirstSaveData>(InfrastructureAssetPath.NewSaveDataAddress);
             
-            PlayerOwnedItems ownedItems = new PlayerOwnedItems(
-                new List<string> { newSaveData.circleHeroGUID });
+            PlayerOwnedItemsData ownedItemsData = new PlayerOwnedItemsData(
+                new List<string> { newSaveData.CircleHeroGUID });
+            
+            CoinData coinData = new CoinData(
+                newSaveData.CoinsAmount
+            );
             
             AudioControlData audioControl = new AudioControlData(
                 newSaveData.AudioVolume, 
@@ -113,8 +117,9 @@ namespace CodeBase.UI.HUD.SettingBar
             
             PlayerProgress progress = new PlayerProgress(
                 audioControl,
-                newSaveData.circleHeroGUID,
-                ownedItems);
+                newSaveData.CircleHeroGUID,
+                ownedItemsData,
+                coinData);
 
             progressService.Initialize(progress);
             

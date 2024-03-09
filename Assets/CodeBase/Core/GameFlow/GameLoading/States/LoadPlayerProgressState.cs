@@ -64,14 +64,19 @@ namespace CodeBase.Core.GameFlow.GameLoading.States
                 newSaveData.MusicOn,
                 newSaveData.EffectsOn
             );
+
+            CoinData coinData = new CoinData(
+                newSaveData.CoinsAmount
+            );
             
-            PlayerOwnedItems ownedItems = new PlayerOwnedItems(
-                new List<string> { newSaveData.circleHeroGUID });
+            PlayerOwnedItemsData ownedItemsData = new PlayerOwnedItemsData(
+                new List<string> { newSaveData.CircleHeroGUID });
 
             PlayerProgress progress = new PlayerProgress(
                 audioControl,
-                newSaveData.circleHeroGUID,
-                ownedItems);
+                newSaveData.CircleHeroGUID,
+                ownedItemsData,
+                coinData);
             
             log.LogState("Init new player progress", this);
             return progress;

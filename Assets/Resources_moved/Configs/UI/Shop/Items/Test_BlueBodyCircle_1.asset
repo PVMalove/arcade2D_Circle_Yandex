@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Test_BlueBodyCircle_1
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Blue_body_circle_2
-  icon: {fileID: 21300000, guid: 710f8d3ccc459aa4398fe595278feadd, type: 3}
+  icon: {fileID: 21300000, guid: d13cd7d3a8b3fe844be15a7b678bd096, type: 3}
   <RequiredCoins>k__BackingField: 500
   <CircleHeroReference>k__BackingField:
     m_AssetGUID: f7e8be1584f639c409a729ed42b27b9c

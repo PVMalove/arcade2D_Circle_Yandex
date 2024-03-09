@@ -475,12 +475,14 @@ public static void SaveLocal()
                 {
                     if (cloudData.idSave >= localData.idSave)
                     {
-                        Message($"Load player data cloud Complete! ID Cloud Save: {cloudData.idSave}, ID Local Save: {localData.idSave}");
+                        Message($"Load player data cloud Complete! ID Cloud Save: {cloudData.idSave}, " +
+                                $"ID Local Save: {localData.idSave}");
                         CompletionSource.TrySetResult(cloudPlayerData);
                     }
                     else
                     {
-                        Message($"Load player data local Complete! ID Cloud Save: {cloudData.idSave}, ID Local Save: {localData.idSave}");
+                        Message($"Load player data local Complete! ID Cloud Save: {cloudData.idSave}, " +
+                                $"ID Local Save: {localData.idSave}");
                         CompletionSource.TrySetResult(localPlayerData);
                     }
                     break;

@@ -2,6 +2,7 @@
 using CodeBase.UI.Popups.Base;
 using CodeBase.UI.Popups.Shop.Item;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ namespace CodeBase.UI.Popups.Shop
 {
     public class SkinsShopViewPopup : PopupBase<ISkinsShopPresenter>
     {
+        [SerializeField] private TextMeshProUGUI coinsAmountText;
         [SerializeField] private Button closePopupButton;
         [SerializeField] private ShopItemsPresenter shopItemList;
         
@@ -24,29 +26,36 @@ namespace CodeBase.UI.Popups.Shop
         {
             base.Initialize(presenter);
             this.presenter = presenter;
-            this.presenter.InitializeShop();
+            
+            presenter.InitializeShopItems();
             await shopItemList.SetSkinItems(presenter.SkinItems);
+            
+            presenter.Subscribe();
+            presenter.ChangedCoinsAmount += OnCoinsAmountChanged;
+            OnCoinsAmountChanged();
+            
             Debug.Log("Initialize");
         }
         
         protected override void SubscribeUpdates()
         {
             base.SubscribeUpdates();
-            
             closePopupButton.onClick.AddListener(OnClosePopup);
-            Debug.Log("SubscribeUpdates");
         }
 
         protected override void UnsubscribeUpdates()
         {
             base.UnsubscribeUpdates();
+            presenter.Unsubscribe();
             shopItemList.Cleanup();
             closePopupButton.onClick.RemoveListener(OnClosePopup);
-            Debug.Log("UnsubscribeUpdates");
         }
 
         private void OnClosePopup() => 
             SetPopupResult();
+        
+        private void OnCoinsAmountChanged() => 
+            coinsAmountText.text = presenter.CoinsAmount;
         
         [Button]
         private void OnClosePopupClick() => 

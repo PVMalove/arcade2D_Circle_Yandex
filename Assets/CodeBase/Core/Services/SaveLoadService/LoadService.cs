@@ -10,15 +10,18 @@ using YG;
 
 namespace CodeBase.Core.Services.SaveLoadService
 {
-    public class LoadService : ILoadService
+    public class LoadService : ILoadService, IDisposable
     {
         private readonly ILogService log;
         private readonly string filePath;
+        private readonly CancellationTokenSource ctn = new CancellationTokenSource();
 
         public LoadService(ILogService log)
         {
             this.log = log;
+#if UNITY_EDITOR
             filePath = $"{Application.persistentDataPath}/Save.json";
+#endif
         }
 
         public async UniTask<PlayerProgress> LoadProgress()
@@ -57,10 +60,9 @@ namespace CodeBase.Core.Services.SaveLoadService
         [UsedImplicitly]
         private async UniTask<PlayerProgress> LoadProgressYandexAsync()
         {
-            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
             try
             {
-                string json = await YandexGame.LoadProgressPlayerDataAsync(cancellationTokenSource.Token);
+                string json = await YandexGame.LoadProgressPlayerDataAsync(ctn.Token);
                 log.LogYandex($"LoadProgressYandexAsync -> json {json}", this);
                 
                 if (json == String.Empty)
@@ -77,6 +79,11 @@ namespace CodeBase.Core.Services.SaveLoadService
             {
                 return null;
             }
+        }
+
+        public void Dispose()
+        {
+            ctn?.Cancel();
         }
     }
 }

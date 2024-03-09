@@ -67,6 +67,7 @@ namespace CodeBase.UI.Popups.Shop.Item
         private void BuySkinItem(AssetReferenceT<CircleHeroData> reference, int price)
         {
             progressService.OpenCircleHeroSkin(reference);
+            progressService.RemoveCoins(price);
         }
         
         private void SelectSkinItem(AssetReferenceT<CircleHeroData> reference)

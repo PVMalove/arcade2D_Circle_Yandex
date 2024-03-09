@@ -3,7 +3,6 @@ using System.Linq;
 using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.PoolService;
-using CodeBase.StaticData.UI;
 using CodeBase.StaticData.UI.Catalog;
 using CodeBase.StaticData.UI.Shop;
 using Cysharp.Threading.Tasks;

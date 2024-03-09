@@ -4,12 +4,11 @@ using System.Collections.Generic;
 namespace CodeBase.Core.Data
 {
     [Serializable]
-    public class PlayerOwnedItems
+    public struct PlayerOwnedItemsData
     {
         public List<string> SkinGuids;
         
-
-        public PlayerOwnedItems(List<string> SkinGuids)
+        public PlayerOwnedItemsData(List<string> SkinGuids)
         {
             this.SkinGuids = SkinGuids;
         }

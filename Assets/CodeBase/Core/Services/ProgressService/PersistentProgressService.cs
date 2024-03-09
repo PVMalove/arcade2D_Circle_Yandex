@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CodeBase.Core.Data;
 using CodeBase.StaticData.Level;
@@ -10,7 +11,9 @@ namespace CodeBase.Core.Services.ProgressService
     public class PersistentProgressService : IPersistentProgressService
     {
         public AssetReferenceT<CircleHeroData> SelectedCircleDataReference { get; private set; }
-
+        public int CoinsAmount => playerProgress.CoinData.CoinsAmount;
+        public event Action CoinsAmountChanged;
+        
         private List<AssetReferenceT<CircleHeroData>> ownedCircleHeroesReferences;
         private PlayerProgress playerProgress;
 
@@ -18,7 +21,7 @@ namespace CodeBase.Core.Services.ProgressService
         {
             playerProgress = progress;
             
-            ownedCircleHeroesReferences = progress.PlayerItems.SkinGuids
+            ownedCircleHeroesReferences = progress.PlayerItemsData.SkinGuids
                 .Select(guid => new AssetReferenceT<CircleHeroData>(guid))
                 .ToList();
             
@@ -27,6 +30,29 @@ namespace CodeBase.Core.Services.ProgressService
         }
         
         public PlayerProgress GetProgress() => playerProgress;
+        
+        public void AddCoins(int amount)
+        {
+            if (amount < 0)
+            {
+                Debug.LogError("Incorrect coins amount transferred!");
+                return;
+            }
+            
+            playerProgress.CoinData.CoinsAmount += amount;
+            CoinsAmountChanged?.Invoke();
+        }
+        
+        public void RemoveCoins(int amount)
+        {
+            if (!IsCoinsEnoughFor(amount))
+            {
+                Debug.LogError("Incorrect coins amount transferred!");
+            }
+
+            playerProgress.CoinData.CoinsAmount -= amount;
+            CoinsAmountChanged?.Invoke();
+        }
         
         public void OpenCircleHeroSkin(AssetReferenceT<CircleHeroData> circleDataReference)
         {
@@ -37,7 +63,7 @@ namespace CodeBase.Core.Services.ProgressService
             }
             
             ownedCircleHeroesReferences.Add(circleDataReference);
-            playerProgress.PlayerItems.SkinGuids.Add(circleDataReference.AssetGUID);
+            playerProgress.PlayerItemsData.SkinGuids.Add(circleDataReference.AssetGUID);
         }
         
         public void SelectedCircleHeroSkin(AssetReferenceT<CircleHeroData> circleDataReference)
@@ -52,7 +78,8 @@ namespace CodeBase.Core.Services.ProgressService
         }
         
         public bool IsPlayerOwnCircleHeroSkin(AssetReference circleDataReference) => 
-            playerProgress.PlayerItems.SkinGuids.Contains(circleDataReference.AssetGUID);
+            playerProgress.PlayerItemsData.SkinGuids.Contains(circleDataReference.AssetGUID);
         
+        public bool IsCoinsEnoughFor(int itemPrice) => CoinsAmount >= itemPrice;
     }
 }

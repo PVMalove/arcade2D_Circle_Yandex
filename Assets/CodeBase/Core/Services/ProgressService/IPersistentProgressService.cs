@@ -1,4 +1,5 @@
-﻿using CodeBase.Core.Data;
+﻿using System;
+using CodeBase.Core.Data;
 using CodeBase.StaticData.Level;
 using UnityEngine.AddressableAssets;
 
@@ -12,5 +13,9 @@ namespace CodeBase.Core.Services.ProgressService
         void OpenCircleHeroSkin(AssetReferenceT<CircleHeroData> circleDataReference);
         void SelectedCircleHeroSkin(AssetReferenceT<CircleHeroData> circleDataReference);
         bool IsPlayerOwnCircleHeroSkin(AssetReference circleDataReference);
+        bool IsCoinsEnoughFor(int itemPrice);
+        void AddCoins(int amount);
+        void RemoveCoins(int amount);
+        event Action CoinsAmountChanged;
     }
 }
