@@ -7,15 +7,13 @@ namespace CodeBase.Core.Data
     public class PlayerProgress
     {
         public AudioControlData AudioControlData;
-        public string SelectedCircleHeroGuid;
-        public PlayerOwnedItemsData PlayerItemsData;
+        public PlayerItemsData PlayerItemsData;
         public CoinData CoinData;
         
-        public PlayerProgress(AudioControlData audioControlData, string selectedCircleHeroGuid,
-            PlayerOwnedItemsData playerItemsData, CoinData coinData)
+        public PlayerProgress(AudioControlData audioControlData,
+            PlayerItemsData playerItemsData, CoinData coinData)
         {
             AudioControlData = audioControlData;
-            SelectedCircleHeroGuid = selectedCircleHeroGuid;
             PlayerItemsData = playerItemsData;
             CoinData = coinData;
         }

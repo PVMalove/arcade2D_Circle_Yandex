@@ -1,4 +1,5 @@
 using CodeBase.Gameplay.Environment;
+using CodeBase.Gameplay.Player;
 using CodeBase.UI.Root;
 using Zenject;
 
@@ -16,6 +17,9 @@ namespace CodeBase.Core.Infrastructure.Factories
             Container.BindFactory<CircleBackground, CircleBackground.Factory>()
                 .FromComponentInNewPrefabResource(InfrastructureAssetPath.CircleBackground)
                 .WithGameObjectName("CircleBackground");
+            
+            Container.Bind<CircleHeroView.Factory>().AsSingle();
+            Container.Bind<CircleHero.Factory>().AsSingle();
         }
     }
 }

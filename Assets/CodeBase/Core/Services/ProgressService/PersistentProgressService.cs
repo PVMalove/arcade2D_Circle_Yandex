@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CodeBase.Core.Data;
-using CodeBase.StaticData.Level;
+using CodeBase.StaticData.Player;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -26,7 +26,7 @@ namespace CodeBase.Core.Services.ProgressService
                 .ToList();
             
             SelectedCircleDataReference = ownedCircleHeroesReferences.Find(
-                reference => reference.AssetGUID == progress.SelectedCircleHeroGuid);
+                reference => reference.AssetGUID == progress.PlayerItemsData.SelectedCircleHeroGuid);
         }
         
         public PlayerProgress GetProgress() => playerProgress;
@@ -74,7 +74,7 @@ namespace CodeBase.Core.Services.ProgressService
                 return;
             }
             SelectedCircleDataReference = circleDataReference;
-            playerProgress.SelectedCircleHeroGuid = circleDataReference.AssetGUID;
+            playerProgress.PlayerItemsData.SelectedCircleHeroGuid = circleDataReference.AssetGUID;
         }
         
         public bool IsPlayerOwnCircleHeroSkin(AssetReference circleDataReference) => 

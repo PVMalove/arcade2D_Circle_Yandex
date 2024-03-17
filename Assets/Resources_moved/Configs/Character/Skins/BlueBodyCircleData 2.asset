@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlueBodyCircleData 2
   m_EditorClassIdentifier: 
   prefab:
-    m_AssetGUID: b1f179e9efec61f4c8e8804c9686040b
+    m_AssetGUID: 5de2a16a06bd86446bfe07580dd598b6
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

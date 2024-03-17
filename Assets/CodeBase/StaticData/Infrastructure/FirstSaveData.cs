@@ -1,4 +1,4 @@
-﻿using CodeBase.StaticData.Level;
+﻿using CodeBase.StaticData.Player;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 

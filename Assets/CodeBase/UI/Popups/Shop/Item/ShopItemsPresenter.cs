@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using CodeBase.Core.Infrastructure.AssetManagement;
+using CodeBase.Core.Infrastructure.Factories;
 using CodeBase.Core.Services.PoolService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.StaticDataService;
-using CodeBase.StaticData.Level;
+using CodeBase.Gameplay.Player;
+using CodeBase.StaticData.Player;
 using CodeBase.StaticData.UI.Shop;
 using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Zenject;
@@ -22,14 +26,24 @@ namespace CodeBase.UI.Popups.Shop.Item
 
         private IStaticDataService staticDataService;
         private IPersistentProgressService progressService;
+        private IAssetProvider assetProvider;
+        private IGameFactory gameFactory;
+        private CircleHeroView.Factory circleHeroViewFactory;
         private PoolFactory poolFactory;
 
         [Inject]
-        private void Construct(IStaticDataService staticDataService, IPersistentProgressService progressService,
+        private void Construct(IStaticDataService staticDataService, 
+            IPersistentProgressService progressService,
+            IAssetProvider assetProvider,
+            IGameFactory gameFactory,
+            CircleHeroView.Factory circleHeroViewFactory,
             PoolFactory poolFactory)
         {
             this.staticDataService = staticDataService;
             this.progressService = progressService;
+            this.assetProvider = assetProvider;
+            this.gameFactory = gameFactory;
+            this.circleHeroViewFactory = circleHeroViewFactory;
             this.poolFactory = poolFactory;
         }
 
@@ -70,10 +84,14 @@ namespace CodeBase.UI.Popups.Shop.Item
             progressService.RemoveCoins(price);
         }
         
-        private void SelectSkinItem(AssetReferenceT<CircleHeroData> reference)
+        private async void SelectSkinItem(AssetReferenceT<CircleHeroData> reference)
         {
             UnselectAllItems();
             progressService.SelectedCircleHeroSkin(reference);
+            
+            CircleHeroData heroData = await assetProvider.Load<CircleHeroData>(progressService.SelectedCircleDataReference);
+            CircleHeroView view = await circleHeroViewFactory.Create(heroData.Prefab);
+            gameFactory.CurrentCircleHero.SetView(view.GameObject());
         }
 
         public void Cleanup()

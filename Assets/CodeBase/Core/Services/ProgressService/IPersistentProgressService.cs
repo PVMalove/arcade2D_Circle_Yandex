@@ -1,6 +1,6 @@
 ﻿using System;
 using CodeBase.Core.Data;
-using CodeBase.StaticData.Level;
+using CodeBase.StaticData.Player;
 using UnityEngine.AddressableAssets;
 
 namespace CodeBase.Core.Services.ProgressService

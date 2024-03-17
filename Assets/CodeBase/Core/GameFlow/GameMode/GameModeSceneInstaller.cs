@@ -25,8 +25,6 @@ namespace CodeBase.Core.GameFlow.GameMode
             UIInstaller.Install(Container);
             GameWorldInstaller.Install(Container);
             
-            Container.Bind<CircleHero.Factory>().AsSingle();
-            
             BindInputService();
         }
         

@@ -17,7 +17,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  coinsAmount: 500
+  coinsAmount: 2000
   audioVolume: 0.5
   musicOn: 1
   effectsOn: 1

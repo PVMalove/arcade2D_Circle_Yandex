@@ -45,6 +45,7 @@ namespace CodeBase.Core.GameFlow.GameLoading.States
         private async UniTask CompleteLoadData()
         {
             PlayerProgress progress = await loadService.LoadProgress();
+            
             progressService.Initialize(progress ?? await NewProgress());
             log.LogState($"CompleteLoadData player progress: {progress}", this);
         }
@@ -69,13 +70,13 @@ namespace CodeBase.Core.GameFlow.GameLoading.States
                 newSaveData.CoinsAmount
             );
             
-            PlayerOwnedItemsData ownedItemsData = new PlayerOwnedItemsData(
-                new List<string> { newSaveData.CircleHeroGUID });
+            PlayerItemsData itemsData = new PlayerItemsData(
+                new List<string> { newSaveData.CircleHeroGUID },
+                newSaveData.CircleHeroGUID);
 
             PlayerProgress progress = new PlayerProgress(
                 audioControl,
-                newSaveData.CircleHeroGUID,
-                ownedItemsData,
+                itemsData,
                 coinData);
             
             log.LogState("Init new player progress", this);

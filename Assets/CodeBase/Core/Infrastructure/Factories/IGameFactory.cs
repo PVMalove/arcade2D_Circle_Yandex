@@ -11,6 +11,7 @@ namespace CodeBase.Core.Infrastructure.Factories
         List<IProgressReader> ProgressReaders { get; }
         List<IProgressSaver> ProgressWriters { get; }
         GameObject CircleBackground { get; }
+        CircleHero CurrentCircleHero { get; }
         GameObject CreateHUD();
         GameObject CreateCircleBackground();
         UniTask<CircleHero> CreateCircleHero();

@@ -76,12 +76,17 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4545318d3e38691489774ac629dcdd7a
+  - m_GUID: e48b9dc29c1a39146beed2333b952563
+    m_Address: CircleHero
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e38fe4531871af84dbd8d3b5f8110f24
     m_Address: CircleHero_prefab_01
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b1f179e9efec61f4c8e8804c9686040b
+  - m_GUID: 5de2a16a06bd86446bfe07580dd598b6
     m_Address: CircleHero_prefab_02
     m_ReadOnly: 0
     m_SerializedLabels: []

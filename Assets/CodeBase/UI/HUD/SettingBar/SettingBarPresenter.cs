@@ -101,24 +101,24 @@ namespace CodeBase.UI.HUD.SettingBar
             Debug.Log("Reset player progress");
             YandexGame.ResetSaveProgress();
             FirstSaveData newSaveData = await assetProvider.Load<FirstSaveData>(InfrastructureAssetPath.NewSaveDataAddress);
-            
-            PlayerOwnedItemsData ownedItemsData = new PlayerOwnedItemsData(
-                new List<string> { newSaveData.CircleHeroGUID });
-            
-            CoinData coinData = new CoinData(
-                newSaveData.CoinsAmount
-            );
-            
+
             AudioControlData audioControl = new AudioControlData(
                 newSaveData.AudioVolume, 
                 newSaveData.MusicOn,
                 newSaveData.EffectsOn
             );
+
+            PlayerItemsData itemsData = new PlayerItemsData(
+                new List<string> { newSaveData.CircleHeroGUID },
+                newSaveData.CircleHeroGUID);
             
+            CoinData coinData = new CoinData(
+                newSaveData.CoinsAmount
+            );
+
             PlayerProgress progress = new PlayerProgress(
                 audioControl,
-                newSaveData.CircleHeroGUID,
-                ownedItemsData,
+                itemsData,
                 coinData);
 
             progressService.Initialize(progress);
